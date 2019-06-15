@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+ PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<!--连接mysql数据库的驱动 ，改location="自己工程下数据库的jar包"-->
+	<classPathEntry location="D:\projects\neueduexam\neueduexam\src\main\resources\mysql-connector-java-5.1.6-bin.jar" />
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<!--数据库的用户名，密码   改jdbcConnection="自己工程的数据库连接"-->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/neuexam" userId="root" password="root">
+		</jdbcConnection>
+		
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+		
+		<!--自动生成实体类的文件    ，改targetPackage="放置自动生成文件的目录"  -->
+		<javaModelGenerator targetPackage="neueduexam.entity" targetProject="../java">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!--自动生成表的操作语句(映射文件)    ，改targetPackage="放置自动生成文件的目录"  -->
+		<sqlMapGenerator targetPackage="neueduexam.entity" targetProject="../java">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!--自动生成dao类()          ，改targetPackage="放置自动生成的DAO文件的目录"  -->
+		<javaClientGenerator type="XMLMAPPER" targetPackage="neueduexam.dao" targetProject="../java">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+		
+		<!-- 要新生成的数据库表，注意：已经生成成功的,一定要注释掉,否则会覆盖.我们只生成新表！ -->		
+
+          <table tableName="user" domainObjectName="user"/>
+          <table tableName="examandquestion" domainObjectName="examandquestion"/>
+          <table tableName="exampaper" domainObjectName="exampaper"/>
+          <table tableName="invitation" domainObjectName="invitation"/>
+          <table tableName="personexampaper" domainObjectName="personexampaper"/>
+          <table tableName="personquestion" domainObjectName="personquestion"/>
+          <table tableName="question" domainObjectName="question"/>
+          <table tableName="questionandlib" domainObjectName="questionandlib"/>
+          <table tableName="questionlib" domainObjectName="questionlib"/>
+          <table tableName="record" domainObjectName="record"/>
+          <table tableName="testpaper" domainObjectName="testpaper"/>
+          <table tableName="userbuylib" domainObjectName="userbuylib"/>
+          <table tableName="userhavelib" domainObjectName="userhavelib"/>
+	</context>
+
+</generatorConfiguration>

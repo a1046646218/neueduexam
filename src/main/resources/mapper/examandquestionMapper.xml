@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.examandquestionMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.examandquestion" >
+    <result column="examId" property="examid" jdbcType="INTEGER" />
+    <result column="quesId" property="quesid" jdbcType="INTEGER" />
+    <result column="quesScore" property="quesscore" jdbcType="INTEGER" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    examId, quesId, quesScore, other1, other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.examandquestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from examandquestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.examandquestionExample" >
+    delete from examandquestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.examandquestion" >
+    insert into examandquestion (examId, quesId, quesScore, 
+      other1, other2)
+    values (#{examid,jdbcType=INTEGER}, #{quesid,jdbcType=INTEGER}, #{quesscore,jdbcType=INTEGER}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.examandquestion" >
+    insert into examandquestion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examid != null" >
+        examId,
+      </if>
+      <if test="quesid != null" >
+        quesId,
+      </if>
+      <if test="quesscore != null" >
+        quesScore,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examid != null" >
+        #{examid,jdbcType=INTEGER},
+      </if>
+      <if test="quesid != null" >
+        #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="quesscore != null" >
+        #{quesscore,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.examandquestionExample" resultType="java.lang.Integer" >
+    select count(*) from examandquestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update examandquestion
+    <set >
+      <if test="record.examid != null" >
+        examId = #{record.examid,jdbcType=INTEGER},
+      </if>
+      <if test="record.quesid != null" >
+        quesId = #{record.quesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.quesscore != null" >
+        quesScore = #{record.quesscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update examandquestion
+    set examId = #{record.examid,jdbcType=INTEGER},
+      quesId = #{record.quesid,jdbcType=INTEGER},
+      quesScore = #{record.quesscore,jdbcType=INTEGER},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

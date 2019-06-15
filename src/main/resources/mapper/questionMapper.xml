@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.questionMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.question" >
+    <id column="quesId" property="quesid" jdbcType="INTEGER" />
+    <result column="quesType" property="questype" jdbcType="VARCHAR" />
+    <result column="quesContext" property="quescontext" jdbcType="VARCHAR" />
+    <result column="A" property="a" jdbcType="VARCHAR" />
+    <result column="B" property="b" jdbcType="VARCHAR" />
+    <result column="C" property="c" jdbcType="VARCHAR" />
+    <result column="D" property="d" jdbcType="VARCHAR" />
+    <result column="quesAnswer" property="quesanswer" jdbcType="VARCHAR" />
+    <result column="difficulty" property="difficulty" jdbcType="VARCHAR" />
+    <result column="tag" property="tag" jdbcType="VARCHAR" />
+    <result column="analysis" property="analysis" jdbcType="VARCHAR" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    quesId, quesType, quesContext, A, B, C, D, quesAnswer, difficulty, tag, analysis, 
+    other1, other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.questionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from question
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from question
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.questionExample" >
+    delete from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.question" >
+    insert into question (quesId, quesType, quesContext, 
+      A, B, C, D, 
+      quesAnswer, difficulty, tag, 
+      analysis, other1, other2
+      )
+    values (#{quesid,jdbcType=INTEGER}, #{questype,jdbcType=VARCHAR}, #{quescontext,jdbcType=VARCHAR}, 
+      #{a,jdbcType=VARCHAR}, #{b,jdbcType=VARCHAR}, #{c,jdbcType=VARCHAR}, #{d,jdbcType=VARCHAR}, 
+      #{quesanswer,jdbcType=VARCHAR}, #{difficulty,jdbcType=VARCHAR}, #{tag,jdbcType=VARCHAR}, 
+      #{analysis,jdbcType=VARCHAR}, #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.question" >
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="quesid != null" >
+        quesId,
+      </if>
+      <if test="questype != null" >
+        quesType,
+      </if>
+      <if test="quescontext != null" >
+        quesContext,
+      </if>
+      <if test="a != null" >
+        A,
+      </if>
+      <if test="b != null" >
+        B,
+      </if>
+      <if test="c != null" >
+        C,
+      </if>
+      <if test="d != null" >
+        D,
+      </if>
+      <if test="quesanswer != null" >
+        quesAnswer,
+      </if>
+      <if test="difficulty != null" >
+        difficulty,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="analysis != null" >
+        analysis,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="quesid != null" >
+        #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="questype != null" >
+        #{questype,jdbcType=VARCHAR},
+      </if>
+      <if test="quescontext != null" >
+        #{quescontext,jdbcType=VARCHAR},
+      </if>
+      <if test="a != null" >
+        #{a,jdbcType=VARCHAR},
+      </if>
+      <if test="b != null" >
+        #{b,jdbcType=VARCHAR},
+      </if>
+      <if test="c != null" >
+        #{c,jdbcType=VARCHAR},
+      </if>
+      <if test="d != null" >
+        #{d,jdbcType=VARCHAR},
+      </if>
+      <if test="quesanswer != null" >
+        #{quesanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="difficulty != null" >
+        #{difficulty,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="analysis != null" >
+        #{analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.questionExample" resultType="java.lang.Integer" >
+    select count(*) from question
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update question
+    <set >
+      <if test="record.quesid != null" >
+        quesId = #{record.quesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.questype != null" >
+        quesType = #{record.questype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quescontext != null" >
+        quesContext = #{record.quescontext,jdbcType=VARCHAR},
+      </if>
+      <if test="record.a != null" >
+        A = #{record.a,jdbcType=VARCHAR},
+      </if>
+      <if test="record.b != null" >
+        B = #{record.b,jdbcType=VARCHAR},
+      </if>
+      <if test="record.c != null" >
+        C = #{record.c,jdbcType=VARCHAR},
+      </if>
+      <if test="record.d != null" >
+        D = #{record.d,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quesanswer != null" >
+        quesAnswer = #{record.quesanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.difficulty != null" >
+        difficulty = #{record.difficulty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.tag != null" >
+        tag = #{record.tag,jdbcType=VARCHAR},
+      </if>
+      <if test="record.analysis != null" >
+        analysis = #{record.analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update question
+    set quesId = #{record.quesid,jdbcType=INTEGER},
+      quesType = #{record.questype,jdbcType=VARCHAR},
+      quesContext = #{record.quescontext,jdbcType=VARCHAR},
+      A = #{record.a,jdbcType=VARCHAR},
+      B = #{record.b,jdbcType=VARCHAR},
+      C = #{record.c,jdbcType=VARCHAR},
+      D = #{record.d,jdbcType=VARCHAR},
+      quesAnswer = #{record.quesanswer,jdbcType=VARCHAR},
+      difficulty = #{record.difficulty,jdbcType=VARCHAR},
+      tag = #{record.tag,jdbcType=VARCHAR},
+      analysis = #{record.analysis,jdbcType=VARCHAR},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neueduexam.entity.question" >
+    update question
+    <set >
+      <if test="questype != null" >
+        quesType = #{questype,jdbcType=VARCHAR},
+      </if>
+      <if test="quescontext != null" >
+        quesContext = #{quescontext,jdbcType=VARCHAR},
+      </if>
+      <if test="a != null" >
+        A = #{a,jdbcType=VARCHAR},
+      </if>
+      <if test="b != null" >
+        B = #{b,jdbcType=VARCHAR},
+      </if>
+      <if test="c != null" >
+        C = #{c,jdbcType=VARCHAR},
+      </if>
+      <if test="d != null" >
+        D = #{d,jdbcType=VARCHAR},
+      </if>
+      <if test="quesanswer != null" >
+        quesAnswer = #{quesanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="difficulty != null" >
+        difficulty = #{difficulty,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="analysis != null" >
+        analysis = #{analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="neueduexam.entity.question" >
+    update question
+    set quesType = #{questype,jdbcType=VARCHAR},
+      quesContext = #{quescontext,jdbcType=VARCHAR},
+      A = #{a,jdbcType=VARCHAR},
+      B = #{b,jdbcType=VARCHAR},
+      C = #{c,jdbcType=VARCHAR},
+      D = #{d,jdbcType=VARCHAR},
+      quesAnswer = #{quesanswer,jdbcType=VARCHAR},
+      difficulty = #{difficulty,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR},
+      analysis = #{analysis,jdbcType=VARCHAR},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </update>
+</mapper>

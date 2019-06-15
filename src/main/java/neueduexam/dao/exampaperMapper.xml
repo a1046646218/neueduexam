@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.exampaperMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.exampaper" >
+    <id column="examId" property="examid" jdbcType="INTEGER" />
+    <result column="examName" property="examname" jdbcType="VARCHAR" />
+    <result column="examType" property="examtype" jdbcType="VARCHAR" />
+    <result column="examProfile" property="examprofile" jdbcType="VARCHAR" />
+    <result column="eUserId" property="euserid" jdbcType="INTEGER" />
+    <result column="eNickName" property="enickname" jdbcType="VARCHAR" />
+    <result column="numOfQuestions" property="numofquestions" jdbcType="INTEGER" />
+    <result column="numOfSingle" property="numofsingle" jdbcType="INTEGER" />
+    <result column="numOfMultiple" property="numofmultiple" jdbcType="INTEGER" />
+    <result column="numOfJudge" property="numofjudge" jdbcType="INTEGER" />
+    <result column="numOfBlank" property="numofblank" jdbcType="INTEGER" />
+    <result column="numOfAnswer" property="numofanswer" jdbcType="INTEGER" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    examId, examName, examType, examProfile, eUserId, eNickName, numOfQuestions, numOfSingle, 
+    numOfMultiple, numOfJudge, numOfBlank, numOfAnswer, other1, other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.exampaperExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from exampaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from exampaper
+    where examId = #{examid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from exampaper
+    where examId = #{examid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.exampaperExample" >
+    delete from exampaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.exampaper" >
+    insert into exampaper (examId, examName, examType, 
+      examProfile, eUserId, eNickName, 
+      numOfQuestions, numOfSingle, numOfMultiple, 
+      numOfJudge, numOfBlank, numOfAnswer, 
+      other1, other2)
+    values (#{examid,jdbcType=INTEGER}, #{examname,jdbcType=VARCHAR}, #{examtype,jdbcType=VARCHAR}, 
+      #{examprofile,jdbcType=VARCHAR}, #{euserid,jdbcType=INTEGER}, #{enickname,jdbcType=VARCHAR}, 
+      #{numofquestions,jdbcType=INTEGER}, #{numofsingle,jdbcType=INTEGER}, #{numofmultiple,jdbcType=INTEGER}, 
+      #{numofjudge,jdbcType=INTEGER}, #{numofblank,jdbcType=INTEGER}, #{numofanswer,jdbcType=INTEGER}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.exampaper" >
+    insert into exampaper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="examid != null" >
+        examId,
+      </if>
+      <if test="examname != null" >
+        examName,
+      </if>
+      <if test="examtype != null" >
+        examType,
+      </if>
+      <if test="examprofile != null" >
+        examProfile,
+      </if>
+      <if test="euserid != null" >
+        eUserId,
+      </if>
+      <if test="enickname != null" >
+        eNickName,
+      </if>
+      <if test="numofquestions != null" >
+        numOfQuestions,
+      </if>
+      <if test="numofsingle != null" >
+        numOfSingle,
+      </if>
+      <if test="numofmultiple != null" >
+        numOfMultiple,
+      </if>
+      <if test="numofjudge != null" >
+        numOfJudge,
+      </if>
+      <if test="numofblank != null" >
+        numOfBlank,
+      </if>
+      <if test="numofanswer != null" >
+        numOfAnswer,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="examid != null" >
+        #{examid,jdbcType=INTEGER},
+      </if>
+      <if test="examname != null" >
+        #{examname,jdbcType=VARCHAR},
+      </if>
+      <if test="examtype != null" >
+        #{examtype,jdbcType=VARCHAR},
+      </if>
+      <if test="examprofile != null" >
+        #{examprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="euserid != null" >
+        #{euserid,jdbcType=INTEGER},
+      </if>
+      <if test="enickname != null" >
+        #{enickname,jdbcType=VARCHAR},
+      </if>
+      <if test="numofquestions != null" >
+        #{numofquestions,jdbcType=INTEGER},
+      </if>
+      <if test="numofsingle != null" >
+        #{numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="numofmultiple != null" >
+        #{numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="numofjudge != null" >
+        #{numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="numofblank != null" >
+        #{numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="numofanswer != null" >
+        #{numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.exampaperExample" resultType="java.lang.Integer" >
+    select count(*) from exampaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update exampaper
+    <set >
+      <if test="record.examid != null" >
+        examId = #{record.examid,jdbcType=INTEGER},
+      </if>
+      <if test="record.examname != null" >
+        examName = #{record.examname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examtype != null" >
+        examType = #{record.examtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.examprofile != null" >
+        examProfile = #{record.examprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.euserid != null" >
+        eUserId = #{record.euserid,jdbcType=INTEGER},
+      </if>
+      <if test="record.enickname != null" >
+        eNickName = #{record.enickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numofquestions != null" >
+        numOfQuestions = #{record.numofquestions,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofsingle != null" >
+        numOfSingle = #{record.numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofmultiple != null" >
+        numOfMultiple = #{record.numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofjudge != null" >
+        numOfJudge = #{record.numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofblank != null" >
+        numOfBlank = #{record.numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofanswer != null" >
+        numOfAnswer = #{record.numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update exampaper
+    set examId = #{record.examid,jdbcType=INTEGER},
+      examName = #{record.examname,jdbcType=VARCHAR},
+      examType = #{record.examtype,jdbcType=VARCHAR},
+      examProfile = #{record.examprofile,jdbcType=VARCHAR},
+      eUserId = #{record.euserid,jdbcType=INTEGER},
+      eNickName = #{record.enickname,jdbcType=VARCHAR},
+      numOfQuestions = #{record.numofquestions,jdbcType=INTEGER},
+      numOfSingle = #{record.numofsingle,jdbcType=INTEGER},
+      numOfMultiple = #{record.numofmultiple,jdbcType=INTEGER},
+      numOfJudge = #{record.numofjudge,jdbcType=INTEGER},
+      numOfBlank = #{record.numofblank,jdbcType=INTEGER},
+      numOfAnswer = #{record.numofanswer,jdbcType=INTEGER},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neueduexam.entity.exampaper" >
+    update exampaper
+    <set >
+      <if test="examname != null" >
+        examName = #{examname,jdbcType=VARCHAR},
+      </if>
+      <if test="examtype != null" >
+        examType = #{examtype,jdbcType=VARCHAR},
+      </if>
+      <if test="examprofile != null" >
+        examProfile = #{examprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="euserid != null" >
+        eUserId = #{euserid,jdbcType=INTEGER},
+      </if>
+      <if test="enickname != null" >
+        eNickName = #{enickname,jdbcType=VARCHAR},
+      </if>
+      <if test="numofquestions != null" >
+        numOfQuestions = #{numofquestions,jdbcType=INTEGER},
+      </if>
+      <if test="numofsingle != null" >
+        numOfSingle = #{numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="numofmultiple != null" >
+        numOfMultiple = #{numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="numofjudge != null" >
+        numOfJudge = #{numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="numofblank != null" >
+        numOfBlank = #{numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="numofanswer != null" >
+        numOfAnswer = #{numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where examId = #{examid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="neueduexam.entity.exampaper" >
+    update exampaper
+    set examName = #{examname,jdbcType=VARCHAR},
+      examType = #{examtype,jdbcType=VARCHAR},
+      examProfile = #{examprofile,jdbcType=VARCHAR},
+      eUserId = #{euserid,jdbcType=INTEGER},
+      eNickName = #{enickname,jdbcType=VARCHAR},
+      numOfQuestions = #{numofquestions,jdbcType=INTEGER},
+      numOfSingle = #{numofsingle,jdbcType=INTEGER},
+      numOfMultiple = #{numofmultiple,jdbcType=INTEGER},
+      numOfJudge = #{numofjudge,jdbcType=INTEGER},
+      numOfBlank = #{numofblank,jdbcType=INTEGER},
+      numOfAnswer = #{numofanswer,jdbcType=INTEGER},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where examId = #{examid,jdbcType=INTEGER}
+  </update>
+</mapper>

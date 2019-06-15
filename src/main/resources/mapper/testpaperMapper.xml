@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.testpaperMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.testpaper" >
+    <result column="testId" property="testid" jdbcType="INTEGER" />
+    <result column="examId" property="examid" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="testName" property="testname" jdbcType="VARCHAR" />
+    <result column="publishDate" property="publishdate" jdbcType="VARCHAR" />
+    <result column="limitChanges" property="limitchanges" jdbcType="INTEGER" />
+    <result column="countDown" property="countdown" jdbcType="INTEGER" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    testId, examId, userId, testName, publishDate, limitChanges, countDown, other1, other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.testpaperExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from testpaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.testpaperExample" >
+    delete from testpaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.testpaper" >
+    insert into testpaper (testId, examId, userId, 
+      testName, publishDate, limitChanges, 
+      countDown, other1, other2
+      )
+    values (#{testid,jdbcType=INTEGER}, #{examid,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, 
+      #{testname,jdbcType=VARCHAR}, #{publishdate,jdbcType=VARCHAR}, #{limitchanges,jdbcType=INTEGER}, 
+      #{countdown,jdbcType=INTEGER}, #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.testpaper" >
+    insert into testpaper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testid != null" >
+        testId,
+      </if>
+      <if test="examid != null" >
+        examId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="testname != null" >
+        testName,
+      </if>
+      <if test="publishdate != null" >
+        publishDate,
+      </if>
+      <if test="limitchanges != null" >
+        limitChanges,
+      </if>
+      <if test="countdown != null" >
+        countDown,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testid != null" >
+        #{testid,jdbcType=INTEGER},
+      </if>
+      <if test="examid != null" >
+        #{examid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="testname != null" >
+        #{testname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="limitchanges != null" >
+        #{limitchanges,jdbcType=INTEGER},
+      </if>
+      <if test="countdown != null" >
+        #{countdown,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.testpaperExample" resultType="java.lang.Integer" >
+    select count(*) from testpaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update testpaper
+    <set >
+      <if test="record.testid != null" >
+        testId = #{record.testid,jdbcType=INTEGER},
+      </if>
+      <if test="record.examid != null" >
+        examId = #{record.examid,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.testname != null" >
+        testName = #{record.testname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publishdate != null" >
+        publishDate = #{record.publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.limitchanges != null" >
+        limitChanges = #{record.limitchanges,jdbcType=INTEGER},
+      </if>
+      <if test="record.countdown != null" >
+        countDown = #{record.countdown,jdbcType=INTEGER},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update testpaper
+    set testId = #{record.testid,jdbcType=INTEGER},
+      examId = #{record.examid,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      testName = #{record.testname,jdbcType=VARCHAR},
+      publishDate = #{record.publishdate,jdbcType=VARCHAR},
+      limitChanges = #{record.limitchanges,jdbcType=INTEGER},
+      countDown = #{record.countdown,jdbcType=INTEGER},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+</mapper>

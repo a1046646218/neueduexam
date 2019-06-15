@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.personquestionMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.personquestion" >
+    <id column="perQuesId" property="perquesid" jdbcType="INTEGER" />
+    <result column="pExamId" property="pexamid" jdbcType="INTEGER" />
+    <result column="quesId" property="quesid" jdbcType="INTEGER" />
+    <result column="studentId" property="studentid" jdbcType="INTEGER" />
+    <result column="stuAnswer" property="stuanswer" jdbcType="VARCHAR" />
+    <result column="stuScore" property="stuscore" jdbcType="INTEGER" />
+    <result column="perQuesState" property="perquesstate" jdbcType="VARCHAR" />
+    <result column="perQuesScore" property="perquesscore" jdbcType="INTEGER" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    perQuesId, pExamId, quesId, studentId, stuAnswer, stuScore, perQuesState, perQuesScore, 
+    other1, other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.personquestionExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personquestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from personquestion
+    where perQuesId = #{perquesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from personquestion
+    where perQuesId = #{perquesid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.personquestionExample" >
+    delete from personquestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.personquestion" >
+    insert into personquestion (perQuesId, pExamId, quesId, 
+      studentId, stuAnswer, stuScore, 
+      perQuesState, perQuesScore, other1, 
+      other2)
+    values (#{perquesid,jdbcType=INTEGER}, #{pexamid,jdbcType=INTEGER}, #{quesid,jdbcType=INTEGER}, 
+      #{studentid,jdbcType=INTEGER}, #{stuanswer,jdbcType=VARCHAR}, #{stuscore,jdbcType=INTEGER}, 
+      #{perquesstate,jdbcType=VARCHAR}, #{perquesscore,jdbcType=INTEGER}, #{other1,jdbcType=VARCHAR}, 
+      #{other2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.personquestion" >
+    insert into personquestion
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="perquesid != null" >
+        perQuesId,
+      </if>
+      <if test="pexamid != null" >
+        pExamId,
+      </if>
+      <if test="quesid != null" >
+        quesId,
+      </if>
+      <if test="studentid != null" >
+        studentId,
+      </if>
+      <if test="stuanswer != null" >
+        stuAnswer,
+      </if>
+      <if test="stuscore != null" >
+        stuScore,
+      </if>
+      <if test="perquesstate != null" >
+        perQuesState,
+      </if>
+      <if test="perquesscore != null" >
+        perQuesScore,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="perquesid != null" >
+        #{perquesid,jdbcType=INTEGER},
+      </if>
+      <if test="pexamid != null" >
+        #{pexamid,jdbcType=INTEGER},
+      </if>
+      <if test="quesid != null" >
+        #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null" >
+        #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="stuanswer != null" >
+        #{stuanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="stuscore != null" >
+        #{stuscore,jdbcType=INTEGER},
+      </if>
+      <if test="perquesstate != null" >
+        #{perquesstate,jdbcType=VARCHAR},
+      </if>
+      <if test="perquesscore != null" >
+        #{perquesscore,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.personquestionExample" resultType="java.lang.Integer" >
+    select count(*) from personquestion
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update personquestion
+    <set >
+      <if test="record.perquesid != null" >
+        perQuesId = #{record.perquesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.pexamid != null" >
+        pExamId = #{record.pexamid,jdbcType=INTEGER},
+      </if>
+      <if test="record.quesid != null" >
+        quesId = #{record.quesid,jdbcType=INTEGER},
+      </if>
+      <if test="record.studentid != null" >
+        studentId = #{record.studentid,jdbcType=INTEGER},
+      </if>
+      <if test="record.stuanswer != null" >
+        stuAnswer = #{record.stuanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="record.stuscore != null" >
+        stuScore = #{record.stuscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.perquesstate != null" >
+        perQuesState = #{record.perquesstate,jdbcType=VARCHAR},
+      </if>
+      <if test="record.perquesscore != null" >
+        perQuesScore = #{record.perquesscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update personquestion
+    set perQuesId = #{record.perquesid,jdbcType=INTEGER},
+      pExamId = #{record.pexamid,jdbcType=INTEGER},
+      quesId = #{record.quesid,jdbcType=INTEGER},
+      studentId = #{record.studentid,jdbcType=INTEGER},
+      stuAnswer = #{record.stuanswer,jdbcType=VARCHAR},
+      stuScore = #{record.stuscore,jdbcType=INTEGER},
+      perQuesState = #{record.perquesstate,jdbcType=VARCHAR},
+      perQuesScore = #{record.perquesscore,jdbcType=INTEGER},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neueduexam.entity.personquestion" >
+    update personquestion
+    <set >
+      <if test="pexamid != null" >
+        pExamId = #{pexamid,jdbcType=INTEGER},
+      </if>
+      <if test="quesid != null" >
+        quesId = #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="studentid != null" >
+        studentId = #{studentid,jdbcType=INTEGER},
+      </if>
+      <if test="stuanswer != null" >
+        stuAnswer = #{stuanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="stuscore != null" >
+        stuScore = #{stuscore,jdbcType=INTEGER},
+      </if>
+      <if test="perquesstate != null" >
+        perQuesState = #{perquesstate,jdbcType=VARCHAR},
+      </if>
+      <if test="perquesscore != null" >
+        perQuesScore = #{perquesscore,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where perQuesId = #{perquesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="neueduexam.entity.personquestion" >
+    update personquestion
+    set pExamId = #{pexamid,jdbcType=INTEGER},
+      quesId = #{quesid,jdbcType=INTEGER},
+      studentId = #{studentid,jdbcType=INTEGER},
+      stuAnswer = #{stuanswer,jdbcType=VARCHAR},
+      stuScore = #{stuscore,jdbcType=INTEGER},
+      perQuesState = #{perquesstate,jdbcType=VARCHAR},
+      perQuesScore = #{perquesscore,jdbcType=INTEGER},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where perQuesId = #{perquesid,jdbcType=INTEGER}
+  </update>
+</mapper>

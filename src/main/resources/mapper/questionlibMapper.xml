@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.questionlibMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.questionlib" >
+    <id column="libId" property="libid" jdbcType="INTEGER" />
+    <result column="libName" property="libname" jdbcType="VARCHAR" />
+    <result column="libType" property="libtype" jdbcType="VARCHAR" />
+    <result column="libPrice" property="libprice" jdbcType="INTEGER" />
+    <result column="userId" property="userid" jdbcType="INTEGER" />
+    <result column="nickName" property="nickname" jdbcType="VARCHAR" />
+    <result column="quesAmount" property="quesamount" jdbcType="INTEGER" />
+    <result column="libProfile" property="libprofile" jdbcType="VARCHAR" />
+    <result column="numOfPurchases" property="numofpurchases" jdbcType="INTEGER" />
+    <result column="numOfSingle" property="numofsingle" jdbcType="INTEGER" />
+    <result column="numOfMultiple" property="numofmultiple" jdbcType="INTEGER" />
+    <result column="numOfJudge" property="numofjudge" jdbcType="INTEGER" />
+    <result column="numOfBlank" property="numofblank" jdbcType="INTEGER" />
+    <result column="numOfAnswer" property="numofanswer" jdbcType="INTEGER" />
+    <result column="publishTime" property="publishtime" jdbcType="VARCHAR" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    libId, libName, libType, libPrice, userId, nickName, quesAmount, libProfile, numOfPurchases, 
+    numOfSingle, numOfMultiple, numOfJudge, numOfBlank, numOfAnswer, publishTime, other1, 
+    other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.questionlibExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from questionlib
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from questionlib
+    where libId = #{libid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from questionlib
+    where libId = #{libid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.questionlibExample" >
+    delete from questionlib
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.questionlib" >
+    insert into questionlib (libId, libName, libType, 
+      libPrice, userId, nickName, 
+      quesAmount, libProfile, numOfPurchases, 
+      numOfSingle, numOfMultiple, numOfJudge, 
+      numOfBlank, numOfAnswer, publishTime, 
+      other1, other2)
+    values (#{libid,jdbcType=INTEGER}, #{libname,jdbcType=VARCHAR}, #{libtype,jdbcType=VARCHAR}, 
+      #{libprice,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, 
+      #{quesamount,jdbcType=INTEGER}, #{libprofile,jdbcType=VARCHAR}, #{numofpurchases,jdbcType=INTEGER}, 
+      #{numofsingle,jdbcType=INTEGER}, #{numofmultiple,jdbcType=INTEGER}, #{numofjudge,jdbcType=INTEGER}, 
+      #{numofblank,jdbcType=INTEGER}, #{numofanswer,jdbcType=INTEGER}, #{publishtime,jdbcType=VARCHAR}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.questionlib" >
+    insert into questionlib
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="libid != null" >
+        libId,
+      </if>
+      <if test="libname != null" >
+        libName,
+      </if>
+      <if test="libtype != null" >
+        libType,
+      </if>
+      <if test="libprice != null" >
+        libPrice,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
+      <if test="quesamount != null" >
+        quesAmount,
+      </if>
+      <if test="libprofile != null" >
+        libProfile,
+      </if>
+      <if test="numofpurchases != null" >
+        numOfPurchases,
+      </if>
+      <if test="numofsingle != null" >
+        numOfSingle,
+      </if>
+      <if test="numofmultiple != null" >
+        numOfMultiple,
+      </if>
+      <if test="numofjudge != null" >
+        numOfJudge,
+      </if>
+      <if test="numofblank != null" >
+        numOfBlank,
+      </if>
+      <if test="numofanswer != null" >
+        numOfAnswer,
+      </if>
+      <if test="publishtime != null" >
+        publishTime,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="libid != null" >
+        #{libid,jdbcType=INTEGER},
+      </if>
+      <if test="libname != null" >
+        #{libname,jdbcType=VARCHAR},
+      </if>
+      <if test="libtype != null" >
+        #{libtype,jdbcType=VARCHAR},
+      </if>
+      <if test="libprice != null" >
+        #{libprice,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="quesamount != null" >
+        #{quesamount,jdbcType=INTEGER},
+      </if>
+      <if test="libprofile != null" >
+        #{libprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="numofpurchases != null" >
+        #{numofpurchases,jdbcType=INTEGER},
+      </if>
+      <if test="numofsingle != null" >
+        #{numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="numofmultiple != null" >
+        #{numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="numofjudge != null" >
+        #{numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="numofblank != null" >
+        #{numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="numofanswer != null" >
+        #{numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.questionlibExample" resultType="java.lang.Integer" >
+    select count(*) from questionlib
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update questionlib
+    <set >
+      <if test="record.libid != null" >
+        libId = #{record.libid,jdbcType=INTEGER},
+      </if>
+      <if test="record.libname != null" >
+        libName = #{record.libname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.libtype != null" >
+        libType = #{record.libtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.libprice != null" >
+        libPrice = #{record.libprice,jdbcType=INTEGER},
+      </if>
+      <if test="record.userid != null" >
+        userId = #{record.userid,jdbcType=INTEGER},
+      </if>
+      <if test="record.nickname != null" >
+        nickName = #{record.nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.quesamount != null" >
+        quesAmount = #{record.quesamount,jdbcType=INTEGER},
+      </if>
+      <if test="record.libprofile != null" >
+        libProfile = #{record.libprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.numofpurchases != null" >
+        numOfPurchases = #{record.numofpurchases,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofsingle != null" >
+        numOfSingle = #{record.numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofmultiple != null" >
+        numOfMultiple = #{record.numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofjudge != null" >
+        numOfJudge = #{record.numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofblank != null" >
+        numOfBlank = #{record.numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="record.numofanswer != null" >
+        numOfAnswer = #{record.numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishtime != null" >
+        publishTime = #{record.publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update questionlib
+    set libId = #{record.libid,jdbcType=INTEGER},
+      libName = #{record.libname,jdbcType=VARCHAR},
+      libType = #{record.libtype,jdbcType=VARCHAR},
+      libPrice = #{record.libprice,jdbcType=INTEGER},
+      userId = #{record.userid,jdbcType=INTEGER},
+      nickName = #{record.nickname,jdbcType=VARCHAR},
+      quesAmount = #{record.quesamount,jdbcType=INTEGER},
+      libProfile = #{record.libprofile,jdbcType=VARCHAR},
+      numOfPurchases = #{record.numofpurchases,jdbcType=INTEGER},
+      numOfSingle = #{record.numofsingle,jdbcType=INTEGER},
+      numOfMultiple = #{record.numofmultiple,jdbcType=INTEGER},
+      numOfJudge = #{record.numofjudge,jdbcType=INTEGER},
+      numOfBlank = #{record.numofblank,jdbcType=INTEGER},
+      numOfAnswer = #{record.numofanswer,jdbcType=INTEGER},
+      publishTime = #{record.publishtime,jdbcType=VARCHAR},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neueduexam.entity.questionlib" >
+    update questionlib
+    <set >
+      <if test="libname != null" >
+        libName = #{libname,jdbcType=VARCHAR},
+      </if>
+      <if test="libtype != null" >
+        libType = #{libtype,jdbcType=VARCHAR},
+      </if>
+      <if test="libprice != null" >
+        libPrice = #{libprice,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        nickName = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="quesamount != null" >
+        quesAmount = #{quesamount,jdbcType=INTEGER},
+      </if>
+      <if test="libprofile != null" >
+        libProfile = #{libprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="numofpurchases != null" >
+        numOfPurchases = #{numofpurchases,jdbcType=INTEGER},
+      </if>
+      <if test="numofsingle != null" >
+        numOfSingle = #{numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="numofmultiple != null" >
+        numOfMultiple = #{numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="numofjudge != null" >
+        numOfJudge = #{numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="numofblank != null" >
+        numOfBlank = #{numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="numofanswer != null" >
+        numOfAnswer = #{numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="publishtime != null" >
+        publishTime = #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where libId = #{libid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="neueduexam.entity.questionlib" >
+    update questionlib
+    set libName = #{libname,jdbcType=VARCHAR},
+      libType = #{libtype,jdbcType=VARCHAR},
+      libPrice = #{libprice,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      nickName = #{nickname,jdbcType=VARCHAR},
+      quesAmount = #{quesamount,jdbcType=INTEGER},
+      libProfile = #{libprofile,jdbcType=VARCHAR},
+      numOfPurchases = #{numofpurchases,jdbcType=INTEGER},
+      numOfSingle = #{numofsingle,jdbcType=INTEGER},
+      numOfMultiple = #{numofmultiple,jdbcType=INTEGER},
+      numOfJudge = #{numofjudge,jdbcType=INTEGER},
+      numOfBlank = #{numofblank,jdbcType=INTEGER},
+      numOfAnswer = #{numofanswer,jdbcType=INTEGER},
+      publishTime = #{publishtime,jdbcType=VARCHAR},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where libId = #{libid,jdbcType=INTEGER}
+  </update>
+</mapper>

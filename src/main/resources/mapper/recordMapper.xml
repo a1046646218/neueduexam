@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="neueduexam.dao.recordMapper" >
+  <resultMap id="BaseResultMap" type="neueduexam.entity.record" >
+    <id column="recordId" property="recordid" jdbcType="INTEGER" />
+    <result column="buyerId" property="buyerid" jdbcType="INTEGER" />
+    <result column="buyerName" property="buyername" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="INTEGER" />
+    <result column="sellerId" property="sellerid" jdbcType="INTEGER" />
+    <result column="sellerName" property="sellername" jdbcType="VARCHAR" />
+    <result column="date" property="date" jdbcType="TIMESTAMP" />
+    <result column="goodsName" property="goodsname" jdbcType="VARCHAR" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    recordId, buyerId, buyerName, cost, sellerId, sellerName, date, goodsName, other1, 
+    other2
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="neueduexam.entity.recordExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from record
+    where recordId = #{recordid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from record
+    where recordId = #{recordid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="neueduexam.entity.recordExample" >
+    delete from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="neueduexam.entity.record" >
+    insert into record (recordId, buyerId, buyerName, 
+      cost, sellerId, sellerName, 
+      date, goodsName, other1, 
+      other2)
+    values (#{recordid,jdbcType=INTEGER}, #{buyerid,jdbcType=INTEGER}, #{buyername,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=INTEGER}, #{sellerid,jdbcType=INTEGER}, #{sellername,jdbcType=VARCHAR}, 
+      #{date,jdbcType=TIMESTAMP}, #{goodsname,jdbcType=VARCHAR}, #{other1,jdbcType=VARCHAR}, 
+      #{other2,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="neueduexam.entity.record" >
+    insert into record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        recordId,
+      </if>
+      <if test="buyerid != null" >
+        buyerId,
+      </if>
+      <if test="buyername != null" >
+        buyerName,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="sellerid != null" >
+        sellerId,
+      </if>
+      <if test="sellername != null" >
+        sellerName,
+      </if>
+      <if test="date != null" >
+        date,
+      </if>
+      <if test="goodsname != null" >
+        goodsName,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="recordid != null" >
+        #{recordid,jdbcType=INTEGER},
+      </if>
+      <if test="buyerid != null" >
+        #{buyerid,jdbcType=INTEGER},
+      </if>
+      <if test="buyername != null" >
+        #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=INTEGER},
+      </if>
+      <if test="sellerid != null" >
+        #{sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="sellername != null" >
+        #{sellername,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsname != null" >
+        #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="neueduexam.entity.recordExample" resultType="java.lang.Integer" >
+    select count(*) from record
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update record
+    <set >
+      <if test="record.recordid != null" >
+        recordId = #{record.recordid,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyerid != null" >
+        buyerId = #{record.buyerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.buyername != null" >
+        buyerName = #{record.buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cost != null" >
+        cost = #{record.cost,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellerid != null" >
+        sellerId = #{record.sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sellername != null" >
+        sellerName = #{record.sellername,jdbcType=VARCHAR},
+      </if>
+      <if test="record.date != null" >
+        date = #{record.date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.goodsname != null" >
+        goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other1 != null" >
+        other1 = #{record.other1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.other2 != null" >
+        other2 = #{record.other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update record
+    set recordId = #{record.recordid,jdbcType=INTEGER},
+      buyerId = #{record.buyerid,jdbcType=INTEGER},
+      buyerName = #{record.buyername,jdbcType=VARCHAR},
+      cost = #{record.cost,jdbcType=INTEGER},
+      sellerId = #{record.sellerid,jdbcType=INTEGER},
+      sellerName = #{record.sellername,jdbcType=VARCHAR},
+      date = #{record.date,jdbcType=TIMESTAMP},
+      goodsName = #{record.goodsname,jdbcType=VARCHAR},
+      other1 = #{record.other1,jdbcType=VARCHAR},
+      other2 = #{record.other2,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neueduexam.entity.record" >
+    update record
+    <set >
+      <if test="buyerid != null" >
+        buyerId = #{buyerid,jdbcType=INTEGER},
+      </if>
+      <if test="buyername != null" >
+        buyerName = #{buyername,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=INTEGER},
+      </if>
+      <if test="sellerid != null" >
+        sellerId = #{sellerid,jdbcType=INTEGER},
+      </if>
+      <if test="sellername != null" >
+        sellerName = #{sellername,jdbcType=VARCHAR},
+      </if>
+      <if test="date != null" >
+        date = #{date,jdbcType=TIMESTAMP},
+      </if>
+      <if test="goodsname != null" >
+        goodsName = #{goodsname,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where recordId = #{recordid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="neueduexam.entity.record" >
+    update record
+    set buyerId = #{buyerid,jdbcType=INTEGER},
+      buyerName = #{buyername,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=INTEGER},
+      sellerId = #{sellerid,jdbcType=INTEGER},
+      sellerName = #{sellername,jdbcType=VARCHAR},
+      date = #{date,jdbcType=TIMESTAMP},
+      goodsName = #{goodsname,jdbcType=VARCHAR},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where recordId = #{recordid,jdbcType=INTEGER}
+  </update>
+</mapper>
