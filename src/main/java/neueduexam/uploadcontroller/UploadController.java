@@ -1,4 +1,4 @@
-package neueduexam.controller;
+package neueduexam.uploadcontroller;
 import java.io.File;
 import java.io.IOException;
 
