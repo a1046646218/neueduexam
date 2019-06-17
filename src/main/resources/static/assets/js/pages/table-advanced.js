@@ -31,11 +31,7 @@
 				// search
 				var $search = $('.dataTables_filter input', settings.nTableWrapper);
 
-				$search
-					.attr({
-						placeholder: typeof options.searchPlaceholder !== 'undefined' ? options.searchPlaceholder : 'Search'
-					})
-					.addClass('form-control');
+				$search.addClass('form-control');
 
 				if ( $.isFunction( $.fn.placeholder ) ) {
 					$search.placeholder();
