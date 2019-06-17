@@ -8,5 +8,5 @@ import neueduexam.entity.user;
 
 public interface UserService {
 	public List<user> getbyidexmaple(int i);
-	
+	public user getuserbyid(int i);
 }

@@ -21,4 +21,20 @@ public class connectcontroller {
 	public String tostudenthome() {
 		return "studenthome";
 	}
+	@RequestMapping("/tostudentalreadyexam")
+	public String tostudentalreadyexam() {
+		return "studentalreadyexam";
+	}
+	@RequestMapping("/tostudentpayrecord")
+	public String tostudentpayrecord() {
+		return "studentpayrecord";
+	}
+	@RequestMapping("/tostudentNotalreadyexam")
+	public String tostudentNotalreadyexam() {
+		return "studentNotalreadyexam";
+	}
+	@RequestMapping("/tostudentquestionlib")
+	public String tosstudentquestionlib() {
+		return "studentquestionlib";
+	}
 }

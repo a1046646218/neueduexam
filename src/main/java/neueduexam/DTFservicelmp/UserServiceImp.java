@@ -11,7 +11,7 @@ import neueduexam.entity.userExample;
 import neueduexam.entity.userExample.Criteria;
 
 @Service
-public class UserServicelmp implements UserService{
+public class UserServiceImp implements UserService{
 
 	@Autowired
 	userMapper usermapper;
@@ -22,5 +22,12 @@ public class UserServicelmp implements UserService{
 		cc.andTypeEqualTo("老师");
 		List<user> li = usermapper.selectByExample(e);
 		return li;
+	}
+
+	@Override
+	public user getuserbyid(int i) {
+		user u = usermapper.selectByPrimaryKey(i);
+		System.out.println(u.getEmail());
+		return u;
 	}
 }
