@@ -37,4 +37,8 @@ public class connectcontroller {
 	public String tosstudentquestionlib() {
 		return "studentquestionlib";
 	}
+	@RequestMapping("tolayers")
+	public String tolayers() {
+		return "layers";
+	}
 }

@@ -432,7 +432,7 @@
 				data:"page="+page,
 				success:function(result){
 					if($.isEmptyObject(result)){
-						alert("最后一页了");
+						layer.msg("没有更多内容");
 						page = page-1;
 						$('#pagenum').text(page);
 						return;

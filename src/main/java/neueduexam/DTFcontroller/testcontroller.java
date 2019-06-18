@@ -22,7 +22,7 @@ public class testcontroller {
 	
 	@RequestMapping("/test111")
 	public String test111(HttpServletRequest res) {
-		user user = userservice.getuserbyid(4);
+		user user = userservice.getuserbyid(1);
 		res.getSession().setAttribute("user", user);
 		return "studentalreadyexam";
 	}
