@@ -420,7 +420,7 @@
 											</div>
 											<div class="row" style="padding-top: 10px;">
 												<div class="col-lg-1 col-md-1 col-sm-1"></div>
-												<div class="col-lg-5 col-md-5 col-sm-5">
+												<div class="col-lg-5 col-md-5 col-sm-5" id="removelib">
 													<button class="bk-margin-5 btn btn-labeled btn-danger" type="button">
 													<span class="btn-label"><i class="fa fa-times"></i></span>删除题库</button>
 												</div>
@@ -622,6 +622,31 @@
 	</div>
 	<!-- <button type="button" class="btn btn_5 btn-lg btn-primary" id="chakan" style="font-size: 15px;" data-toggle="modal" data-target="#myModal"> -->
 <script type="application/javascript">
+	
+		$("#removelib").live("click",function(){
+			//alert("111111");
+			var str = $(this).parent().parent().attr("id");
+			//alert(str);
+			var arr=str.split("_")[0];
+			//alert(arr);
+			$.ajax({
+					type:'post',
+					url:'removelibAjaxDTF',
+					async:false,
+					data:{"libid":arr},
+					success:function(flag){
+						if(flag==1){
+							layer.msg('删除成功', {time: 5000, icon:6});
+							setTimeout(function(){
+							        window.location.href="tostudentquestionlib";
+							//      $(".modal-backdrop.fade").hide();
+							},1000);
+						}
+					}
+			});
+		});
+	
+	
 		$("#createlib").click(function(){
 			var clibname = $("#clibname").val().trim().replace(/\s/g,"");
 			var clibtype = $("#clibtype").val().trim().replace(/\s/g,"");
@@ -660,7 +685,7 @@
 							 setTimeout(function(){
                 				window.location.href="tostudentquestionlib";
 //                 				$(".modal-backdrop.fade").hide();
-            				},2000);
+            				},1000);
 						}
 					}
 				});

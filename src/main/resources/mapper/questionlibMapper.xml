@@ -398,4 +398,116 @@
       other2 = #{other2,jdbcType=VARCHAR}
     where libId = #{libid,jdbcType=INTEGER}
   </update>
+  <insert id="insertandgetlkey"  parameterType="neueduexam.entity.questionlib" >
+     <selectKey keyProperty="libid" order="AFTER" resultType="int">
+      select LAST_INSERT_ID() 
+      </selectKey>
+    insert into questionlib
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="libid != null" >
+        libId,
+      </if>
+      <if test="libname != null" >
+        libName,
+      </if>
+      <if test="libtype != null" >
+        libType,
+      </if>
+      <if test="libprice != null" >
+        libPrice,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="nickname != null" >
+        nickName,
+      </if>
+      <if test="quesamount != null" >
+        quesAmount,
+      </if>
+      <if test="libprofile != null" >
+        libProfile,
+      </if>
+      <if test="numofpurchases != null" >
+        numOfPurchases,
+      </if>
+      <if test="numofsingle != null" >
+        numOfSingle,
+      </if>
+      <if test="numofmultiple != null" >
+        numOfMultiple,
+      </if>
+      <if test="numofjudge != null" >
+        numOfJudge,
+      </if>
+      <if test="numofblank != null" >
+        numOfBlank,
+      </if>
+      <if test="numofanswer != null" >
+        numOfAnswer,
+      </if>
+      <if test="publishtime != null" >
+        publishTime,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="libid != null" >
+        #{libid,jdbcType=INTEGER},
+      </if>
+      <if test="libname != null" >
+        #{libname,jdbcType=VARCHAR},
+      </if>
+      <if test="libtype != null" >
+        #{libtype,jdbcType=VARCHAR},
+      </if>
+      <if test="libprice != null" >
+        #{libprice,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="quesamount != null" >
+        #{quesamount,jdbcType=INTEGER},
+      </if>
+      <if test="libprofile != null" >
+        #{libprofile,jdbcType=VARCHAR},
+      </if>
+      <if test="numofpurchases != null" >
+        #{numofpurchases,jdbcType=INTEGER},
+      </if>
+      <if test="numofsingle != null" >
+        #{numofsingle,jdbcType=INTEGER},
+      </if>
+      <if test="numofmultiple != null" >
+        #{numofmultiple,jdbcType=INTEGER},
+      </if>
+      <if test="numofjudge != null" >
+        #{numofjudge,jdbcType=INTEGER},
+      </if>
+      <if test="numofblank != null" >
+        #{numofblank,jdbcType=INTEGER},
+      </if>
+      <if test="numofanswer != null" >
+        #{numofanswer,jdbcType=INTEGER},
+      </if>
+      <if test="publishtime != null" >
+        #{publishtime,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 </mapper>

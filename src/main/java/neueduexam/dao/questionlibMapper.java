@@ -29,4 +29,6 @@ public interface questionlibMapper {
     int updateByPrimaryKeySelective(questionlib record);
 
     int updateByPrimaryKey(questionlib record);
+    
+    int insertandgetlkey(questionlib record);
 }

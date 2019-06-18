@@ -1,6 +1,8 @@
 package neueduexam.DTFservicelmp;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -11,12 +13,16 @@ import neueduexam.DTFservice.QuestionlibService;
 import neueduexam.dao.questionMapper;
 import neueduexam.dao.questionandlibMapper;
 import neueduexam.dao.questionlibMapper;
+import neueduexam.dao.userhavelibMapper;
 import neueduexam.entity.question;
 import neueduexam.entity.questionandlib;
 import neueduexam.entity.questionandlibExample;
 import neueduexam.entity.questionlib;
 import neueduexam.entity.questionlibExample;
 import neueduexam.entity.questionlibExample.Criteria;
+import neueduexam.entity.user;
+import neueduexam.entity.userhavelib;
+import neueduexam.entity.userhavelibExample;
 
 @Service
 public class QuestionlibServiceImp implements QuestionlibService{
@@ -27,13 +33,20 @@ public class QuestionlibServiceImp implements QuestionlibService{
 	questionandlibMapper questionandlibmapper; 
 	@Autowired
 	questionMapper questionmapper; 
+	@Autowired
+	userhavelibMapper userhavelibmapper; 
+	
 	
 	@Override
 	public List<questionlib> getquestionlibByid(int userid) {
-		questionlibExample e = new questionlibExample();
-		Criteria cc = e.createCriteria();
+		userhavelibExample e = new userhavelibExample();
+		neueduexam.entity.userhavelibExample.Criteria cc = e.createCriteria();
 		cc.andUseridEqualTo(userid);
-		List<questionlib> list = questionlibmapper.selectByExample(e);
+		List<userhavelib> all = userhavelibmapper.selectByExample(e);
+		List<questionlib> list = new ArrayList<>();
+		for(int i=0;i<all.size();i++) {
+			list.add(questionlibmapper.selectByPrimaryKey(all.get(i).getLibid()));
+		}
 		return list;
 	}
 
@@ -58,6 +71,43 @@ public class QuestionlibServiceImp implements QuestionlibService{
 			}
 		}
 		return li;
+	}
+	
+	@Override
+	public int createQuestionlib(String clibname, String clibtype, String clibpro,user u) {
+		questionlib li = new questionlib();
+		li.setLibname(clibname);
+		li.setLibprice(-1);
+		li.setLibprofile(clibpro);
+		li.setLibtype(clibtype);
+		li.setNickname(u.getNickname());
+		li.setNumofanswer(0);
+		li.setNumofblank(0);
+		li.setNumofjudge(0);
+		li.setNumofmultiple(0);
+		li.setNumofpurchases(0);
+		li.setNumofsingle(0);
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		li.setPublishtime(df.format(new Date()));
+		li.setQuesamount(0);
+		li.setUserid(u.getUserid());
+		int key = questionlibmapper.insertandgetlkey(li);
+		System.out.println(key+"======主键是");
+		userhavelib record = new userhavelib();
+		record.setLibid(li.getLibid());
+		record.setUserid(u.getUserid());
+		userhavelibmapper.insert(record);
+		return 1;
+	}
+
+	@Override
+	public int removeQuestionlib(user u, int libid) {
+		userhavelibExample e = new userhavelibExample();
+		neueduexam.entity.userhavelibExample.Criteria cc = e.createCriteria();
+		cc.andLibidEqualTo(libid);
+		cc.andUseridEqualTo(u.getUserid());
+		int i = userhavelibmapper.deleteByExample(e);
+		return i;
 	}
 	
 }

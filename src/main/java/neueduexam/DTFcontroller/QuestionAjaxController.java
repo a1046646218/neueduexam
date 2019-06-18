@@ -42,7 +42,17 @@ public class QuestionAjaxController {
 	}
 	
 	@RequestMapping("/createlibAjaxDTF")
-	public String createlibAjaxDTF(HttpServletRequest resq,HttpServletResponse res){
+	public String createlibAjaxDTF(String clibname,String clibtype,String clibpro,HttpServletRequest resq){
+		//System.out.println(clibname+clibtype+clibpro);
+		user u = (user)resq.getSession().getAttribute("user");
+		questionlibservice.createQuestionlib(clibname, clibtype, clibpro, u);
 		return "1";
+	}
+	@RequestMapping("/removelibAjaxDTF")
+	public String removelibAjaxDTF(int libid,HttpServletRequest resq){
+		//System.out.println(clibname+clibtype+clibpro);
+		user u = (user)resq.getSession().getAttribute("user");
+		int i = questionlibservice.removeQuestionlib(u,libid);
+		return Integer.toString(i);
 	}
 }
