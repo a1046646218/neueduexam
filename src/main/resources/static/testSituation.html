@@ -344,22 +344,31 @@
 								<div class="panel panel-default bk-bg-white">
 									<div class="panel-heading bk-bg-white">
 										<h6 id="biaoti"><i class="fa fa-table red"></i><span class="break"></span></h6>							
+										<div class="panel-actions">
+											<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+											<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+										</div>
 									</div>
 									<div class="panel-body">
 										<table class="table table-striped table-bordered table-hover" id="example">
 											<thead>
 												<tr>
-													<th>id</th>
-													<th>姓名</th>
+													<th>考生id</th>
 													<th>昵称</th>
-													<th>答题状态</th>
-													<th>手机号</th>
-													<th>邀请时间</th>
+													<th>得分</th>
+													<th>浏览器</th>
+													<th>答题时ip地址</th>
+													<th>答题操作系统</th>
+													<th>切出次数</th>
+													<th>使用时间</th>
+													<th>批改状态</th>
+													<th>地点</th>
+													<th>考卷名称</th>
 												</tr>
 											</thead>
 											<tbody id="test">
 												<tr class="gradeX">
-													<td>1</td>
+													<td><a>1</a></td>
 													<td>Internet
 														Explorer 4.0
 													</td>
@@ -466,20 +475,28 @@
        				//lengthMenu代表每页显示数量 详情见:http://datatables.club/reference/option/lengthMenu.html
     				"lengthMenu": [ [10, 25, 50, 100,-1], [10, 25, 50, 100,"all"] ],
     				"ajax":{
-   						url:"invitationJson",
+   						url:"testSituationJson",
    						"dataSrc":function(json){
 							var testName = json.testName
 							$("#biaoti").append(testName);
+							for(var i=0;i<json.data.length;i++){
+								json.data[i].state = "<a href='https://www.hao123.com' style='color:blue' >"+json.data[i].state+"</a>"
+							}
 							return json.data;
     					}
     				},
     				columns:[
-                		{"data":"stuId"},
-                		{"data":"realName"},
-               			{"data":"nickName"},
+                		{"data":"stuid"},
+                		{"data":"stunickname"},
+               			{"data":"score"},
+               			{"data":"browser"},
+               			{"data":"ipaddress"},
+               			{"data":"operatingsystem"},
+               			{"data":"changeout"},
+               			{"data":"duration"},
                			{"data":"state"},
-               			{"data":"phone"},
-               			{"data":"invitationTime"}
+               			{"data":"local"},
+               			{"data":"other1"}
            			]
     			});
 			})

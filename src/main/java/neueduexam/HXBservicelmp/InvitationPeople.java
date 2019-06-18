@@ -1,4 +1,4 @@
-package neueduexam.HXBservice;
+package neueduexam.HXBservicelmp;
 
 public class InvitationPeople {
 	

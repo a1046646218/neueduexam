@@ -8,8 +8,6 @@ import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
 
-import neueduexam.HXBservice.InvitationModule;
-import neueduexam.HXBservice.InvitationPeople;
 import neueduexam.HXBservice.InvitationService;
 import neueduexam.dao.invitationMapper;
 import neueduexam.dao.testpaperMapper;

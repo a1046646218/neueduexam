@@ -11,8 +11,8 @@ public class RedirectController {
 		return "invitation";
 	}
 	
-	@RequestMapping("/ssdd")
+	@RequestMapping("/totestsituation")
 	public String toIntivation2() {
-		return "test";
+		return "testSituation";
 	}
 }
