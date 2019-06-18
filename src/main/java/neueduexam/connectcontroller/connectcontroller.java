@@ -37,8 +37,16 @@ public class connectcontroller {
 	public String tosstudentquestionlib() {
 		return "studentquestionlib";
 	}
-	@RequestMapping("tolayers")
-	public String tolayers() {
-		return "layers";
+	@RequestMapping("toteacherhasexam")
+	public String toteacherhasexam() {
+		return "teacherhasexam";
+	}
+	@RequestMapping("/toteacherpublichexam")
+	public String toteacherpublichexam() {
+		return "teacherpublichexam";
+	}
+	@RequestMapping("/toteacherquestionlib")
+	public String toteacherquestionlib() {
+		return "teacherquestionlib";
 	}
 }

@@ -267,7 +267,7 @@
 										</div>
 									</div>
 									<li>
-										<a href="tostudenthome">
+										<a href="toteacherhome">
 											<i class="fa fa-laptop" aria-hidden="true"></i><span>个人中心</span>
 										</a>
 									</li>
@@ -277,20 +277,21 @@
 											<i class="fa fa-table" aria-hidden="true"></i><span>我的考试</span>
 										</a>
 										<ul class="nav nav-children">
-											<li><a href="tostudentNotalreadyexam"><span class="text"> 未评测考试</span></a></li>
-											<li><a href="tostudentalreadyexam"><span class="text"> 已评测考试</span></a></li>
+											<li><a href="toteacherhasexam"><span class="text"> 我的卷纸</span></a></li>
+											<li><a href="toteacherpublichexam"><span class="text"> 发布的卷纸</span></a></li>
 										</ul>
 									</li>
 									<li>
-										<a href="tostudentquestionlib">
+										<a href="toteacherquestionlib">
+											<!-- <span class="pull-right label label-danger">235</span> -->
 											<i class="fa fa-folder-o" aria-hidden="true"></i><span>我的题库</span>
 										</a>
 									</li>
 									<li>
-										<a href="tostudentpayrecord">
+										<a href="toteacherpayrecord">
 											<i class="fa  fa-shopping-cart" aria-hidden="true"></i><span>消费记录</span>
 										</a>
-									</li>					
+									</li>				
 									
 								</ul>
 							</nav>
@@ -326,7 +327,7 @@
 					<div class="page-header">
 						<div class="pull-left">
 							<ol class="breadcrumb visible-sm visible-md visible-lg">								
-								<li><a href="tostudenthome" class="active"><i class="icon fa fa-home"></i>我的题库</a></li>
+								<li><a href="toteacherhome" class="active"><i class="icon fa fa-home"></i>我的题库</a></li>
 							</ol>						
 						</div>
 					</div>
@@ -419,16 +420,15 @@
 											</div>
 											</div>
 											<div class="row" style="padding-top: 10px;">
-												<div class="col-lg-1 col-md-1 col-sm-1"></div>
-												<div class="col-lg-5 col-md-5 col-sm-5" id="removelib">
-													<button class="bk-margin-5 btn btn-labeled btn-danger" type="button">
-													<span class="btn-label"><i class="fa fa-times"></i></span>删除题库</button>
+												<div  class="col-lg-4 col-md-4 col-sm-4" id="removelib">
+													<button type="button" class="bk-margin-5 btn btn-danger"><i class="fa fa-magic"></i>删除题库</button>
 												</div>
-												<div class="col-lg-5 col-md-5 col-sm-5">
-													<button class="bk-margin-5 btn btn-labeled btn-success" type="button">
-													<span class="btn-label"><i class="fa fa-check"></i></span>添加习题</button>
+												<div class="col-lg-4 col-md-4 col-sm-4">
+													<button type="button" class="bk-margin-5 btn btn-warning"><i class="fa fa-magic"></i>出售题库</button>
 												</div>
-												<div class="col-lg-1 col-md-1 col-sm-1"></div>
+												<div  class="col-lg-4 col-md-4 col-sm-4">
+													<button type="button" class="bk-margin-5 btn btn-success"><i class="fa fa-magic"></i>添加习题</button>
+												</div>
 											</div>
 								</div>
 								<div id="{{libid}}_char" class="tab-pane">
@@ -638,7 +638,7 @@
 						if(flag==1){
 							layer.msg('删除成功', {time: 5000, icon:6});
 							setTimeout(function(){
-							        window.location.href="tostudentquestionlib";
+							        window.location.href="toteacherquestionlib";
 							//      $(".modal-backdrop.fade").hide();
 							},1000);
 						}
@@ -686,7 +686,7 @@
 							layer.msg('添加成功', {time: 5000, icon:6});
 							$('#myModal').modal('hide');
 							 setTimeout(function(){
-                				window.location.href="tostudentquestionlib";
+                				window.location.href="toteacherquestionlib";
 //                 				$(".modal-backdrop.fade").hide();
             				},1000);
 						}

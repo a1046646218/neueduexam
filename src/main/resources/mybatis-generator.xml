@@ -35,8 +35,8 @@
 		</javaClientGenerator>
 		
 		<!-- 要新生成的数据库表，注意：已经生成成功的,一定要注释掉,否则会覆盖.我们只生成新表！ -->		
-
-          <table tableName="user" domainObjectName="user"/>
+		<!-- 
+		 <table tableName="user" domainObjectName="user"/>
           <table tableName="examandquestion" domainObjectName="examandquestion"/>
           <table tableName="exampaper" domainObjectName="exampaper"/>
           <table tableName="invitation" domainObjectName="invitation"/>
@@ -46,9 +46,11 @@
           <table tableName="questionandlib" domainObjectName="questionandlib"/>
           <table tableName="questionlib" domainObjectName="questionlib"/>
           <table tableName="record" domainObjectName="record"/>
-          <table tableName="testpaper" domainObjectName="testpaper"/>
-          <table tableName="userbuylib" domainObjectName="userbuylib"/>
+			<table tableName="userbuylib" domainObjectName="userbuylib"/>
           <table tableName="userhavelib" domainObjectName="userhavelib"/>
+		 -->
+          <table tableName="testpaper" domainObjectName="testpaper"/>
+          
 	</context>
 
 </generatorConfiguration>

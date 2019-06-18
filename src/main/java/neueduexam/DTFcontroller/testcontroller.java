@@ -26,5 +26,11 @@ public class testcontroller {
 		res.getSession().setAttribute("user", user);
 		return "studentalreadyexam";
 	}
+	@RequestMapping("/test222")
+	public String test222(HttpServletRequest res) {
+		user user = userservice.getuserbyid(1);
+		res.getSession().setAttribute("user", user);
+		return "teacherhasexam";
+	}
 	
 }

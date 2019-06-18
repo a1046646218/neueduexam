@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="neueduexam.dao.testpaperMapper" >
   <resultMap id="BaseResultMap" type="neueduexam.entity.testpaper" >
-    <result column="testId" property="testid" jdbcType="INTEGER" />
+    <id column="testId" property="testid" jdbcType="INTEGER" />
     <result column="examId" property="examid" jdbcType="INTEGER" />
     <result column="userId" property="userid" jdbcType="INTEGER" />
     <result column="testName" property="testname" jdbcType="VARCHAR" />
@@ -87,6 +87,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from testpaper
+    where testId = #{testid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from testpaper
+    where testId = #{testid,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="neueduexam.entity.testpaperExample" >
     delete from testpaper
     <if test="_parameter != null" >
@@ -219,5 +229,47 @@
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="neueduexam.entity.testpaper" >
+    update testpaper
+    <set >
+      <if test="examid != null" >
+        examId = #{examid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        userId = #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="testname != null" >
+        testName = #{testname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        publishDate = #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="limitchanges != null" >
+        limitChanges = #{limitchanges,jdbcType=INTEGER},
+      </if>
+      <if test="countdown != null" >
+        countDown = #{countdown,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        other1 = #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        other2 = #{other2,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where testId = #{testid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="neueduexam.entity.testpaper" >
+    update testpaper
+    set examId = #{examid,jdbcType=INTEGER},
+      userId = #{userid,jdbcType=INTEGER},
+      testName = #{testname,jdbcType=VARCHAR},
+      publishDate = #{publishdate,jdbcType=VARCHAR},
+      limitChanges = #{limitchanges,jdbcType=INTEGER},
+      countDown = #{countdown,jdbcType=INTEGER},
+      other1 = #{other1,jdbcType=VARCHAR},
+      other2 = #{other2,jdbcType=VARCHAR}
+    where testId = #{testid,jdbcType=INTEGER}
   </update>
 </mapper>
