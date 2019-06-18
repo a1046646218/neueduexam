@@ -9,6 +9,19 @@ import org.apache.http.util.EntityUtils;
 import neueduexam.api.HttpUtils;
 
 public class IdCodeApi {
+	
+//	public static void main(String[] args) {
+//		boolean istrue1 = new IdCodeApi().istrue("董铁夫", "210302199708263017");
+//		System.out.println(istrue1);
+//		boolean istrue2 = new IdCodeApi().istrue("董铁夫", "210302199708263016");
+//		System.out.println(istrue2);
+//	}
+//	
+	/**
+	 * 返回值 true   名称身份证匹配
+	 * 
+	 * 返回值 false   名称身份证不匹配
+	 * */
 	public boolean istrue(String name,String idCard) {
 		String host = "https://naidcard.market.alicloudapi.com";
 	    String path = "/nidCard";
@@ -40,8 +53,8 @@ public class IdCodeApi {
 	    	//System.out.println(response.toString());如不输出json, 请打开这行代码，打印调试头部状态码。
                 //状态码: 200 正常；400 URL无效；401 appCode错误； 403 次数用完； 500 API网管错误
 	    	//获取response的body
-	    	System.out.println(EntityUtils.toString(response.getEntity()));
-	    	if(name==idCard) {
+	    	String str = EntityUtils.toString(response.getEntity());
+	    	if(str.contains("实名认证通过")) {
 	    		return true;
 	    	}else {
 	    		return false;

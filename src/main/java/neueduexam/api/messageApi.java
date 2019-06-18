@@ -2,12 +2,27 @@ package neueduexam.api;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
+
 import org.apache.http.HttpResponse;
 
 import neueduexam.api.HttpUtils;
 
 
 public class messageApi {
+	
+//	public static void main(String[] args) {
+//		String code = new messageApi().messagecode("18842300648");
+//		System.out.println(code);
+//	}
+	/**
+	 * 
+	 * 返回验证码   纯数字
+	 * String 类型
+	 * 例如
+	 * 1234
+	 * 范围在1000-9998之间
+	 * */
 	public String messagecode(String mobile) {
 		 String host = "http://dingxin.market.alicloudapi.com";
 		    String path = "/dx/sendSms";
@@ -18,7 +33,11 @@ public class messageApi {
 		    headers.put("Authorization", "APPCODE " + appcode);
 		    Map<String, String> querys = new HashMap<String, String>();
 		    querys.put("mobile", mobile);
-		    String code = "code:1234";
+		    int max=8998;
+		    int min=1000;
+		    Random random = new Random();
+		    String str = Integer.toString(random.nextInt(max)%(max-min+1) + min);
+		    String code = "code:"+str;
 		    querys.put("param", code);
 		    querys.put("tpl_id", "TP1711063");
 		    Map<String, String> bodys = new HashMap<String, String>();
@@ -40,7 +59,7 @@ public class messageApi {
 		    } catch (Exception e) {
 		    	e.printStackTrace();
 		    }
-		    return code;
+		    return str;
 		
 	}
 }
