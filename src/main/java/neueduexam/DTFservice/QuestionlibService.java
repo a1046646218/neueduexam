@@ -11,4 +11,5 @@ public interface QuestionlibService {
 	public HashMap<String,Integer> geteasyNumByid(int libid);
 	public int createQuestionlib(String clibname,String clibtype,String clibpro,user u);
 	public int removeQuestionlib(user u,int libid);
+	public int changesalelib(int libid,int point);
 }

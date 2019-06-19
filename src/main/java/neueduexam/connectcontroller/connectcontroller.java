@@ -9,10 +9,6 @@ public class connectcontroller {
 	public String to111(){
 		return "11";
 	}
-	@RequestMapping("/topaypage")
-	public String topaypage() {
-		return "paypage";
-	}
 	@RequestMapping("/towebcam")
 	public String towebcam() {
 		return "webcam";
@@ -56,5 +52,13 @@ public class connectcontroller {
 	@RequestMapping("/head")
 	public String head() {
 		return "head";
+	}
+	@RequestMapping("/topayhome")
+	public String payhome() {
+		return "payhome";
+	}
+	@RequestMapping("/invitstudent")
+	public String invitstudent() {
+		return "invitstudent";
 	}
 }

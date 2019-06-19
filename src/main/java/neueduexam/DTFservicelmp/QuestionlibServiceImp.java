@@ -109,5 +109,14 @@ public class QuestionlibServiceImp implements QuestionlibService{
 		int i = userhavelibmapper.deleteByExample(e);
 		return i;
 	}
+
+	@Override
+	public int changesalelib(int libid, int point) {
+		questionlib record = new questionlib();
+		record.setLibid(libid);
+		record.setLibprice(point);
+		int i = questionlibmapper.updateByPrimaryKeySelective(record);
+		return i;
+	}
 	
 }

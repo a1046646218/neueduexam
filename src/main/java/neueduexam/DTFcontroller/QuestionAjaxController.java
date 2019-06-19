@@ -55,4 +55,12 @@ public class QuestionAjaxController {
 		int i = questionlibservice.removeQuestionlib(u,libid);
 		return Integer.toString(i);
 	}
+	
+	@RequestMapping("/changesalepoint")
+	public String changesalepoint(int libnum,int text,HttpServletRequest resq){
+		//System.out.println(clibname+clibtype+clibpro);
+		user u = (user)resq.getSession().getAttribute("user");
+		int i = questionlibservice.changesalelib(libnum, text);
+		return Integer.toString(i);
+	}
 }

@@ -11,16 +11,16 @@ import neueduexam.api.HttpUtils;
 
 public class messageApi {
 	
-//	public static void main(String[] args) {
-//		String code = new messageApi().messagecode("18842300648");
-//		System.out.println(code);
-//	}
+	public static void main(String[] args) {
+		String code = new messageApi().messagecode("18842300648");
+		System.out.println(code);
+	}
 	/**
 	 * 
 	 * 返回验证码   纯数字
 	 * String 类型
 	 * 例如
-	 * 1234
+	 * code:1234
 	 * 范围在1000-9998之间
 	 * */
 	public String messagecode(String mobile) {
@@ -59,7 +59,7 @@ public class messageApi {
 		    } catch (Exception e) {
 		    	e.printStackTrace();
 		    }
-		    return str;
+		    return code;
 		
 	}
 }
