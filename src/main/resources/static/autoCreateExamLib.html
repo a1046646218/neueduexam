@@ -32,6 +32,7 @@
 		<link th:href="@{static/assets/vendor/skycons/css/skycons.css}" rel="stylesheet" />
 		<link th:href="@{static/assets/vendor/font-awesome/css/font-awesome.min.css}" rel="stylesheet" />
 		<link th:href="@{static/assets/vendor/css/pace.preloader.css}" rel="stylesheet" />
+		<link th:href="@{static/assets/css/build.css}" rel="stylesheet" />
 		
 		<!-- Plugins CSS-->
 		<link th:href="@{static/assets/plugins/bootkit/css/bootkit.css}" rel="stylesheet" />
@@ -267,8 +268,8 @@
 									</div>
 									<div class="panel-body">
 										<div class="row">
-											<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-												<table class="table table-striped table-bordered table-hover" id="example">
+											<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7" style="padding-top:10px">
+												<table class="table  table-bordered table-hover" id="example">
 													<thead>
 														<tr>
 															<th>题库id</th>
@@ -288,7 +289,50 @@
 													</tbody>
 												</table>
 											</div>
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6"></div>
+											<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5" >										
+												<form class="form-horizontal" role="form">
+												  <div class="form-group">
+												    <label for="simple-1" class="col-sm-4 control-label">输入单选题数量</label>
+												    <div class="col-sm-4">
+												      <input type="text" class="form-control" id="firstname" placeholder="请输入整数">
+												    </div>
+												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px">数量</span>
+												  </div>
+												  <div class="form-group">
+												    <label for="multiple-1" class="col-sm-4 control-label">输入多选题数量</label>
+												    <div class="col-sm-4">
+												      <input type="text" class="form-control" id="firstname" placeholder="请输入整数">
+												    </div>
+												    <span for="multiple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px">数量</span>
+												  </div>
+												  <div class="form-group">
+												    <label for="simple-1" class="col-sm-4 control-label">输入填空题数量</label>
+												    <div class="col-sm-4">
+												      <input type="text" class="form-control" id="firstname" placeholder="请输入整数">
+												    </div>
+												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px">数量</span>
+												  </div>
+												  <div class="form-group">
+												    <label for="simple-1" class="col-sm-4 control-label">输入判断题数量</label>
+												    <div class="col-sm-4">
+												      <input type="text" class="form-control" id="firstname" placeholder="请输入整数">
+												    </div>
+												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px">数量</span>
+												  </div>			
+												  <div class="form-group">
+												    <label for="simple-1" class="col-sm-4 control-label">输入简答题数量</label>
+												    <div class="col-sm-4">
+												      <input type="text" class="form-control" id="firstname" placeholder="请输入整数">
+												    </div>
+												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px">数量</span>
+												  </div>										  												  
+												  <div class="form-group">
+												    <div class="col-sm-offset-2 col-sm-10">
+												      <button type="submit" class="btn btn-default">生成试卷</button>
+												    </div>
+												  </div>
+												</form>
+											</div>
 										</div>
 									</div>
 									<!--表格结束 -->
@@ -340,6 +384,28 @@
 		<!-- <script th:src="@{static/assets/js/pages/map-basic.js}"></script> -->
 		<script th:src="@{static/assets/js/pages/table-advanced.js}"></script>
 		<!-- end: JavaScript-->
+		<script th:src="@{static/js/template.js}"></script>
+        <script type="text/html" id="contentTemplate">
+			{{each data as value}}	
+				<div class='checkbox'>
+					<input id='checkbox2' class='styled' type='checkbox' check>
+					<label for='checkbox2'>
+						{{value.libId}}
+					</label>
+				</div>
+			{{/each}}
+        </script>
+		<script type="text/html" id="contentTemplate2">
+			{{each data as value}}	
+				<div class='checkbox'>
+					<input id='checkbox3' class='styled' type='checkbox' disabled>
+					<label for='checkbox3'>
+						{{value.libId}}
+					</label>
+				</div>
+			{{/each}}
+        </script>
+		
 		<script>
 			$(document).ready(function() {
     			$('#example').DataTable({
@@ -363,7 +429,7 @@
 							"sEmptyTable":     "表中数据为空",
 							"sLoadingRecords": "载入中...",
 							"sInfoThousands":  ",",
-							"searchPlaceholder" : "搜索题库",
+							"searchPlaceholder" : "过滤",
 							"oPaginate": {
 								"sFirst":    "首页",
 								"sPrevious": "上页", 
@@ -381,7 +447,16 @@
    						url:"examLibNameJson",
    						"dataSrc":function(json){
 							for(var i=0;i<json.data.length;i++){
-								json.data[i].libId = "<input type='checkbox'>"+json.data[i].libId;
+								if(json.data[i].quesAmount!=0){
+										var j = JSON.stringify(json.data[i]);
+										var result = "{\"data\":["+j+"]}"
+										json.data[i].libId = template("contentTemplate",JSON.parse(result));  
+								}else{
+									var j = JSON.stringify(json.data[i]);
+									var result = "{\"data\":["+j+"]}"
+									json.data[i].libId = template("contentTemplate2",JSON.parse(result));  
+								}
+								//alert(JSON.stringify(json.data[i]))
 							}
 							return json.data;
     					}
@@ -393,7 +468,48 @@
                			{"data":"quesAmount"}
            			]
     			});
+
+			
+    			
+    			$("#abutton").append("<button type='button' class='btn btn-primary'>绑定题库</button>");
+    			$("#abutton>button").click(function(){
+    				if($(this).text()=="绑定题库"){
+    					if($("div[class='checkbox checkbox-success'").length!=0){
+	    					$(this).text("解除绑定")
+	    					$("[id=checkbox2]").attr("disabled","");
+	    				}else{
+	    					shake();
+	    				}
+    				}else{
+    					$(this).text("绑定题库")
+    					$("[id=checkbox2]").removeAttr("disabled")	;
+    				}
+    			});
+
+    			$(document.body).on("click","input[type='checkbox']",function(e){
+    				if($(this).parent().attr("class")=="checkbox"){
+						$(this).parent().attr("class","checkbox checkbox-success")
+    				}else{
+    					$(this).parent().attr("class","checkbox")
+    				}
+    			});
+    			
+    			function shake(){
+    		        var $panel = $("#abutton>button");
+    		        box_left = 0;
+    		        //box_left = $panel.css('left');
+    		        //box_left = ($(window).width() -  $panel.width()) / 2;
+    		        $panel.css({'left': box_left,'position':'relative'});
+    		        for(var i=1; 4>=i; i++){
+    		            $panel.animate({left:box_left-(20-5*i)},30);
+    		            $panel.animate({left:box_left+(20-5*i)},30);
+    		        }
+    		    }    
+    			
 			})
+			
+
+			
 
 		</script>
 		
