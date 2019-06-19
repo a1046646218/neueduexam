@@ -9,4 +9,5 @@ import neueduexam.entity.testpaper;
 public interface TestPaperService {
 	public List<testpaper> gettestPaperbyID(int userid);
 	public List<question> getquestionlistbyTestid(int testid);
+	public int  createandgetID(testpaper testpaper);
 }

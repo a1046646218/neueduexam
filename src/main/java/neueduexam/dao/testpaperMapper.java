@@ -30,4 +30,7 @@ public interface testpaperMapper {
     int updateByPrimaryKeySelective(testpaper record);
 
     int updateByPrimaryKey(testpaper record);
+    
+    int insertandgetID(testpaper record);
+    
 }

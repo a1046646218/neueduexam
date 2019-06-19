@@ -61,4 +61,8 @@ public class connectcontroller {
 	public String invitstudent() {
 		return "invitstudent";
 	}
+	@RequestMapping("/dropupload")
+	public String dropupload() {
+		return "dropupload";
+	}
 }

@@ -41,7 +41,7 @@ public class UploadController {
         }
         //fileName可以用自己的生成方案，我这里只简单用的原始文件名称
         String fileName = file.getOriginalFilename();
-        String filePath = request.getServletContext().getRealPath("/upload");
+        String filePath = request.getServletContext().getRealPath("/excel");
 	    //如果没有该文件夹,创建文件夹,有,就跳过
         File fileFolder = new File(filePath);
 		if (!fileFolder.exists()) {

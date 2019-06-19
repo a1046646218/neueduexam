@@ -272,4 +272,68 @@
       other2 = #{other2,jdbcType=VARCHAR}
     where testId = #{testid,jdbcType=INTEGER}
   </update>
+  <insert id="insertandgetID"  parameterType="neueduexam.entity.testpaper" >
+     <selectKey keyProperty="testid" order="AFTER" resultType="int">
+      select LAST_INSERT_ID() 
+      </selectKey>
+     insert into testpaper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="testid != null" >
+        testId,
+      </if>
+      <if test="examid != null" >
+        examId,
+      </if>
+      <if test="userid != null" >
+        userId,
+      </if>
+      <if test="testname != null" >
+        testName,
+      </if>
+      <if test="publishdate != null" >
+        publishDate,
+      </if>
+      <if test="limitchanges != null" >
+        limitChanges,
+      </if>
+      <if test="countdown != null" >
+        countDown,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="testid != null" >
+        #{testid,jdbcType=INTEGER},
+      </if>
+      <if test="examid != null" >
+        #{examid,jdbcType=INTEGER},
+      </if>
+      <if test="userid != null" >
+        #{userid,jdbcType=INTEGER},
+      </if>
+      <if test="testname != null" >
+        #{testname,jdbcType=VARCHAR},
+      </if>
+      <if test="publishdate != null" >
+        #{publishdate,jdbcType=VARCHAR},
+      </if>
+      <if test="limitchanges != null" >
+        #{limitchanges,jdbcType=INTEGER},
+      </if>
+      <if test="countdown != null" >
+        #{countdown,jdbcType=INTEGER},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
 </mapper>

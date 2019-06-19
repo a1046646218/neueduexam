@@ -19,7 +19,14 @@ public class testpaper {
 
     private String other2;
 
-    public Integer getTestid() {
+    @Override
+	public String toString() {
+		return "testpaper [testid=" + testid + ", examid=" + examid + ", userid=" + userid + ", testname=" + testname
+				+ ", publishdate=" + publishdate + ", limitchanges=" + limitchanges + ", countdown=" + countdown
+				+ ", other1=" + other1 + ", other2=" + other2 + "]";
+	}
+
+	public Integer getTestid() {
         return testid;
     }
 

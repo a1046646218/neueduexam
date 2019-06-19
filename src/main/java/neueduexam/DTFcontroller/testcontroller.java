@@ -24,13 +24,13 @@ public class testcontroller {
 	public String test111(HttpServletRequest res) {
 		user user = userservice.getuserbyid(1);
 		res.getSession().setAttribute("user", user);
-		return "studentalreadyexam";
+		return "teacherhasexam";
 	}
 	@RequestMapping("/test222")
 	public String test222(HttpServletRequest res) {
-		user user = userservice.getuserbyid(1);
+		user user = userservice.getuserbyid(4);
 		res.getSession().setAttribute("user", user);
-		return "teacherhasexam";
+		return "studenthome";
 	}
 	
 	
