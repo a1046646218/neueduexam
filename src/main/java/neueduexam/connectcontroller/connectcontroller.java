@@ -49,4 +49,12 @@ public class connectcontroller {
 	public String toteacherquestionlib() {
 		return "teacherquestionlib";
 	}
+	@RequestMapping("/index")
+	public String tohead() {
+		return "index";
+	}
+	@RequestMapping("/head")
+	public String head() {
+		return "head";
+	}
 }

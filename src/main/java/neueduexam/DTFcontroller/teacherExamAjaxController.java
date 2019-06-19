@@ -122,4 +122,10 @@ public class teacherExamAjaxController {
 		map.put("jian", jian);
 		return map;
 	}
+	
+	
+	@RequestMapping("/shead")
+	public void test2222(String img) {
+		System.out.println(img);
+	}
 }
