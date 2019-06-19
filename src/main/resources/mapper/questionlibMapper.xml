@@ -20,6 +20,12 @@
     <result column="other1" property="other1" jdbcType="VARCHAR" />
     <result column="other2" property="other2" jdbcType="VARCHAR" />
   </resultMap>
+  <resultMap id="SimpleExamLib" type="neueduexam.HXBservicelmp.SimpleQuestionLib">
+  	<id column="libId" property="libId" jdbcType="INTEGER"/>
+  	<result column="libName" property="libName" jdbcType="VARCHAR"/>
+  	<result column="libType" property="libType" jdbcType="VARCHAR"/>
+  	<result column="quesAmount" property="quesAmount" jdbcType="INTEGER"/>
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -510,4 +516,9 @@
       </if>
     </trim>
   </insert>
+  <select id="selectSimpleQuestionLibByPrimaryKey" resultMap="SimpleExamLib"  >
+    select libId,libName,libType,quesAmount
+    from questionlib
+    where libId = #{libId}
+  </select>
 </mapper>

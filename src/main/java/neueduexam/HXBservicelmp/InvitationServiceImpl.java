@@ -65,11 +65,8 @@ public class InvitationServiceImpl implements InvitationService {
 		m.setData(invitationPeopleList);
 		
 		//查詢試卷的名稱
-		testpaperExample testPaperExample = new testpaperExample();
-		testPaperExample.createCriteria().andTestidEqualTo(id);
-		List<testpaper> list = testpaperMapper.selectByExample(testPaperExample);
-		for(testpaper t : list)
-			m.setTestName(t.getTestname());
+		testpaper t = testpaperMapper.selectByPrimaryKey(id);
+		m.setTestName(t.getTestname());
 		
 		String json  = JSON.toJSONString(m);
 		System.out.println(json);

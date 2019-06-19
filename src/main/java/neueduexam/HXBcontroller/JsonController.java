@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import neueduexam.HXBservice.ExamLibService;
 import neueduexam.HXBservice.InvitationService;
 import neueduexam.HXBservice.TestSituationService;
 @RestController
@@ -13,6 +14,8 @@ public class JsonController {
 	InvitationService invitationService;
 	@Autowired
 	TestSituationService testSituationService;
+	@Autowired
+	ExamLibService examLibService;
 
 	
 	@RequestMapping("/invitationJson")
@@ -28,4 +31,11 @@ public class JsonController {
 		String json = testSituationService.selectTestSituationByTestId("1");
 		return json;
 	}
+	@RequestMapping("/examLibNameJson")
+	public String getExamLibNameJson(String userId) {
+		//测试
+		String json = examLibService.selectSimpleExamlibByUserId("1");
+		return json;
+	}
+	
 }

@@ -15,4 +15,10 @@ public class RedirectController {
 	public String toIntivation2() {
 		return "testSituation";
 	}
+	
+	@RequestMapping("/toautocreateExamLib")
+	public String toAutoCreateExamLib() {
+		return "autoCreateExamLib";
+	}
+
 }

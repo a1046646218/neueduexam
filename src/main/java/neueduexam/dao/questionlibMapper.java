@@ -1,6 +1,8 @@
 package neueduexam.dao;
 
 import java.util.List;
+
+import neueduexam.HXBservicelmp.SimpleQuestionLib;
 import neueduexam.entity.questionlib;
 import neueduexam.entity.questionlibExample;
 
@@ -31,4 +33,6 @@ public interface questionlibMapper {
     int updateByPrimaryKey(questionlib record);
     
     int insertandgetlkey(questionlib record);
+
+	SimpleQuestionLib selectSimpleQuestionLibByPrimaryKey(Integer libid);
 }
