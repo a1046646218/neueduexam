@@ -580,23 +580,20 @@
     				}
     			});
     			
+    			//包括0的正整数正则表达式
+    			var reg = /^[+]{0,1}(\d+)$/
     			//选择题数量输入框的逻辑
     			$("input[id='xuanzeti']").blur(function(){
     				var x = $(this).val();
-    				if(/^[0-9]+.?[0-9]*$/.test(x)){
-    					layer.msg("请输入数字")
-    					$(this).val("")
-    				}else{
-    					if(/^-[0-9]*[1-9][0-9]*$/.test(x)){
-    						layer.msg("请输入正整数")
-							$(this).val("");
-    					}else{
-    						var max = $(this).parent().next().text();
-    						if(x>max){
-    							$(this).val(max);
-    						}
-    					}
-    				}
+					if(!(reg.test(x))){
+						layer.msg("请输入正整数")
+						$(this).val("");
+					}else{
+						var max = $(this).parent().next().text();
+						if(x>max){
+							$(this).val(max);
+						}
+					}
     				compute();
     			});
     			
@@ -608,16 +605,10 @@
     			//分数输入框的逻辑
   				$("input[id='fenzhi']").blur(function(){
     				var x = $(this).val();
-    				if(/^[0-9]+.?[0-9]*$/.test(x)){
-    					layer.msg("请输入数字")
-    					$(this).val("0")
-    				}else{
-    					if(/^-[0-9]*[1-9][0-9]*$/.test(x)){
-    						layer.msg("请输入正整数")
-							$(this).val("0");
-    					}else{
-    					}
-    				}
+					if(!(reg.test(x))){
+						layer.msg("请输入正整数")
+						$(this).val("0");
+					}
     				compute();
     			});
     			
@@ -628,9 +619,11 @@
     					shake("button[id='submit']");
     					layer.msg("请让试卷总分值达到100"); 
     				}else{
+    					
     				}
     			});
     			
+    			//让按钮震动的函数
     			function shake(o){
     		        var $panel = $(o);
     		        box_left = 0;
@@ -648,18 +641,18 @@
     				var scores = [];
     				$("input[id='xuanzeti']").each(function(){
     					var num = $(this).val();
-    					if(isNaN(num)){
+    					if(!parseInt(num)){
     						num = 0;
     					}
-    					alert("题目数"+num)
+    					//alert("题目数"+num)
     					numOfQuestions[numOfQuestions.length] = num;
     				});
     				$("input[id='fenzhi']").each(function(){
     					var score = $(this).val();
-    					if(isNaN(score)){
+    					if(!parseInt(score)){
     						score = 0;
     					}
-    					alert("分值"+score)
+    					//alert("分值"+score)
     					scores[scores.length] = score;
     				});
     				
@@ -667,7 +660,7 @@
     				for(var i=0;i<scores.length;i++){
     					show += parseInt(numOfQuestions[i]) * parseInt(scores[i])
     				}
-    				alert(show);
+    				//alert(show);
     				$("span[id=fenzhi]").text(parseInt(show));
     			}
     			 
