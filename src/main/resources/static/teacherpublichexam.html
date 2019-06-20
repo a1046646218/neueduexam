@@ -376,6 +376,7 @@
 		<!-- end: JavaScript-->
 		  <script th:src="@{static/js/template.js}"></script>
 			<script th:src="@{static/layer/layer.js}"></script>
+			<script th:src="@{static/layer/extend/layer.ext.js}"></script>
 	</body>
 	<script type="text/html" id="contentTemplate">
 			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -407,7 +408,17 @@
 								<div class="row" style="padding-top: 20px;">
 									<center>
 									<!-- <div div  class="col-lg-6 col-md-6 col-sm-6"> -->
-									<button type="button" class="bk-margin-5 btn btn-warning"><i class="fa fa-magic"></i>邀请考试</button>
+									<div class="bk-margin-5 btn-group">
+										<button type="button" class="btn btn-warning"><i class="fa fa-magic"></i>邀请答题</button>
+										<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
+											<span class="caret"></span>
+											<span class="sr-only">Toggle Dropdown</span>
+										</button>
+										<ul class="dropdown-menu" role="menu">
+											<li id="addexcel" name="{{testid}}"><a >批量导入</a></li>
+											<li id="addone" name="{{testid}}"><a >单个导入</a></li>
+										</ul>
+									</div>
 										<button type="button" class="bk-margin-5 btn btn-info"><i class="fa fa-magic"></i>查看试卷</button>
 									<!-- </div> -->
 									<!-- <div div  class="col-lg-6 col-md-6 col-sm-6"> btn-warning-->
@@ -506,5 +517,74 @@
 		$(document).ready(function(){
 			change(page);
 		});
+		$("#addexcel").live("click",function(){
+			var arr = $(this).attr("name");
+			layer.prompt({title: '请输入您的密码', formType: 1}, function(pass, index){
+					layer.close(index);
+					$.ajax({
+							type:'post',
+							url:'ispasswordtrue',
+							async:false,
+							data:{"pass":pass},
+							success:function(flag){
+								if(flag==1){
+									
+									
+									
+									
+									
+									})
+								}else{
+									layer.msg("密码错误");
+								}
+							}
+					});
+					
+			});
+		});
+		$("#addone").live("click",function(){
+			var arr = $(this).attr("name");
+			layer.prompt({title: '请输入您的密码', formType: 1}, function(pass, index){
+					layer.close(index);
+					$.ajax({
+							type:'post',
+							url:'ispasswordtrue',
+							async:false,
+							data:{"pass":pass},
+							success:function(flag){
+								if(flag==1){
+									layer.prompt({title: '请输入邀请人电话', formType: 0}, function(text, index){
+									layer.close(index);
+									$.ajax({
+											type:'post',
+											url:'addoneuser',
+											async:false,
+											data:{"testid":arr,"phonenum":text},
+											success:function(flag){
+												if(flag==1){
+													layer.msg('邀请成功');
+												}else{
+													layer.msg('邀请失败');
+													
+												}
+											}
+									});
+									})
+								}else{
+									layer.msg("密码错误");
+								}
+							}
+					});
+					
+				});
+		});
 </script>
+<input type="button" style="display: none;">
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-dialog" style="width:480px;height: 400px;">
+				<div class="modal-content">
+					
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+	</div>
 </html>

@@ -18,7 +18,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import neueduexam.DTFservice.TestPaperService;
+import neueduexam.DTFservice.inviteServcie;
 import neueduexam.GZKservice.GZKUserService;
+import neueduexam.api.messageApi;
 import neueduexam.entity.invitation;
 import neueduexam.entity.testpaper;
 import neueduexam.entity.user;
@@ -32,6 +34,9 @@ public class mulExceluploadController {
 	TestPaperService testpaperservice;
 	@Autowired
 	GZKUserService gzkuserservice;
+	@Autowired
+	inviteServcie inviteservcie;
+	
 	
 	@RequestMapping("/mulExcelupload")
     @ResponseBody
@@ -41,11 +46,12 @@ public class mulExceluploadController {
 		System.out.println(addtestidexcel+"==============");
 		testpaper tp = testpaperservice.getTestPaperbyid(addtestidexcel);
 		invitation ivt = new invitation();
-		ivt.setTestid(addtestidexcel);
 		Date date = new Date();
 	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	    ////////////////
+	    ivt.setTestid(addtestidexcel);
 	    ivt.setInvitationtime(sdf.format(date));
-		
+	    ivt.setState("0");
 		//获取前台的文件域对象 , 是一个List<MultipartFile>
 	    List<MultipartFile> files = ((MultipartHttpServletRequest) request).getFiles("file");
 	    String filePath = request.getServletContext().getRealPath("/excel");
@@ -59,6 +65,10 @@ public class mulExceluploadController {
 					user ustu = ulist.get(i);
 					ivt.setStudentid(ustu.getUserid());
 					ivt.setStuphone(ustu.getPhone());
+					messageApi api = new messageApi();
+					String code = api.messagecode(ustu.getPhone());
+					ivt.setInvitecode(code);
+					inviteservcie.insertService(ivt);
 				}
 			}
 			
