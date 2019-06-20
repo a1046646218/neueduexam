@@ -6,6 +6,8 @@ import neueduexam.entity.questionExample;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
+
 @Mapper
 public interface questionMapper {
     int countByExample(questionExample example);
@@ -29,4 +31,6 @@ public interface questionMapper {
     int updateByPrimaryKeySelective(question record);
 
     int updateByPrimaryKey(question record);
+    
+    int insertSelectandgetid(question record);
 }

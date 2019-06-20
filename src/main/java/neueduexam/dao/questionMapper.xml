@@ -120,6 +120,7 @@
       #{analysis,jdbcType=VARCHAR}, #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR}
       )
   </insert>
+  
   <insert id="insertSelective" parameterType="neueduexam.entity.question" >
     insert into question
     <trim prefix="(" suffix=")" suffixOverrides="," >
@@ -205,6 +206,97 @@
       </if>
     </trim>
   </insert>
+  
+  <insert id="insertSelectandgetid"  parameterType="neueduexam.entity.question" >
+     <selectKey keyProperty="quesid" resultType="int">
+      select LAST_INSERT_ID() 
+      </selectKey>
+    insert into question
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="quesid != null" >
+        quesId,
+      </if>
+      <if test="questype != null" >
+        quesType,
+      </if>
+      <if test="quescontext != null" >
+        quesContext,
+      </if>
+      <if test="a != null" >
+        A,
+      </if>
+      <if test="b != null" >
+        B,
+      </if>
+      <if test="c != null" >
+        C,
+      </if>
+      <if test="d != null" >
+        D,
+      </if>
+      <if test="quesanswer != null" >
+        quesAnswer,
+      </if>
+      <if test="difficulty != null" >
+        difficulty,
+      </if>
+      <if test="tag != null" >
+        tag,
+      </if>
+      <if test="analysis != null" >
+        analysis,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="quesid != null" >
+        #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="questype != null" >
+        #{questype,jdbcType=VARCHAR},
+      </if>
+      <if test="quescontext != null" >
+        #{quescontext,jdbcType=VARCHAR},
+      </if>
+      <if test="a != null" >
+        #{a,jdbcType=VARCHAR},
+      </if>
+      <if test="b != null" >
+        #{b,jdbcType=VARCHAR},
+      </if>
+      <if test="c != null" >
+        #{c,jdbcType=VARCHAR},
+      </if>
+      <if test="d != null" >
+        #{d,jdbcType=VARCHAR},
+      </if>
+      <if test="quesanswer != null" >
+        #{quesanswer,jdbcType=VARCHAR},
+      </if>
+      <if test="difficulty != null" >
+        #{difficulty,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null" >
+        #{tag,jdbcType=VARCHAR},
+      </if>
+      <if test="analysis != null" >
+        #{analysis,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+    
+  </insert>
+  
   <select id="countByExample" parameterType="neueduexam.entity.questionExample" resultType="java.lang.Integer" >
     select count(*) from question
     <if test="_parameter != null" >
