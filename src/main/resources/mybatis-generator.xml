@@ -39,7 +39,7 @@
 		 <table tableName="user" domainObjectName="user"/>
           <table tableName="examandquestion" domainObjectName="examandquestion"/>
           <table tableName="exampaper" domainObjectName="exampaper"/>
-          <table tableName="invitation" domainObjectName="invitation"/>
+         
           <table tableName="personexampaper" domainObjectName="personexampaper"/>
           <table tableName="personquestion" domainObjectName="personquestion"/>
           <table tableName="question" domainObjectName="question"/>
@@ -48,9 +48,9 @@
           <table tableName="record" domainObjectName="record"/>
 			<table tableName="userbuylib" domainObjectName="userbuylib"/>
           <table tableName="userhavelib" domainObjectName="userhavelib"/>
-		 -->
           <table tableName="testpaper" domainObjectName="testpaper"/>
-          
+		 -->
+           <table tableName="invitation" domainObjectName="invitation"/>
 	</context>
 
 </generatorConfiguration>

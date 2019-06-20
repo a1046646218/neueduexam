@@ -21,6 +21,7 @@ public class testpaperControllerDTF {
 		user u = (user)resq.getSession().getAttribute("user");
 		testpaper.setUserid(u.getUserid());
 		int i = testpaperservice.createandgetID(testpaper);
+		resq.getSession().setAttribute("addtestidexcel_"+Integer.toString(u.getUserid()), i);
 		return Integer.toString(i);
 	}
 }

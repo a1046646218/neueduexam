@@ -304,52 +304,62 @@ public class invitationExample {
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneEqualTo(Integer value) {
+        public Criteria andStuphoneEqualTo(String value) {
             addCriterion("stuPhone =", value, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneNotEqualTo(Integer value) {
+        public Criteria andStuphoneNotEqualTo(String value) {
             addCriterion("stuPhone <>", value, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneGreaterThan(Integer value) {
+        public Criteria andStuphoneGreaterThan(String value) {
             addCriterion("stuPhone >", value, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneGreaterThanOrEqualTo(Integer value) {
+        public Criteria andStuphoneGreaterThanOrEqualTo(String value) {
             addCriterion("stuPhone >=", value, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneLessThan(Integer value) {
+        public Criteria andStuphoneLessThan(String value) {
             addCriterion("stuPhone <", value, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneLessThanOrEqualTo(Integer value) {
+        public Criteria andStuphoneLessThanOrEqualTo(String value) {
             addCriterion("stuPhone <=", value, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneIn(List<Integer> values) {
+        public Criteria andStuphoneLike(String value) {
+            addCriterion("stuPhone like", value, "stuphone");
+            return (Criteria) this;
+        }
+
+        public Criteria andStuphoneNotLike(String value) {
+            addCriterion("stuPhone not like", value, "stuphone");
+            return (Criteria) this;
+        }
+
+        public Criteria andStuphoneIn(List<String> values) {
             addCriterion("stuPhone in", values, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneNotIn(List<Integer> values) {
+        public Criteria andStuphoneNotIn(List<String> values) {
             addCriterion("stuPhone not in", values, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneBetween(Integer value1, Integer value2) {
+        public Criteria andStuphoneBetween(String value1, String value2) {
             addCriterion("stuPhone between", value1, value2, "stuphone");
             return (Criteria) this;
         }
 
-        public Criteria andStuphoneNotBetween(Integer value1, Integer value2) {
+        public Criteria andStuphoneNotBetween(String value1, String value2) {
             addCriterion("stuPhone not between", value1, value2, "stuphone");
             return (Criteria) this;
         }

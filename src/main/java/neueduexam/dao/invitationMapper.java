@@ -6,6 +6,7 @@ import neueduexam.entity.invitationExample;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+
 @Mapper
 public interface invitationMapper {
     int countByExample(invitationExample example);

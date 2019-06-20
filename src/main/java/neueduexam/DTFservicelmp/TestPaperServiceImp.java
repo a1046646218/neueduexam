@@ -62,6 +62,11 @@ public class TestPaperServiceImp implements TestPaperService{
 		testpapermapper.insertandgetID(testpaper);
 		return testpaper.getTestid();
 	}
+
+	@Override
+	public testpaper getTestPaperbyid(int id) {
+		return testpapermapper.selectByPrimaryKey(id);
+	}
 	
 	
 }

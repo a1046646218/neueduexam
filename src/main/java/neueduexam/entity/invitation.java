@@ -7,7 +7,7 @@ public class invitation {
 
     private Integer studentid;
 
-    private Integer stuphone;
+    private String stuphone;
 
     private String state;
 
@@ -41,12 +41,12 @@ public class invitation {
         this.studentid = studentid;
     }
 
-    public Integer getStuphone() {
+    public String getStuphone() {
         return stuphone;
     }
 
-    public void setStuphone(Integer stuphone) {
-        this.stuphone = stuphone;
+    public void setStuphone(String stuphone) {
+        this.stuphone = stuphone == null ? null : stuphone.trim();
     }
 
     public String getState() {

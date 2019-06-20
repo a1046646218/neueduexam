@@ -48,6 +48,7 @@
 		<link th:href="@{static/assets/css/style.css}" rel="stylesheet" />
 		<link th:href="@{static/assets/css/add-ons.min.css}" rel="stylesheet" />
 		
+		
 		<!-- end: CSS file-->	
 	   <!-- <link rel="stylesheet" type="text/css" th:href="@{static/dist/basic.min.css}">
 	    <link rel="stylesheet" type="text/css" th:href="@{static/dist/dropzone.min.css}">
@@ -102,6 +103,7 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->		
 		<script th:src="@{static/layer/layer.js}"></script>
+		<script th:src="@{static/js/jquerysession.js}"></script>
 		<script th:src="@{static/layer/skin/layer.css}"></script>
 	</head>
 <body>
@@ -379,7 +381,7 @@
 								</form>
 								<div class="row">
 									<div class="col-md-1"></div>
-								<form method="post"  style="margin-left: 40px;"  id="myDropzone" enctype="multipart/form-data" class="dropzone col-md-8" action="uploadfiles?uid=1">
+								<form method="post"  style="margin-left: 40px;"  id="myDropzone" enctype="multipart/form-data" class="dropzone col-md-8" action="mulExcelupload?useid=1">
 								</form>
 								</div>
 								<div class="row col-lg-offset-8" style="margin-top: 25px;">
@@ -395,6 +397,7 @@
 											<span class="btn-label"><i class="fa fa-check"></i></span>提交</button>
 								</div>
 								<input id="examid" style="display: none;" th:value="${#httpServletRequest.getParameter('examid')}"/>
+								<input id="testid" style="display: none;"/>
 										<!-- <div class="col-sm-offset-9">
 										<!--	<button class="bk-margin-5 btn btn-primary">提交</button>-->
 											<!-- <button type="button" id="submit" class="bk-margin-5 btn btn-primary">提交</button> -->
@@ -461,7 +464,7 @@
 		var testname = $("#testname").val();
 		var testout = $("#testout").val();
 		var countdown = $('#testtime option:selected').attr("value");
-		alert($("#examid").val());
+		//alert($("#examid").val());
 		if(checktestname()&&checktestout()){
 			$.ajax({
 				type:'post',
@@ -470,6 +473,7 @@
 				data:{"examid":$("#examid").val(),"testto":testto,"testname":testname,"publishdate":testfrom,"limitchanges":testout,"other1":testto,"countdown":countdown},
 				success:function(result){
 					//alert(result);
+					// sessionStorage.setItem("addtestidexcel",result);
 					$("#submit").click();
 					layer.msg('加载中', {
 							icon: 16,

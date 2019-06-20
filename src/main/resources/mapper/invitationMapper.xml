@@ -5,7 +5,7 @@
     <result column="testId" property="testid" jdbcType="INTEGER" />
     <result column="invitationTime" property="invitationtime" jdbcType="VARCHAR" />
     <result column="studentId" property="studentid" jdbcType="INTEGER" />
-    <result column="stuPhone" property="stuphone" jdbcType="INTEGER" />
+    <result column="stuPhone" property="stuphone" jdbcType="VARCHAR" />
     <result column="state" property="state" jdbcType="VARCHAR" />
     <result column="inviteCode" property="invitecode" jdbcType="VARCHAR" />
     <result column="other1" property="other1" jdbcType="VARCHAR" />
@@ -97,7 +97,7 @@
       stuPhone, state, inviteCode, 
       other1, ohter2)
     values (#{testid,jdbcType=INTEGER}, #{invitationtime,jdbcType=VARCHAR}, #{studentid,jdbcType=INTEGER}, 
-      #{stuphone,jdbcType=INTEGER}, #{state,jdbcType=VARCHAR}, #{invitecode,jdbcType=VARCHAR}, 
+      #{stuphone,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{invitecode,jdbcType=VARCHAR}, 
       #{other1,jdbcType=VARCHAR}, #{ohter2,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="neueduexam.entity.invitation" >
@@ -139,7 +139,7 @@
         #{studentid,jdbcType=INTEGER},
       </if>
       <if test="stuphone != null" >
-        #{stuphone,jdbcType=INTEGER},
+        #{stuphone,jdbcType=VARCHAR},
       </if>
       <if test="state != null" >
         #{state,jdbcType=VARCHAR},
@@ -174,7 +174,7 @@
         studentId = #{record.studentid,jdbcType=INTEGER},
       </if>
       <if test="record.stuphone != null" >
-        stuPhone = #{record.stuphone,jdbcType=INTEGER},
+        stuPhone = #{record.stuphone,jdbcType=VARCHAR},
       </if>
       <if test="record.state != null" >
         state = #{record.state,jdbcType=VARCHAR},
@@ -198,7 +198,7 @@
     set testId = #{record.testid,jdbcType=INTEGER},
       invitationTime = #{record.invitationtime,jdbcType=VARCHAR},
       studentId = #{record.studentid,jdbcType=INTEGER},
-      stuPhone = #{record.stuphone,jdbcType=INTEGER},
+      stuPhone = #{record.stuphone,jdbcType=VARCHAR},
       state = #{record.state,jdbcType=VARCHAR},
       inviteCode = #{record.invitecode,jdbcType=VARCHAR},
       other1 = #{record.other1,jdbcType=VARCHAR},
