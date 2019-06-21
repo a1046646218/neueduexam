@@ -21,4 +21,6 @@ public interface questionandlibMapper {
     int updateByExampleSelective(@Param("record") questionandlib record, @Param("example") questionandlibExample example);
 
     int updateByExample(@Param("record") questionandlib record, @Param("example") questionandlibExample example);
+
+	List<Integer> selectquesIdByLibId(int libId);
 }

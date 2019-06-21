@@ -1,5 +1,6 @@
 package neueduexam.HXBcontroller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import neueduexam.HXBservice.CreateExamPaperService;
 import neueduexam.HXBservice.ExamLibService;
 import neueduexam.HXBservice.InvitationService;
 import neueduexam.HXBservice.QuestionLibService;
@@ -24,6 +27,8 @@ public class JsonController {
 	ExamLibService examLibService;
 	@Autowired
 	QuestionLibService questionLibService;
+	@Autowired
+	CreateExamPaperService createExamService;
 	
 	@RequestMapping("/invitationJson")
 	public String getInvitationJson(String testId) {
@@ -52,6 +57,18 @@ public class JsonController {
 		String json = questionLibService.selectNumOfQuestionsByLibList(ids);
 		System.out.println(json);
 		return json;
+	}
+	
+	@RequestMapping("/createTestPaperJson")
+	public String createTestPaperJson(@RequestParam("libId[]") List<Integer> libIds,@RequestParam("scores[]") List<Integer>scores,
+			@RequestParam("quesNums[]") List<Integer>quesNums) {
+		for(int i:libIds)
+			System.out.println(i);
+		//test
+		libIds = new ArrayList<Integer>();
+		libIds.add(10);
+		 createExamService.createExamPaper(libIds, scores, quesNums);
+		return "ok";
 	}
 	
 }

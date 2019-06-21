@@ -619,7 +619,23 @@
     					shake("button[id='submit']");
     					layer.msg("请让试卷总分值达到100"); 
     				}else{
-    					
+    					var libId = [];
+    					var scores = [];
+    					scores[0] = 50;
+    					var quesNums = [];
+    					quesNums[0] = 2;
+						$("div[class='checkbox checkbox-success'").each(function(){
+							libId[libId.length] = $(this).attr("id");
+						});
+    					$.ajax({
+    						type:"post",
+    						url:"/createTestPaperJson",
+    						async:true,
+    						data:{libId:libId,scores:scores,quesNums:quesNums},
+    						success:function(){
+    							layer.msg("成功");
+    						}
+    					});
     				}
     			});
     			
@@ -636,6 +652,7 @@
     		        }
     		    }    
     			
+    			//计算当前试卷分数的函数
     			function compute(){
     				var numOfQuestions = [];
     				var scores = [];
