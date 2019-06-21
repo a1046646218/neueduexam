@@ -424,4 +424,9 @@
     </trim>
     
   </insert>
+  <select id="selectQuesTypeByPrimaryKey" resultType="java.lang.String">
+  	select quesType
+  	from question
+  	where quesId = #{quesId}
+  </select>
 </mapper>

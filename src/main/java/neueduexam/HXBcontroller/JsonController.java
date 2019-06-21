@@ -3,7 +3,7 @@ package neueduexam.HXBcontroller;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -65,9 +65,8 @@ public class JsonController {
 		for(int i:libIds)
 			System.out.println(i);
 		//test
-		libIds = new ArrayList<Integer>();
-		libIds.add(10);
-		 createExamService.createExamPaper(libIds, scores, quesNums);
+		int userId = 1;
+		 createExamService.createExamPaper(libIds, scores, quesNums,userId);
 		return "ok";
 	}
 	

@@ -33,4 +33,6 @@ public interface questionMapper {
     int updateByPrimaryKey(question record);
     
     int insertSelectandgetid(question record);
+
+	String selectQuesTypeByPrimaryKey(int quesId);
 }

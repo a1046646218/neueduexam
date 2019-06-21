@@ -621,12 +621,26 @@
     				}else{
     					var libId = [];
     					var scores = [];
-    					scores[0] = 50;
     					var quesNums = [];
-    					quesNums[0] = 2;
+
 						$("div[class='checkbox checkbox-success'").each(function(){
 							libId[libId.length] = $(this).attr("id");
 						});
+						$("input[id='fenzhi']").each(function(){
+							var v = $(this).val();
+							if(!(parseInt(x)>=0)){
+								v = 0;
+							}
+							scores.push(v);
+						});
+						$("input[id='xuanzeti']").each(function(){
+							var v = $(this).val();
+							if(!(parseInt(x)>=0)){
+								v = 0;
+							}
+							quesNums.push(v);
+						});
+						$("")
     					$.ajax({
     						type:"post",
     						url:"/createTestPaperJson",
@@ -678,7 +692,7 @@
     					show += parseInt(numOfQuestions[i]) * parseInt(scores[i])
     				}
     				//alert(show);
-    				$("span[id=fenzhi]").text(parseInt(show));
+    				$("span[id=fenzhi]").text(parseInt(show)); 
     			}
     			 
     			
