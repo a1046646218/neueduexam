@@ -465,60 +465,7 @@
 			{{/each}}
         </script>
         
-	<!--单选题-->
-	<script type="text/html" id="singletemplate">
-		<div class=" col-md-12 panel panel-info">
-								<div class="panel-heading">
-									<div class="row">
-										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.单选题（5分）标签：{{tag}} &nbsp;&nbsp;难度：{{difficulty}}</h6>
-										</div>
-										
-										<!--<ul class="col-xs-8 list-inline bk-margin-off-bottom text-right">
-															<li>
-																<span>满分：5分</span>
-																<span>得分：？分</span>
-																<span>结果：</span>
-									                           <span class="glyphicon glyphicon-remove"></span>
-																
-															</li>
-                                                 			<li class="bk-padding-off-right">
-																<span>编辑:</span>
-																<span class="glyphicon glyphicon-pencil"></span>
-															</li>
-															
-														</ul>-->
-									</div>
-								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
-								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
-									<div class="panel-body" style="padding-top: 10px;">
-										<span>选项：</span>
-										<div class="form-group">
-											<div class="col-md-6">
-												<div class="input-group" style="margin-top: 10px;">
-													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
-													<label class="form-control">{{a}}</label>
-												</div>
-												<div class="input-group" style="margin-top: 10px;">
-													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
-													<label class="form-control">{{b}}</label>
-												</div>
-												<div class="input-group" style="margin-top: 10px;">
-													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
-													<label class="form-control">{{c}}</label>
-												</div>
-												<div class="input-group" style="margin-top: 10px;">
-													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
-													<label class="form-control">{{d}}</label>
-												</div>
-											</div>
-										</div>
-								   </div>																										
-								</div>
-							</div>			
-	</script>		
-	<!-- template模板结尾 -->
+
 	
 		<script>
 			$(document).ready(function() {
@@ -563,15 +510,17 @@
 							for(var i=0;i<json.data.length;i++){
 								if(json.data[i].quesAmount!=0){
 										var j = JSON.stringify(json.data[i]);
-										var result = "{\"data\":["+j+"]}"
+										var result = "{\"data\":["+j+"]}";
+										//alert(JSON.stringify(JSON.parse(result)));  
 										json.data[i].libId = template("contentTemplate",JSON.parse(result));  
+										//alert(template("contentTemplate",JSON.parse(result)))
 								}else{
 									var j = JSON.stringify(json.data[i]);
 									var result = "{\"data\":["+j+"]}"
 									json.data[i].libId = template("contentTemplate2",JSON.parse(result));  
-								}
-								//alert(JSON.stringify(json.data[i]))
+								}						
 							}
+							alert(JSON.stringify(json.data))
 							return json.data;
     					}
     				},

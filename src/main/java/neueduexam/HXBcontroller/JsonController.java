@@ -72,5 +72,17 @@ public class JsonController {
 		 createExamService.createExamPaper(libIds, scores, quesNums,userId);
 		return "ok";
 	}
+	@RequestMapping("/getQuestionListJson")
+	public String getQuestionListJson(int libId,String quesType) {
+		String json = selectQuestionListService.getQuestionList(libId, quesType);
+		System.out.println(json);
+		return json;
+	}
+	@RequestMapping("/test99")
+	public String test() {
+		String json = selectQuestionListService.getQuestionList(1, "0"); 
+		System.out.println(json);
+		return json;
+	}
 	
 }

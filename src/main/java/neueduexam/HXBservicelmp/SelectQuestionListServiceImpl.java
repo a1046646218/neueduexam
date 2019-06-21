@@ -35,12 +35,18 @@ public class SelectQuestionListServiceImpl implements SelectQuestionListService{
 		List<question> list2 = new ArrayList<question>();
 		for(questionandlib q: list) {
 			question ques = questionMapper.selectByQuesIdAndQuesType(q.getQuesid(),quesType);
-			list2.add(ques);
+			if(ques!=null) {
+				ques.setOther1("zhanwei");
+				ques.setOther2("zhanwei");
+				list2.add(ques);
+			}
 		}
 		
-		Map<String,Object> map = new HashMap<String,Object>();
-		map.put("data", list2);
-		String jsonString = JSON.toJSONString(map);
+		//Map<String,Object> map = new HashMap<String,Object>();
+		//map.put("content", list2);
+		Map<String,Object> map2 = new HashMap<String,Object>();
+		map2.put("data", list2);
+		String jsonString = JSON.toJSONString(map2);
 		
 		return jsonString;
 	}
