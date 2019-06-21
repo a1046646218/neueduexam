@@ -628,19 +628,19 @@
 						});
 						$("input[id='fenzhi']").each(function(){
 							var v = $(this).val();
-							if(!(parseInt(x)>=0)){
+							if(!(parseInt(v)>=0)){
 								v = 0;
 							}
 							scores.push(v);
 						});
 						$("input[id='xuanzeti']").each(function(){
 							var v = $(this).val();
-							if(!(parseInt(x)>=0)){
+							if(!(parseInt(v)>=0)){
 								v = 0;
 							}
 							quesNums.push(v);
 						});
-						$("")
+
     					$.ajax({
     						type:"post",
     						url:"/createTestPaperJson",

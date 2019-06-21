@@ -62,7 +62,7 @@ public class JsonController {
 	@RequestMapping("/createTestPaperJson")
 	public String createTestPaperJson(@RequestParam("libId[]") List<Integer> libIds,@RequestParam("scores[]") List<Integer>scores,
 			@RequestParam("quesNums[]") List<Integer>quesNums) {
-		for(int i:libIds)
+		for(int i:quesNums)
 			System.out.println(i);
 		//test
 		int userId = 1;
