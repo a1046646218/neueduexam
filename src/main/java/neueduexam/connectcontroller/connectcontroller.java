@@ -1,7 +1,11 @@
 package neueduexam.connectcontroller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import neueduexam.entity.user;
 
 @Controller
 public class connectcontroller {
@@ -65,8 +69,5 @@ public class connectcontroller {
 	public String dropupload() {
 		return "dropupload";
 	}
-	@RequestMapping("/group")
-	public String group() {
-		return "chatandhomework";
-	}
+	
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html  xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 	
@@ -430,80 +430,87 @@
 					<!-- End Sidebar Footer-->
 				</div>
 				<!-- End Sidebar -->			
-		
+				
 				<!-- Main Page -->
-				<div class="main ">
+				<div class="main row">
 					<!-- Page Header -->
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+						<div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12">
+									<div class="panel-heading bk-bg-white">									
+										<h6>创建的群组</h6>
+										<div class="panel-actions">
+											<a href="#" ><i class="fa fa-plus"></i></a>
+											<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+										</div>
+									</div>
+									<div class="panel-body bk-noradius"  id="mygrouplist" style="display: block;">									
+																	
+									</div>
+								</div>
+								<div class="panel panel-default col-lg-12 col-md-12 col-sm-12 col-xs-12">
+											<div class="panel-heading bk-bg-white">									
+												<h6>加入的群组</h6>
+												<div class="panel-actions">
+													<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+												</div>
+											</div>
+											<div class="panel-body bk-noradius" id="addgrouplist" style="display: block;">									
+																		
+											</div>
+										</div>
+					</div>
 					
 					<!-- End Page Header -->
-					<div class="row">
-						<div class="panel panel-default">
-								<div class="panel-body bk-noradius">									
-									<a class="bk-bg-white bk-padding-off-top bk-padding-off-bottom">
-										<div class="row">
-											<div class="col-xs-3 bk-vcenter text-center bk-padding-10">
-												<div class="bk-avatar">
-													<img src="assets/img/avatar1.jpg" alt="" class="img-circle bk-img-40 bk-border-primary bk-border-2x bk-border-darken">
-												</div>
-											</div>
-											<div class="col-xs-9 bk-vcenter">
-												<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">John Doe</h5>
-												<p>
-													Nullam vitae arcu in leo molestie hendrerit at quis sem.
-												</p>
-											</div>
-										</div>
-									</a>
-									<hr class="bk-margin-off">
-									<a class="bk-bg-white bk-padding-off-top bk-padding-off-bottom">
-										<div class="row">
-											<div class="col-xs-3 bk-vcenter text-center bk-padding-10">
-												<div class="bk-avatar">
-													<img src="assets/img/avatar2.jpg" alt="" class="img-circle bk-img-40 bk-border-warning bk-border-2x bk-border-darken">
-												</div>
-											</div>
-											<div class="col-xs-9 bk-vcenter">
-												<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">John Doe</h5>
-												<p>
-													Nunc vitae porttitor purus.
-												</p>
-											</div>
-										</div>
-									</a>
-									<hr class="bk-margin-off">
-									<a class="bk-bg-white bk-padding-off-top bk-padding-off-bottom">
-										<div class="row">
-											<div class="col-xs-3 bk-vcenter text-center bk-padding-10">
-												<div class="bk-avatar">
-													<img src="assets/img/avatar2.jpg" alt="" class="img-circle bk-img-40 bk-border-danger bk-border-2x bk-border-darken">
-												</div>
-											</div>
-											<div class="col-xs-9 bk-vcenter">
-												<h5 class="bk-fg-danger bk-fg-darken bk-margin-off-bottom">John Doe</h5>
-												<p>
-													Morbi interdum posuere ultricies. Aliquam sit amet neque nisi.
-												</p>
-											</div>
-										</div>
-									</a>
-									<hr class="bk-margin-off">									
+					
+						<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+							<div class="tabs tabs-success">
+								<ul class="nav nav-tabs">
+									<li class="active">
+										<a href="#home1" data-toggle="tab"><i class="fa fa-home"></i>作业</a>
+									</li>
+									<li>
+										<a href="#profile1" data-toggle="tab">聊天室</a>
+									</li>
+								</ul>
+								<div class="tab-content">
+									<div id="home1" class="tab-pane active">
+										<div class="panel panel-transparent">
+								<div class="panel-heading">
 								</div>
-								<div class="panel-footer bk-bg-white">
-									<div class="bk-padding-top-5 bk-padding-bottom-5 ">
-										<div class="row">
-											<div class="col-xs-6">
-												<a href="#" class="bk-fg-textcolor"><small><i class="fa fa-angle-left"></i> PREVIOUS</small></a>
+								<div class="panel-body">
+									<div class="timelineProfile timeline-profile">
+										<div class="timeline-body">
+											<div class="timeline-title" style="border:2px solid #0FB492;">
+												<h5 class="text-uppercase" >发布作业</h5>
 											</div>
-											<div class="col-xs-6 text-right">
-												<a href="#" class="bk-fg-textcolor"><small>NEXT <i class="fa fa-angle-right"></i></small></a>
-											</div>
+											<ol id="homeworklist" class="timeline-items">
+												
+												
+											</ol>
 										</div>
 									</div>
 								</div>
 							</div>
-					
-					
-				</div>
+									</div>
+									<div id="profile1" class="tab-pane">
+										<p>Profile</p>
+										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.</p>
+									</div>
+								</div>
+							</div>
+						</div>
+					<div class="panel panel-default col-lg-2 col-md-2 col-sm-2 col-xs-12">
+								<div class="panel-heading bk-bg-white">									
+									<h6>群组成员<span class="label label-success bk-margin-5" id="groupnum">165</span></h6>
+									<div class="panel-actions">
+										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+									</div>
+								</div>
+								<div class="panel-body bk-noradius" id="theuserlist">									
+															
+								</div>
+							</div>
 				<!-- End Main Page -->		
 		
 				<!-- Footer -->
@@ -542,16 +549,104 @@
 		<script th:src="@{static/layer/layer.js}"></script>
 		<script th:src="@{static/layer/extend/layer.ext.js}"></script>
 		<!-- end: JavaScript-->
+		<input type="text" id="nowgroupid" th:value="${groupid}" style="none;">
+		
+		
+		<script th:src="@{static/js/template.js}"></script>
+		<script th:src="@{static/layer/layer.js}"></script>
 		<script>
+			
 		$(function(){
 			$("#main-menu-toggle").click();
 			$("#main-menu-toggle").html("");
-			
-	    			
-		});	
+			var groupid=$("#nowgroupid").val();
+			$.ajax({
+					type:'post',
+					url:'forhomeworklist',
+					async:false,
+					data:{"groupid":groupid},
+					success:function(result){
+						for(var i=0;i<result.length;i++){
+							var usercontent = template("grouphomework",result[i]);
+							$("#homeworklist").append(usercontent);
+						}
+						
+					}
+			});			
+			$.ajax({
+				type:'post',
+				url:'forgrouplist',
+				async:false,
+				// data:{"groupid":groupid},
+				success:function(result){
+					//console.log(result);
+					for(var i=0;i<result.add.length;i++){
+						var newContentNews = template("grouplist",result.add[i]);
+						$("#addgrouplist").append(newContentNews);
+					}
+					for(var i=0;i<result.my.length;i++){
+						var newContentNews = template("grouplist",result.my[i]);
+						$("#mygrouplist").append(newContentNews);
+					}
+				}
+			});	
+			$.ajax({
+					type:'post',
+					url:'forgroupuserlist',
+					async:false,
+					data:{"groupid":groupid},
+					success:function(result){
+						console.log(result);
+						for(var i=0;i<result.length;i++){
+							// console.log(result[i]);
+							// console.log(result[i].nickname);
+							//alert(result[i].nikename);
+							$("#groupnum").text(result.length);
+							var usercontent = template("userlists",result[i]);
+							$("#theuserlist").append(usercontent);
+						}
+					}
+				});			
+			});
 		</script>
-		
-		
+		<script type="text/html" id="grouplist">
+			<a class="bk-bg-white bk-padding-off-top bk-padding-off-bottom" groupid="{{groupid}}" id="groupid">
+				<div class="row">
+					<div class="col-xs-9 bk-vcenter">
+						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">{{groupname}}</h5>
+						<p>
+						{{groupprofile}}
+						</p>
+					</div>
+				</div>
+			</a>
+			<hr class="bk-margin-off">
+		</script>
+		<script type="text/html" id="userlists">
+			<a class="bk-bg-white bk-padding-off-top bk-padding-off-bottom" >
+				<div class="row">
+					<div class="col-xs-3 bk-vcenter text-center bk-padding-10">
+						<div class="bk-avatar">
+							<img src="{{userimage}}" alt="" userid="{{userid}}" class="img-circle bk-img-40 bk-border-primary bk-border-2x bk-border-darken">
+						</div>
+					</div>
+					<div class="col-xs-9 bk-vcenter">
+						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">{{nickname}}</h5>
+					</div>
+				</div>
+			</a>
+			<hr class="bk-margin-off">
+		</script>
+		<script type="text/html" id="grouphomework">
+		<li>
+			<div class="timeline-box">
+				<p class="text-muted">{{hwdate}}</p>
+				<p>
+					{{content}}
+				</p>
+			</div>
+		</li>
+		</script>
 	</body>
-	
-</html>
+</html>					
+								
