@@ -38,4 +38,10 @@ public class UserControllerAjaxDTF {
 		return Integer.toString(i);
 		
 	}
+	@RequestMapping("/addexcelsession")
+	public String addexcelsession(int testid,HttpServletRequest resq) {
+		user u = (user)resq.getSession().getAttribute("user");
+		resq.getSession().setAttribute("addtestidexcel_"+Integer.toString(u.getUserid()), testid);
+		return "1";
+	}
 }

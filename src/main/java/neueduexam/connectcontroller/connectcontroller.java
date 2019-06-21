@@ -65,4 +65,8 @@ public class connectcontroller {
 	public String dropupload() {
 		return "dropupload";
 	}
+	@RequestMapping("/group")
+	public String group() {
+		return "chatandhomework";
+	}
 }

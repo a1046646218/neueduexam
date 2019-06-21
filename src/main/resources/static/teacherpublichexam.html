@@ -13,7 +13,19 @@
 		
 		<!-- Import google fonts -->
         <!-- <link href='http://fonts.useso.com/css?family=Titillium+Web' rel='stylesheet' type='text/css'> -->
-        
+         <style>
+        	.dropzone {
+            border: 2px dashed #0087F7;
+            border-radius: 5px;
+            background: white;
+        }
+        	
+        </style>
+        <link rel="stylesheet" type="text/css" th:href="@{static/dropzone/dropzone.css}">
+        <!-- <link rel="stylesheet" type="text/css" th:href="@{static/dist/dropzone.min.css}"> -->
+         <script th:src="@{static/dropzone/dropzone.js}"></script>
+		 
+		 
 		<!-- Favicon and touch icons -->
 		<link rel="shortcut icon" th:href="@{static/assets/ico/favicon.ico}" type="image/x-icon" />
 		<link rel="apple-touch-icon" th:href="@{static/assets/ico/apple-touch-icon.png}" />
@@ -528,12 +540,15 @@
 							data:{"pass":pass},
 							success:function(flag){
 								if(flag==1){
-									
-									
-									
-									
-									
-									})
+									$.ajax({
+											type:'post',
+											url:'addexcelsession',
+											async:false,
+											data:{"testid":arr},
+											success:function(flag){
+												$("#addsomeexcel").click();
+											}
+									});
 								}else{
 									layer.msg("密码错误");
 								}
@@ -565,7 +580,6 @@
 													layer.msg('邀请成功');
 												}else{
 													layer.msg('邀请失败');
-													
 												}
 											}
 									});
@@ -579,12 +593,33 @@
 				});
 		});
 </script>
-<input type="button" style="display: none;">
+<input type="button" id="addsomeexcel" style="display: none;" data-toggle="modal" data-target="#myModal">
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-			<div class="modal-dialog" style="width:480px;height: 400px;">
-				<div class="modal-content">
-					
+			<div class="modal-dialog" style="width:600px;height: 400px;">
+				<div id="innerexcel" class="modal-content">
+						<form method="post" style="margin-left: 40px;width:520px;height: 250px; margin-top:30px;" id="myDropzone" enctype="multipart/form-data" class="dropzone col-md-8" action="mulExcelupload" />
+						</form>
+					<div class="row" style="margin-top: 35px; margin-left: 480px" >
+						<button id="submit" class="bk-margin-5 btn btn-labeled btn-success" type="button">
+								<span class="btn-label"><i class="fa fa-check"></i></span>提交</button>
+					</div>
 				</div><!-- /.modal-content -->
 			</div><!-- /.modal-dialog -->
-	</div>
+</div>
+<script type="application/javascript">
+	Dropzone.options.myDropzone = {
+		autoProcessQueue: false,
+		addRemoveLinks:true,
+		acceptedFiles:".xls,.xlsx",
+			dictInvalidFileType: "你不能上传该类型文件,文件类型只能是*.xls,*.xlsx",
+				init: function() {
+					var submitButton = document.querySelector("#submit");
+					myDropzone = this; // closure
+					submitButton.addEventListener("click", function() {
+					myDropzone.processQueue(); // Tell Dropzone to process all queued files.
+					});
+				
+			}
+};
+</script>
 </html>
