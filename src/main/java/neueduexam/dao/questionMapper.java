@@ -35,4 +35,6 @@ public interface questionMapper {
     int insertSelectandgetid(question record);
 
 	String selectQuesTypeByPrimaryKey(int quesId);
+
+	question selectByQuesIdAndQuesType(Integer quesid, String quesType);
 }

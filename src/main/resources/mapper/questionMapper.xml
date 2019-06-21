@@ -429,4 +429,9 @@
   	from question
   	where quesId = #{quesId}
   </select>
+  <select id="selectByQuesIdAndQuesType" resultMap="BaseResultMap">
+  	select *
+  	from question
+  	where quesId = #{quesId} and quesType = #{quesType}
+  </select>
 </mapper>

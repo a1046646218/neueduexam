@@ -15,6 +15,7 @@ import neueduexam.HXBservice.CreateExamPaperService;
 import neueduexam.HXBservice.ExamLibService;
 import neueduexam.HXBservice.InvitationService;
 import neueduexam.HXBservice.QuestionLibService;
+import neueduexam.HXBservice.SelectQuestionListService;
 import neueduexam.HXBservice.TestSituationService;
 @RestController
 public class JsonController {
@@ -29,6 +30,8 @@ public class JsonController {
 	QuestionLibService questionLibService;
 	@Autowired
 	CreateExamPaperService createExamService;
+	@Autowired
+	SelectQuestionListService selectQuestionListService;
 	
 	@RequestMapping("/invitationJson")
 	public String getInvitationJson(String testId) {
