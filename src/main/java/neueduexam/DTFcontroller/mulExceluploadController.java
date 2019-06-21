@@ -42,7 +42,7 @@ public class mulExceluploadController {
     @ResponseBody
     public void test2(HttpServletRequest request) {
 		user u = (user)request.getSession().getAttribute("user");
-		int addtestidexcel = (int) request.getSession().getAttribute("addtestidexcel_"+Integer.toString(u.getUserid()));
+		int	addtestidexcel = (int) request.getSession().getAttribute("addtestidexcel_"+Integer.toString(u.getUserid()));
 		System.out.println(addtestidexcel+"==============");
 		testpaper tp = testpaperservice.getTestPaperbyid(addtestidexcel);
 		invitation ivt = new invitation();
@@ -73,5 +73,6 @@ public class mulExceluploadController {
 			}
 			
 	    }
+	    request.getSession().removeAttribute("addtestidexcel_"+Integer.toString(u.getUserid()));
     }
 }
