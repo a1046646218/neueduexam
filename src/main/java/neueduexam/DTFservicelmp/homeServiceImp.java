@@ -1,5 +1,7 @@
 package neueduexam.DTFservicelmp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +26,18 @@ public class homeServiceImp implements homeService{
 		cc.andGroupidEqualTo(groupid);
 		List<homework> list = homeworkmapper.selectByExample(e);
 		return list;
+	}
+
+	@Override
+	public int addhomework(int groupid, String content) {
+		homework hw = new homework();
+		hw.setContent(content);
+		hw.setGroupid(groupid);
+		Date date = new Date();
+	    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		hw.setHwdate(sdf.format(date));
+		int insert = homeworkmapper.insert(hw);
+		return insert;
 	}
 	
 }

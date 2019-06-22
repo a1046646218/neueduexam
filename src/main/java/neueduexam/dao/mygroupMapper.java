@@ -30,4 +30,6 @@ public interface mygroupMapper {
     int updateByPrimaryKeySelective(mygroup record);
 
     int updateByPrimaryKey(mygroup record);
+    
+    int insertandgetkey(mygroup record);
 }

@@ -15,6 +15,7 @@ import neueduexam.entity.mygroupExample;
 import neueduexam.entity.groupanduser;
 import neueduexam.entity.groupanduserExample;
 import neueduexam.entity.mygroupExample.Criteria;
+import neueduexam.entity.user;
 
 @Service
 public class groupDTFServiceImp implements groupDTFService{
@@ -65,5 +66,51 @@ public class groupDTFServiceImp implements groupDTFService{
 		List<groupanduser> alllist = groupandusermapper.selectByExample(e);
 		return alllist;
 	}
+
+	@Override
+	public int ismygroup(int userid, int groupid) {
+		mygroup group = mygroupmapper.selectByPrimaryKey(groupid);
+		if(userid==group.getUserid()) {
+			return 1;
+		}
+		return 0;
+	}
+
+	@Override
+	public int creategroup(user u, String name, String profile) {
+		mygroup g = new mygroup();
+		g.setGroupname(name);
+		g.setGroupprofile(profile);
+		g.setNickname(u.getNickname());
+		g.setUserid(u.getUserid());
+		int i = mygroupmapper.insertandgetkey(g);
+		groupanduser gu = new groupanduser();
+		gu.setGroupid(g.getGroupid());
+		gu.setNickname(u.getNickname());
+		gu.setUserid(u.getUserid());
+		gu.setUserimage(u.getHeadphoto());
+		int t = groupandusermapper.insert(gu);
+		return t;
+	}
+
+	@Override
+	public int inviteruser(user u, int groupid) {
+		groupanduserExample e = new groupanduserExample();
+		neueduexam.entity.groupanduserExample.Criteria cc = e.createCriteria();
+		cc.andGroupidEqualTo(groupid);
+		cc.andUseridEqualTo(u.getUserid());
+		List<groupanduser> li = groupandusermapper.selectByExample(e);
+		if(li.size()!=0) {
+			return 2;
+		}
+		groupanduser gu = new groupanduser();
+		gu.setGroupid(groupid);
+		gu.setNickname(u.getNickname());
+		gu.setUserid(u.getUserid());
+		gu.setUserimage(u.getHeadphoto());
+		int i = groupandusermapper.insert(gu);
+		return i;
+	}
+
 	
 }

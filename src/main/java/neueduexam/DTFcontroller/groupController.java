@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import neueduexam.DTFservice.groupDTFService;
 import neueduexam.DTFservice.homeService;
+import neueduexam.GZKservice.GZKUserService;
 import neueduexam.entity.groupanduser;
 import neueduexam.entity.homework;
 import neueduexam.entity.mygroup;
@@ -23,6 +24,21 @@ public class groupController {
 	groupDTFService groupdtfservice;
 	@Autowired
 	homeService homeservice;
+	@Autowired
+	GZKUserService gzkuserservice;
+	
+	
+	@RequestMapping("/ismygroup")
+	public String ismygroup(HttpServletRequest resq,int groupid) {
+		user u = (user)resq.getSession().getAttribute("user");
+		return Integer.toString(groupdtfservice.ismygroup(u.getUserid(), groupid));
+	}
+	
+	@RequestMapping("/creategroupAjaxDTF")
+	public String creategroupAjaxDTF(String clibname,String clibpro,HttpServletRequest resq) {
+		int creategroup = groupdtfservice.creategroup((user)resq.getSession().getAttribute("user"), clibname, clibpro);
+		return Integer.toString(creategroup);
+	}
 	
 	
 	@RequestMapping("/forgrouplist")
@@ -49,4 +65,22 @@ public class groupController {
 		List<homework> list = homeservice.gethomeworklistbygroupid(groupid);
 		return list;
 	}
+	
+	@RequestMapping("/inviteusertogroup")
+	public int inviteusertogroup(int groupid,String pass,HttpServletRequest resq) {
+		List<user> ulist = gzkuserservice.login(pass);
+		if(ulist.size()==0) {
+			return 3;
+		}else {
+			int i = groupdtfservice.inviteruser(ulist.get(0), groupid);
+			return i;
+		}
+		
+	}
+	
+	@RequestMapping("/addhomework")
+	public int addhomework(int groupid,String pass) {
+		return homeservice.addhomework(groupid, pass);
+	}
+	
 }

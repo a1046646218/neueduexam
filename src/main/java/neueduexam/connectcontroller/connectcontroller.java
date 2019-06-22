@@ -69,5 +69,13 @@ public class connectcontroller {
 	public String dropupload() {
 		return "dropupload";
 	}
+	@RequestMapping("/topublicgroup")
+	public String topublicgroup() {
+		return "publicgroup";
+	}
+	@RequestMapping("/grouphome")
+	public String grouphome() {
+		return "grouphome";
+	}
 	
 }
