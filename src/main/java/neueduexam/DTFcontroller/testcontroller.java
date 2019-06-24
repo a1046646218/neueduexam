@@ -32,6 +32,19 @@ public class testcontroller {
 		res.getSession().setAttribute("user", user);
 		return "studenthome";
 	}
-	
-	
+	@RequestMapping("/group")
+	public String group(int groupid,HttpServletRequest resq) {
+		user user = userservice.getuserbyid(3);
+		resq.getSession().setAttribute("user", user);
+		resq.setAttribute("groupid", groupid);
+		System.out.println(groupid);
+		return "chatandhomework";
+	}
+	@RequestMapping("/testhome")
+	public String testhome(int testid,HttpServletRequest res) {
+		user user = userservice.getuserbyid(3);
+		res.getSession().setAttribute("user", user);
+		res.setAttribute("testid", testid);
+		return "testhome";
+	}
 }

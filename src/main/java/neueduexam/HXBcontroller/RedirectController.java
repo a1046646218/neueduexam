@@ -20,5 +20,9 @@ public class RedirectController {
 	public String toAutoCreateExamLib() {
 		return "autoCreateExamLib";
 	}
+	@RequestMapping("/toCheckQuestionLib")
+	public String toCheckQuestionLib() {
+		return "checkQuestionLib";
+	}
 
 }

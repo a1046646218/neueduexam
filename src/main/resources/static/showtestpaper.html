@@ -262,18 +262,34 @@
 			<div class="row">
 		
 				<!-- Main Page -->
-				<div class="main " style="padding-top: 100px;">			
+				<div class="main " style="padding-top: 100px;padding-left: 200px;">			
 					<div class="row mailbox">			
-						<div class="col-lg-10 col-md-9 col-sm-8 col-xs-12">	
-						
+						<div class="col-lg-9 col-md-9 col-sm-8 col-xs-12">	
+						<!--头部介绍-->
 						<div class="panel bk-widget bk-border-off">
-						<div id="examheader" class="panel-heading text-left bk-bg-primary bk-fg-white bk-padding-top-10 bk-padding-bottom-10">
+						<div class="panel-heading text-left bk-bg-primary bk-fg-white bk-padding-top-10 bk-padding-bottom-10">
+						<div class="panel" >
+							<div class="panel-body bk-bg-very-light-gray">
+		                    <div class="mailbox-email-header"  name="1">
+		                    <h3 class="mailbox-email-subject bk-fg-primary" id="testtitle"></h3>		
+							</div>
+							</div>
+						</div>
+						<div class="row" >
+							<div class="col-xs-2 bk-vcenter">
+		                  	<div class="bk-avatar">
+			                <img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-80 bk-border-white bk-border-3x">
+			                </div>
+			               </div>
+			               	<div class="col-xs-10 bk-vcenter" id="testheader">
+			                </div>
+						</div>
 						</div>
 						</div>
 						<!--题目结构-->
 							<div class="panel panel-default bk-bg-white">
 								<div class="panel-heading bk-bg-white">
-									<h6><i class="fa fa-table red"></i><span class="break"></span>题目结构</h6>
+								    <h6><i class="fa fa-table red"></i><span class="break"></span>题目结构</h6> 
 									<div class="panel-actions">
 										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
 										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
@@ -286,8 +302,8 @@
 												  <tr>
 													  <th>题型</th>
 													  <th>题目数</th>
-													  <th>分数</th>
-													  <th>正确率</th>                                          
+													  <th>总分数</th>
+													  <th>题目难度</th>                                          
 												  </tr>
 											  </thead>   
 											  <tbody>
@@ -368,9 +384,9 @@
 								<div class="panel-body message" id="jiancontent">	
 								</div>
 							</div>
-							
-							
+						</div>
 							<!--测试日志-->
+							<div class="col-lg-3 col-md-9 col-sm-8 col-xs-12">
 							<div class="panel panel-default bk-widget bk-border-off">
 								<div class="panel-heading bk-bg-white text-center">
 									<div class="row">
@@ -382,22 +398,45 @@
 										</div>
 									</div>
 								</div>
-								<div class="panel-body bk-padding-off-top bk-padding-off-bottom bk-noradius">
+								<div class="panel-body bk-padding-off-top bk-padding-off-bottom bk-noradius" >
 									<div class="row">
-										<div class="col-xs-2 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+										<div class="col-xs-3 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
 											<a class="bk-round bk-border-off bk-bg-primary bk-bg-lighten bk-icon bk-icon-2x bk-icon-default">
 												<i class="fa fa-star fa-2x"></i>
 											</a>
 										</div>
-										<div class="col-xs-10 bk-vcenter" style="margin-top:10px;margin-bottom: 20px;" id="publishinfo">
+										<div class="col-xs-8 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+											<h6 class="bk-fg-primary bk-margin-off-bottom" style="font-size: 18px;"><strong>试卷发布信息：</strong></h6>
+										</div>
+									</div>
+										<div class="col-xs-11 bk-vcenter" style="margin-top:10px;margin-bottom: 20px;" id="publishinfo" >
 											
 										</div>
-									</div>							
+									
+														
 								</div>
 							</div>
-							
+							<div class="panel panel-default bk-widget bk-border-off">
+								<div class="panel-heading bk-bg-white text-center">
+									<div class="row">
+										<div class="col-xs-8 text-left bk-vcenter">
+											<h6 class="bk-margin-off">试卷操作</h6>
+										</div>
+										<div class="col-xs-4 bk-vcenter text-right">
+											<i class="fa  fa-gear"></i>
+										</div>
+									</div>
+								</div>
+								<div class="panel-body bk-padding-off-top bk-padding-off-bottom bk-noradius" >
+									<div style="padding-top: 20px;padding-bottom: 20px;" class="radio">
+									<a href="" style="background-color:lightseagreen;color: #fff;margin-left:10px;margin-right:30px;" class="btn btn-default" onclick="javascript:window.print();">
+								    <i class="fa fa-print"></i> 打印试卷</a>
+								    <a href="" style="background-color: cornflowerblue;color: #fff;" class="btn btn-default" onclick="javascript:window.print();">
+								    <i class="fa fa-hand-o-up"></i> 返回</a>
+									</div>
+								
+							</div>
 						</div>
-					</div>
 				</div>
 				<!-- End Main Page -->			
 		
@@ -445,7 +484,8 @@
 					</ul>	
 				</div>
 				<!-- End Footer -->
-			
+				</div>
+				</div>
 			</div>
 		</div>
 		<!--/container-->
@@ -472,43 +512,17 @@
 		<!-- end: JavaScript-->
 		  <script th:src="@{static/js/template.js}"></script>
 			<script th:src="@{static/layer/layer.js}"></script>
-		<!-- end: JavaScript-->
+		<!-- end: JavaScript-->						
 		
 		<script type="text/html" id="examTemplate1">
-									<div class="panel">
-								    <div class="panel-body bk-bg-very-light-gray">
-									<div class="mailbox-email-header" id="exampapertitle" name="1">
-										<h3 class="mailbox-email-subject bk-fg-primary">
-											题目：{{examname}}
-										</h3>								
-									</div>
-								</div>
-							</div>
-									<div class="row">
-										<div class="col-xs-2 bk-vcenter">
-											<div class="bk-avatar">
-												<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-80 bk-border-white bk-border-3x">
-											</div>
-										</div>
-										<div class="col-xs-10 bk-vcenter">
-											<div class="bk-avatar">
-												<div class="row">
-												<h4 class="bk-margin-off col-lg-3">发布者：{{enickname}}</h4>
-												<h4 class="bk-margin-off col-lg-3">试卷类型：{{examtype}}</h4>
-												<h4 class="bk-margin-off col-md-3">试卷题目数量：{{numofquestions}}</h4>
-												</div>
-												<h4 class="bk-margin-off">试卷描述：{{examprofile}}</h4>
-											</div>
-										</div>
-
-										<!--<div class="col-xs-6 text-right bk-vcenter">
-											<h4 class="bk-margin-off">是否判卷</h4>
-											<small>Management Director</small>
-											<div class="bk-margin-top-10">
-												<a href="page-profile.html" class="btn btn-default pull-right">View profile</a>
-											</div>
-										</div>-->
-									</div>
+		    <div class="bk-avatar">
+			<div class="row">
+			<h4 class="bk-margin-off col-lg-3">发布者：{{enickname}}</h4>
+			<h4 class="bk-margin-off col-lg-3">试卷类型：{{examtype}}</h4>
+			<h4 class="bk-margin-off col-md-4">试卷题目数量：{{numofquestions}}</h4>
+			</div>
+			<h4 class="bk-margin-off">试卷描述：{{examprofile}}</h4>
+			</div>
 								
 </script>
 
@@ -516,41 +530,41 @@
 	<tr>
 													<td>单选题</td>
 													<td>{{numofsingle}}</td>
-													<td>2563$</td>
+													<td id="singlescore">0</td>
 													<td>
-														<span class="label label-success">Active</span>
+														<span class="label label-success">简单</span>
 													</td>                                       
 												</tr>
 												<tr>
 													<td>多选题</td>
 													<td>{{numofmultiple}}</td>
-													<td>5000$</td>
+													<td id="mulscore">0</td>
 													<td>
-														<span class="label label-danger">Banned</span>
+														<span class="label label-warning">中等</span>
 													</td>                                       
 												</tr>
 												<tr>
 													<td>判断题</td>
 													<td>{{numofjudge}}</td>
-													<td>1269$</td>
+													<td id="judscore">1269$</td>
 													<td>
-														<span class="label label-default">Inactive</span>
+														<span class="label label-warning">中等</span>
 													</td>                                        
 												</tr>
 												<tr>
 													<td>填空题</td>
 													<td>{{numofblank}}</td>
-													<td>6253$</td>
+													<td id="tianscore">0</td>
 													<td>
-														<span class="label label-warning">Pending</span>
+														<span class="label label-danger">困难</span>
 													</td>                                       
 												</tr>	
 												<tr>
 													<td>简答题</td>
 													<td>{{numofanswer}}</td>
-													<td>6253$</td>
+													<td id="jianscore">0</td>
 													<td>
-														<span class="label label-warning">Pending</span>
+														<span class="label label-danger">困难</span>
 													</td>                                       
 												</tr>
 	</script>
@@ -562,26 +576,11 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.单选题（5分）标签：{{tag}} &nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hlsinglescore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}} &nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
-										
-										<!--<ul class="col-xs-8 list-inline bk-margin-off-bottom text-right">
-															<li>
-																<span>满分：5分</span>
-																<span>得分：？分</span>
-																<span>结果：</span>
-									                           <span class="glyphicon glyphicon-remove"></span>
-																
-															</li>
-                                                 			<li class="bk-padding-off-right">
-																<span>编辑:</span>
-																<span class="glyphicon glyphicon-pencil"></span>
-															</li>
-															
-														</ul>-->
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa fa-star"></i> 题目：{{quescontext}}</div>
 								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 									<div class="panel-body" style="padding-top: 10px;">
 										<span>选项：</span>
@@ -617,11 +616,11 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.多选题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hlmulscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa fa-star-o"></i> 题目：{{quescontext}}</div>
 								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 									<div class="panel-body" style="padding-top: 10px;">
 										<span>选项：</span>
@@ -656,11 +655,11 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.判断题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hljudscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa  fa-asterisk"></i> 题目：{{quescontext}}</div>
 								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 									<div class="panel-body" style="padding-top: 10px;">
 										<!--<span>选项：</span>-->
@@ -688,11 +687,11 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.填空题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hltianscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa   fa-star-o"></i> 题目：{{quescontext}}</div>
 							<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 						</div>		
 		
@@ -704,22 +703,31 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.简答题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hljianscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa fa-star"></i> 题目：{{quescontext}}</div>
 							<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 						</div>	
 	</script>
 	
 	<!--发布信息-->
 	<script type="text/html" id="publishinfotemplate">
-	<h6 class="bk-fg-primary bk-margin-off-bottom"><strong>发布信息：</strong></h6>
-	<h6 class="bk-fg-primary bk-margin-off-bottom"><strong>发布时间：{{publishdate}}</strong></h6>
-	<h6 class="bk-fg-primary bk-margin-off-bottom"><strong>最大可切换次数：{{limitchanges}}次</strong></h6>
-	<h6 class="bk-fg-primary bk-margin-off-bottom"><strong>最长答卷时间：{{countdown/60}}分钟</strong></h6>
-    
+		<ul class="bulletList" style="padding-left: 30px;">
+		<li class="red">
+		<span class="title" style="font-size: 15px;">发布时间：</span>
+		<span class="description truncate" style="font-size: 14px;">{{publishdate}}</span>
+		</li>
+		<li class="green">
+		<span class="title">最大可切换次数：</span>
+		<span class="description truncate">{{limitchanges}}次</span>
+		</li>
+		<li class="orange">
+		<span class="title">最长答卷时间：</span>
+		<span class="description truncate">{{countdown/60}}分钟</span>
+		</li>
+	</ul>
    </script>
 </body>
 
@@ -732,38 +740,42 @@ var testid = 1;
 			url:"seletestpaperAjax",
 			data:"testid="+testid ,
 			success: function(result){
+				
+				$("#testtitle").html("试卷名称："+result.testname);
 				var publishinfo = template("publishinfotemplate",result);
-				$('#publishinfo ').append(publishinfo );	
-
-				alert("ok");
+				$('#publishinfo').append(publishinfo );
 				var exampaperid=result.examid;
-				alert(exampaperid);
 					$.ajax({
 			          type:"get",
 			          url:"selectexampaperAjax",
 		              data:"exampaperid="+exampaperid ,
-			          success: function(result){
-			          	alert("baocundeshijuan");
+			          success: function(result){ 
 				       var papermessage1 = template("examTemplate1",result);
-				      $('#examheader').append(papermessage1);	
+				      $('#testheader').append(papermessage1);	
 
 				      var papermessage2= template("examTemplate2",result);
 				     $("#paperjiegou").find("tbody").append(papermessage2);	
 				     
 				     $.ajax({
-			type:"get",
-			url:"selectqueslistAjax",
-			data:"examid="+exampaperid ,
-			success: function(result){
-				alert("得到题目");
+			           type:"get",
+			           url:"selequesandscorelistAjax",
+			           data:"examid="+exampaperid ,
+			           success: function(result){
+				          alert("得到题目");
 				/*单选*/
 				if(result.single.length>0){
 					$("#singlecontent").show ();
 					for(var i=0;i<result.single.length;i++){
-						console.log(JSON.stringify(result.single[i]));
-						var singlecontent = template("singletemplate",result.single[i]);
+						
+						var singlecontent = template("singletemplate",result.single[i].ques);
+						var quesid=result.single[i].ques.quesid;
+						var quesscore=result.single[i].eandq.quesscore;
+						
 			     	    $('#singlecontent').append(singlecontent);
+			     	    $("#hlsinglescore_"+quesid).html((i+1)+".单选题:("+quesscore+"分) ");
 					}	
+					  	var singlescore=parseInt(quesscore)*result.single.length;
+					    $("#singlescore").html(singlescore+"分");
 				}
 				else{
 						$("#singlecontent").hide();
@@ -772,10 +784,14 @@ var testid = 1;
 				if(result.mul.length>0){
 					$("#mulcontent").show ();
 					for(var i=0;i<result.mul.length;i++){
-						console.log(JSON.stringify(result.mul[i]));
-						var mulcontent = template("multemplate",result.mul[i]);
+						var mulcontent = template("multemplate",result.mul[i].ques);
+						var quesid=result.mul[i].ques.quesid;
+						var quesscore=result.mul[i].eandq.quesscore;
 			     	    $('#mulcontent').append(mulcontent);
+			     	    $("#hlmulscore_"+quesid).html((i+1)+".多选题:("+quesscore+"分) ");
 				}
+				    	var mulscore=parseInt(quesscore)*result.mul.length;
+					    $("#mulscore").html(mulscore+"分");
 				}
 				else{
 						$("#mulcontent").hide();
@@ -784,9 +800,14 @@ var testid = 1;
 				if(result.jud.length>0){
 					$("#judge").show ();
 					for(var i=0;i<result.jud.length;i++){
-						var judcontent = template("judtemplate",result.jud[i]);
+						var judcontent = template("judtemplate",result.jud[i].ques);
+			     	    var quesid=result.jud[i].ques.quesid;
+						var quesscore=result.jud[i].eandq.quesscore;
 			     	    $('#judcontent').append(judcontent);
+			     	    $("#hljudscore_"+quesid).html((i+1)+".判断题:("+quesscore+"分) ");
 				}
+				    	var judscore=parseInt(quesscore)*result.jud.length;
+					    $("#judscore").html(judscore+"分");
 					}else{
 						$("#judge").hide();
 					}
@@ -794,9 +815,14 @@ var testid = 1;
 				if(result.tian.length>0){
 					$("#blank").show ();
 					for(var i=0;i<result.tian.length;i++){
-						var tiancontent = template("tiantemplate",result.tian[i]);
+						var tiancontent = template("tiantemplate",result.tian[i].ques);
+			     	    var quesid=result.tian[i].ques.quesid;
+						var quesscore=result.tian[i].eandq.quesscore;
 			     	    $('#tiancontent').append(tiancontent);
+			     	    $("#hltianscore_"+quesid).html((i+1)+".填空题:("+quesscore+"分) ");
 				}
+				    	var tianscore=parseInt(quesscore)*result.tian.length;
+					    $("#tianscore").html(tianscore+"分");
 					}else{
 						$("#balnk").hide();
 					}
@@ -804,9 +830,14 @@ var testid = 1;
 				if(result.jian.length>0){
 					$("#answer").show ();
 					for(var i=0;i<result.jian.length;i++){
-						var jiancontent = template("jiantemplate",result.jian[i]);
+						var jiancontent = template("jiantemplate",result.jian[i].ques);
+			     	    var quesid=result.jian[i].ques.quesid;
+						var quesscore=result.jian[i].eandq.quesscore;
 			     	    $('#jiancontent').append(jiancontent);
+			     	    $("#hljianscore_"+quesid).html((i+1)+".简答题:("+quesscore+"分) ");
 				}
+				    	var jianscore=parseInt(quesscore)*result.jian.length;
+					    $("#jianscore").html(jianscore+"分");
 					}else{
 						$("#answer").hide();
 					}

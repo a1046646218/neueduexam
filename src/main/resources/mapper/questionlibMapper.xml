@@ -521,4 +521,18 @@
     from questionlib
     where libId = #{libId}
   </select>
+  <insert id="insertExceptId" parameterType="neueduexam.entity.questionlib" useGeneratedKeys="true" keyProperty="libid">
+    insert into questionlib ( libName, libType, 
+      libPrice, userId, nickName, 
+      quesAmount, libProfile, numOfPurchases, 
+      numOfSingle, numOfMultiple, numOfJudge, 
+      numOfBlank, numOfAnswer, publishTime, 
+      other1, other2)
+    values (#{libname,jdbcType=VARCHAR}, #{libtype,jdbcType=VARCHAR}, 
+      #{libprice,jdbcType=INTEGER}, #{userid,jdbcType=INTEGER}, #{nickname,jdbcType=VARCHAR}, 
+      #{quesamount,jdbcType=INTEGER}, #{libprofile,jdbcType=VARCHAR}, #{numofpurchases,jdbcType=INTEGER}, 
+      #{numofsingle,jdbcType=INTEGER}, #{numofmultiple,jdbcType=INTEGER}, #{numofjudge,jdbcType=INTEGER}, 
+      #{numofblank,jdbcType=INTEGER}, #{numofanswer,jdbcType=INTEGER}, #{publishtime,jdbcType=VARCHAR}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
+  </insert>
 </mapper>

@@ -49,8 +49,13 @@
 			<table tableName="userbuylib" domainObjectName="userbuylib"/>
           <table tableName="userhavelib" domainObjectName="userhavelib"/>
           <table tableName="testpaper" domainObjectName="testpaper"/>
+          <table tableName="invitation" domainObjectName="invitation"/>
+            <table tableName="homework" domainObjectName="homework"/>
+             <table tableName="groupanduser" domainObjectName="groupanduser"/>
 		 -->
-           <table tableName="invitation" domainObjectName="invitation"/>
+          
+            <table tableName="mygroup" domainObjectName="mygroup"/>
+           
 	</context>
 
 </generatorConfiguration>

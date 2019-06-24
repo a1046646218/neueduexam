@@ -15,14 +15,19 @@ public class hlconnectcontroller {
 		return "showexampaper";
 	}
 	
+	@RequestMapping("/toshowtestpaper")
+	public String toshowtestpaper(){
+		return "showtestpaper";
+	}
+	
 	@RequestMapping("/toshownotalreadytestpaper")
 	public String toshownotalreadytestpaper(){
 		return "shownotalreadytestpaper";
 	}
 	
-	@RequestMapping("/toshowtestpaper")
-	public String toshowtestpaper(){
-		return "showtestpaper";
+	@RequestMapping("/toshowteacherpaper")
+	public String toshowteacherpaper(){
+		return "showteacherpaper";
 	}
 	
 }

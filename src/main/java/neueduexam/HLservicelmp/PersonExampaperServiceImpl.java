@@ -14,7 +14,12 @@ public class PersonExampaperServiceImpl implements PersonExampaperService {
 	@Override
 	public personexampaper selectByPrimaryKey(Integer pexamid) {
 		personexampaper personexampaper=personexampapermapper.selectByPrimaryKey(pexamid);
-		return null;
+		return personexampaper;
+	}
+	@Override
+	public int updateByPrimaryKeySelective(personexampaper record) {
+		int i=personexampapermapper.updateByPrimaryKeySelective(record);
+		return i;
 	}
 
 }

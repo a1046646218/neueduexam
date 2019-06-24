@@ -17,6 +17,22 @@
     <result column="other1" property="other1" jdbcType="VARCHAR" />
     <result column="other2" property="other2" jdbcType="VARCHAR" />
   </resultMap>
+   <resultMap id="BaseResultMap2" type="neueduexam.HXBservicelmp.TestSituationEntity" >
+    <id column="pExamId" property="pexamid" jdbcType="INTEGER" />
+    <result column="testId" property="testid" jdbcType="INTEGER" />
+    <result column="stuId" property="stuid" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="stuNickName" property="stunickname" jdbcType="VARCHAR" />
+    <result column="browser" property="browser" jdbcType="VARCHAR" />
+    <result column="ipAddress" property="ipaddress" jdbcType="VARCHAR" />
+    <result column="operatingSystem" property="operatingsystem" jdbcType="VARCHAR" />
+    <result column="changeOut" property="changeout" jdbcType="INTEGER" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="local" property="local" jdbcType="VARCHAR" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -350,4 +366,115 @@
       other2 = #{other2,jdbcType=VARCHAR}
     where pExamId = #{pexamid,jdbcType=INTEGER}
   </update>
+   <select id="makeExcelByTestId" resultMap="BaseResultMap2" parameterType="neueduexam.entity.personexampaperExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personexampaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  
+  <insert id="insertandgetkey"  parameterType="neueduexam.entity.personexampaper" >
+     <selectKey keyProperty="pexamid" order="AFTER" resultType="int">
+      select LAST_INSERT_ID() 
+      </selectKey>
+       insert into personexampaper
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="pexamid != null" >
+        pExamId,
+      </if>
+      <if test="testid != null" >
+        testId,
+      </if>
+      <if test="stuid != null" >
+        stuId,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="stunickname != null" >
+        stuNickName,
+      </if>
+      <if test="browser != null" >
+        browser,
+      </if>
+      <if test="ipaddress != null" >
+        ipAddress,
+      </if>
+      <if test="operatingsystem != null" >
+        operatingSystem,
+      </if>
+      <if test="changeout != null" >
+        changeOut,
+      </if>
+      <if test="duration != null" >
+        duration,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="local != null" >
+        local,
+      </if>
+      <if test="other1 != null" >
+        other1,
+      </if>
+      <if test="other2 != null" >
+        other2,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="pexamid != null" >
+        #{pexamid,jdbcType=INTEGER},
+      </if>
+      <if test="testid != null" >
+        #{testid,jdbcType=INTEGER},
+      </if>
+      <if test="stuid != null" >
+        #{stuid,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="stunickname != null" >
+        #{stunickname,jdbcType=VARCHAR},
+      </if>
+      <if test="browser != null" >
+        #{browser,jdbcType=VARCHAR},
+      </if>
+      <if test="ipaddress != null" >
+        #{ipaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="operatingsystem != null" >
+        #{operatingsystem,jdbcType=VARCHAR},
+      </if>
+      <if test="changeout != null" >
+        #{changeout,jdbcType=INTEGER},
+      </if>
+      <if test="duration != null" >
+        #{duration,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="local != null" >
+        #{local,jdbcType=VARCHAR},
+      </if>
+      <if test="other1 != null" >
+        #{other1,jdbcType=VARCHAR},
+      </if>
+      <if test="other2 != null" >
+        #{other2,jdbcType=VARCHAR},
+      </if>
+    </trim>
+       
+  </insert>
+  
 </mapper>

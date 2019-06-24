@@ -424,4 +424,14 @@
     </trim>
     
   </insert>
+  <select id="selectQuesTypeByPrimaryKey" resultType="java.lang.String">
+  	select quesType
+  	from question
+  	where quesId = #{quesId}
+  </select>
+  <select id="selectByQuesIdAndQuesType" resultMap="BaseResultMap">  
+  	select *
+  	from question
+  	where quesId = #{quesid} and quesType = #{quesType}
+  </select>
 </mapper>

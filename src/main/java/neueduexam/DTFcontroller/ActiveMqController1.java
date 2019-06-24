@@ -1,25 +1,26 @@
-//package neueduexam.DTFcontroller;
-//
-//import javax.servlet.http.HttpServletResponse;
-//
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.sprin gframework.stereotype.Controller;
-//import org.springframework.web.bind.annotation.RequestMapping;
-//
-//import neueduexam.queue.Produce;
-//
-//
-//
-//@Controller
-//public class ActiveMqController1 {
-//
-//	@Autowired
-//	Produce produce;
-//	
-//	@RequestMapping("/testactivemq1")
-//	public void test1(HttpServletResponse resp) throws Exception{
-//		produce.send();
-//		resp.getWriter().println("消息列队添加成功");
+package neueduexam.DTFcontroller;
+
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import neueduexam.queue.Produce;
+
+
+
+@RestController
+public class ActiveMqController1 {
+
+	@Autowired
+	Produce produce;
+	
+//	@RequestMapping("/getquestionandscore")
+//	public void test1(ModelAndView view ,int testid) throws Exception{
+//		produce.send(view,testid);
 //	}
-//
-//}
+
+}

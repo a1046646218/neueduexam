@@ -35,4 +35,6 @@ public interface questionlibMapper {
     int insertandgetlkey(questionlib record);
 
 	SimpleQuestionLib selectSimpleQuestionLibByPrimaryKey(Integer libid);
+
+	int insertExceptId(questionlib q);
 }

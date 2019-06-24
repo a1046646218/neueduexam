@@ -11,12 +11,12 @@ import org.springframework.context.annotation.Bean;
 public class Springboot02warApplication {
 	
 	
-//	@Bean
-//	public Queue queue1(){
-//		  //定义一个点对点队列  ,名称为demo.queue
-//		return new ActiveMQQueue("demo.queue");
-//	}
-//	
+	@Bean
+	public Queue queue1(){
+		  //定义一个点对点队列  ,名称为demo.queue
+		return new ActiveMQQueue("demo.queue");
+	}
+	
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Springboot02warApplication.class, args);

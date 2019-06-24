@@ -3,7 +3,7 @@ package neueduexam.HXBservicelmp;
 public class InvitationPeople {
 	
 	private Integer stuId;
-	private Integer phone;
+	private String phone;
 
 
 	private String invitationTime;
@@ -48,12 +48,12 @@ public class InvitationPeople {
 		this.state = state;
 	}
 
-	public Integer getPhone() {
+	public String getPhone() {
 		return phone;
 	}
 
-	public void setPhone(Integer phone) {
-		this.phone = phone;
+	public void setPhone(String string) {
+		this.phone = string;
 	}
 
 	public Integer getStuId() {

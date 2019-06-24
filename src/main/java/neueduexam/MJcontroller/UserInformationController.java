@@ -20,10 +20,14 @@ public class UserInformationController {
 	public String totestcode() {
 		return "testcodemj";
 	}
+<<<<<<< HEAD
 	@RequestMapping("/home")
 	public String mojiaohome() {
 		return "mojiaohome";
 	}
+=======
+	
+>>>>>>> branch 'master' of https://github.com/a1046646218/neueduexam.git
 	@RequestMapping("/updateByUserId")
 	public String updateByUserId(HttpServletRequest request,HttpServletResponse response,user user) {
 		user u = (user)request.getSession().getAttribute("user");

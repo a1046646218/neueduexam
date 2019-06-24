@@ -1,6 +1,8 @@
 package neueduexam.dao;
 
 import java.util.List;
+
+import neueduexam.HXBservicelmp.TestSituationEntity;
 import neueduexam.entity.personexampaper;
 import neueduexam.entity.personexampaperExample;
 
@@ -29,4 +31,8 @@ public interface personexampaperMapper {
     int updateByPrimaryKeySelective(personexampaper record);
 
     int updateByPrimaryKey(personexampaper record);
+
+	List<TestSituationEntity> makeExcelByTestId(personexampaperExample pE);
+	
+	int insertandgetkey(personexampaper record);
 }

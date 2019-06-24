@@ -114,6 +114,10 @@ color: #d4d4d4;
 blockquote.pull-right {
 border-right: 5px solid #eeeeee;
 }
+.bg {
+       background:url(static/assets/img/gallery/photo7.jpg) no-repeat center;
+       background-size:contain;
+}
 .img-rounded {
 -webkit-border-radius: 2px;
 -moz-border-radius: 2px;

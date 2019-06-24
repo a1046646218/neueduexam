@@ -24,7 +24,7 @@ public class InvitationCodeController {
 		int i = invitationcodeService.selectByExample(u.getUserid(),invitecode);
 		System.out.println(i+"========================");
 		return Integer.toString(i);
-		
+	
 	}
 	
 
