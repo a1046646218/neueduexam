@@ -20,7 +20,6 @@ public class SelectqueslistAjaxController {
 	@RequestMapping("/selectqueslistAjax")
 	public HashMap<String,List<question>> selectqueslistAjax(int examid){
 		List<question> list = exampaperservice.getquestionlistbyexamid(examid);
-		/*List<Integer> scorelist = exampaperservice.getscorelistbyexamid(examid);*/
 		HashMap<String,List<question>> map = new HashMap<>();
 		List<question> single =new ArrayList<>();
 		List<question> mul = new ArrayList<>();

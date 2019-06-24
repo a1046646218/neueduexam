@@ -11,7 +11,7 @@ import neueduexam.HLservice.TestpaperService;
 import neueduexam.entity.testpaper;
 
 @RestController
-public class SeletestpaperAjaxService {
+public class SeletestpaperAjaxController {
  
 	@Autowired
 	TestpaperService testpaperservice;

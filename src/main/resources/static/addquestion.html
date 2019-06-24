@@ -523,10 +523,10 @@
      if(checkquestioncontext()==false){
      	       	return false;
      	      }
-   	if(checkquesanswer()==false){
+   	/*if(checkquesanswer()==false){
    		return false;
    	}
-   
+   */
    	if(difficulty==null){
     	$("#difficultymessage").html('<font style=\"color: #BD2D29;\">未选择难易度</font>');
          return false;
@@ -536,9 +536,9 @@
    	
    	}
  	
-   	$("#seequestag").html(tag);//标签
-   	$("#seequestype").html(type);//题型
-   	$("#seequesdifficulty").html(difficulty);//难度
+   	$("#seequestag").html("标签："+tag);//标签
+   	$("#seequestype").html("题型："+type);//题型
+   	$("#seequesdifficulty").html("难度："+difficulty);//难度
    	$("#seequestioncontext").html(yulanquescontext);//题干
 	if("单选"==type||"多选"==type){
    		$("#seeselect").show();
@@ -547,8 +547,8 @@
    		var selectC=$("#quesinputC").val().trim().replace(/\s/g,"");
    		var selectD=$("#quesinputD").val().trim().replace(/\s/g,"");
    		
-   		$("#seeselectA").html(selectA);$("#seeselectB").html(selectB);
-   		$("#seeselectC").html(selectC);$("#seeselectD").html(selectD);
+   		$("#seeselectA").html("A:"+selectA);$("#seeselectB").html("B:"+selectB);
+   		$("#seeselectC").html("C:"+selectC);$("#seeselectD").html("D"+selectD);
    	}
    	else{
    		$("#seeselect").hide();
@@ -573,33 +573,65 @@
 </body>
 <button style="display:none" id="seequestion" data-toggle="modal" data-target="#myModal" >预览题目</button>
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
-			<div class="modal-dialog" style=" width:800px;height: 500px;">
+			<div class="modal-dialog" style=" width:700px;height: 500px;">
 				<div class="modal-content">
 					<div id="hhh" laynum="" class="panel-body" style="background-color:#e9f0f6;margin:10px 10px 10px 10px;">
-													
-														<div class="form-group" style="background-color:#fff;margin:10px 10px 10px 10px;">
-															<div class="row">
-																<div class="col-md-1">
-																<label  style="font-size: 16px;color: lightseagreen;"id="seequestag" class="help-block">标签</label>
-																</div>
-																<div class="col-md-1">
-																<label style="font-size: 16px;color: lightseagreen;" id="seequestype" class="help-block">题型</label>
-																</div>
-																<div class="col-md-1">
-																<label style="font-size: 16px;color: lightseagreen;" id="seequesdifficulty" class="help-block">难度</label>	
-																</div>
-																</div>
-																<label for="nf-email">题目</label>	
-															    <span  id="seequestioncontext" class="help-block">请输入题库的名称</span>
+												
+							<div class="panel bk-widget bk-border-off">
+								<div class="panel-body">
+									<div class="bk-bg-white text-center bk-padding-top-15 ">
+										<div class="row">
+											<div class="col-xs-8 text-left bk-vcenter">
+												<div class="">
+													<h2 class="bk-margin-off">题目预览</h2>
+													<div class="row">
+														<div class="col-md-4">
+														<span  style="font-size: 16px;color: lightseagreen;"id="seequestag" class="help-block">
+														标签</span>
 														</div>
-														<div class="form-group" style="background-color:#fff;margin:10px 10px 10px 10px;">	
-															<div id="seeselect">
-															A<span id="seeselectA" class="help-block">A</span>
-															B<span id="seeselectB" class="help-block">B</span>
-															C<span id="seeselectC" class="help-block">C</span>
-															D<span id="seeselectD" class="help-block">D</span>
-															</div>
+														<div class="col-md-4">
+														<span style="font-size: 16px;color: lightseagreen;" id="seequestype" class="help-block">题型</span>
 														</div>
+														<div class="col-md-4">
+														<span style="font-size: 16px;color: lightseagreen;" id="seequesdifficulty" class="help-block">难度</span>	
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-xs-3 bk-vcenter text-right">
+												<i class="fa  fa-star-half-empty fa-4x"></i>
+											</div>
+										</div>
+									</div>
+									<div class="form-group" style="background-color:#fff;padding-left: 35PX;">
+									<h4 for="nf-email">题目</h4>	
+									<h5  id="seequestioncontext" class="help-block">题干</h4>
+									</div>
+									
+									<div id="seeselect" class="col-md-10" style="padding-left: 35PX;">
+									<ul class="list-group">
+										<li class="list-group-item">
+											
+											<span id="seeselectA" class="help-block">A</span>
+										</li>
+										<li class="list-group-item">
+										
+											<span id="seeselectB" class="help-block">B</span>
+										</li>
+										<li class="list-group-item">
+											
+											<span id="seeselectC" class="help-block">B</span>
+										</li>
+										<li class="list-group-item">
+									
+											<span id="seeselectD" class="help-block">B</span>
+										</li>
+									</ul>
+								</div>
+								</div>
+							</div>
+														
+														
 						</div>
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->

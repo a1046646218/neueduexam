@@ -48,18 +48,15 @@ public class ExampaperServiceImpl implements ExampaperService {
 			}
 			return queslist;
 	}
-/*
+	
 	@Override
-	public List<Integer> getscorelistbyexamid(Integer examid) {
-		List<Integer> scorelist = new ArrayList<>();
+	public List<examandquestion> getscoreList(int examid) {
 		examandquestionExample E = new examandquestionExample();
 		neueduexam.entity.examandquestionExample.Criteria cc = E.createCriteria();
 		cc.andExamidEqualTo(examid);
 		List<examandquestion> li = examandquestionmapper.selectByExample(E);
-		for(int i=0;i<li.size();i++) {
-			scorelist.add(li.get(i).getQuesscore());
-		}
-		return scorelist;
-	}*/
+		return li;
+	}
+
 
 }

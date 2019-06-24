@@ -14,7 +14,7 @@ import neueduexam.entity.personexampaper;
 
 
 @RestController
-public class SelectnotalreadytestpaperService {
+public class SelectnotalreadytestpaperAjaxService {
 
 	@Autowired
 	PersonExampaperService personexampaperservice;
