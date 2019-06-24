@@ -20,21 +20,12 @@ public class InvitationCodeServiceImp implements InvitationCodeService{
 	public int selectByExample(Integer studentid, String invitecode) {
 		invitationExample e = new invitationExample();
 		Criteria cc = e.createCriteria();
-<<<<<<< HEAD
 		cc.andInvitecodeEqualTo(invitecode);
 		cc.andStudentidEqualTo(studentid);
 		List<invitation> list = invatationmapper.selectByExample(e);
 		if(list.size()==0)//zhe daima taihao le bukui shiwo
 		return 0;
 		return 1;
-=======
-		cc.andInvitationtimeEqualTo("邀请码");
-		Criteria dd = e.createCriteria();
-		dd.andInvitationtimeEqualTo("学生id");
-		
-		int i = invatationmapper.selectByExample(cc,dd);
-		return i;
->>>>>>> branch 'master' of https://github.com/a1046646218/neueduexam.git
 	}
 	
 }
