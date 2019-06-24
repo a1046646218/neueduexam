@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
 	
@@ -448,27 +448,45 @@
 					</div>
 					<!-- End Page Header -->
 					<div class="row">
-						<div class="col-lg-12">
-							<div class="panel panel-default">
-								<div class="panel-heading bk-bg-white">
-									<h6><i class="fa fa-indent red"></i>题库</h6>		
-									<ul class="nav nav-tabs">
-											<li>
-												<a class="type" data-toggle="tab">计算机类</a>
-											</li>
-											<li>
+					<div class="col-lg-1" style="height:791px">
+							<div class="panel panel-default" style="height:791px;width:152px">
+								<div class="panel-heading bk-bg-white" style="height:775px">
+									<div class="row-lg-2">
+									</div>
+									<ul class="nav nav-tabs" style="height:775px">
+											<li id="type1" style="height:50px;width:125px">
+												<a class="type" data-toggle="tab" >计算机类</a>
+											</li >
+											</br>
+											<li id="type2" style="height:50px;width:125px">
 												<a class="type" data-toggle="tab">常识类</a>
-									        </li>
-									        <li>
+									        </li >
+									        </br>
+									        <li id="type3" style="height:50px;width:125px">
 												<a class="type" data-toggle="tab">文学类</a>
 									        </li>
-									        <li>
+									        </br>
+									        <li id="type4" style="height:50px;width:125px">
 												<a class="type" data-toggle="tab">数学类</a>
 									        </li>
-									        <li>
+									        </br>
+									        <li id="type5" style="height:50px;width:125px">
 												<a class="type" data-toggle="tab">英语类</a>
 									        </li>
 										</ul>					
+									
+								</div>
+								
+								</div>
+								
+							
+						
+					</div>
+						<div class="col-lg-11">
+							<div class="panel panel-default">
+								<div class="panel-heading bk-bg-white">
+									<h6><i class="fa fa-indent red"></i>题库</h6>		
+				
 									<div class="panel-actions">
 										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
 										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
@@ -477,19 +495,22 @@
 								<div class="panel-body bk-bg-very-light-gray bk-padding-top-30 bk-padding-bottom-40">									
 								<div class="price-table" id="div1">
 								</div>	
-								<div  class="col-sm-5 col-sm-offset-5">
-								<input type='button' class='btn  btn-fill btn-success btn-wd' id="down" value='下一页' />
-								<div  class="col-sm-3">
-								<input type='button' class='btn  btn-fill btn-success btn-wd' id="up" value='上一页' />
 								</div>
-								</div>
+								
+								<div class="col-sm-5 col-sm-offset-3">
+						        <div class=" bk-margin-5 btn-group btn-group-justified  ">
+											<a class="btn btn-warning" role="button" id="up">上一页</a>
+											<a class="btn btn-warning" role="button" id="pagenum">1</a>
+											<a class="btn btn-warning" role="button" id="down">下一页</a>
+						        </div>
+					            </div>
 							</div>
 						</div>
 					</div>
 					
 					<div class="row">
 						<div class="col-lg-12">
-							<div class="panel panel-default">
+							<div class="panel panel-default" style="padding-left:14px">
 								<div class="panel-heading bk-bg-white">
 									<h6><i class="fa fa-indent red"></i>热销榜</h6>							
 									<div class="panel-actions">
@@ -597,7 +618,7 @@
 	    		dataType:'json',
 	    		success:function(e){
 	    			console.log(JSON.stringify(e));
-	    			for(var time=0;time<e.length;time++){
+	    			for(var time=0;time<e.length&&time<4;time++){
        					var newContent = template("test",e[time]);
        					$("#div1").append(newContent);
 	    			}
@@ -613,6 +634,16 @@
 		});	
 	    	$("#sear").click(function(){
 	    	 search=$("#search").val();
+	    	
+	    	 if(search=="")
+	    		 {
+	    		 return ;
+	    		 }
+	    	 $("#type1").removeClass("active");
+	    	 $("#type2").removeClass("active");
+	    	 $("#type3").removeClass("active");
+	    	 $("#type4").removeClass("active");
+	    	 $("#type5").removeClass("active");
 	    	 page=1;
 	    		$.ajax({
 		    		type:'post',
@@ -622,10 +653,11 @@
 		    		success:function(e){
 		    			console.log(JSON.stringify(e));
 		    			$("#div1").html("");
-		    			for(var time=0;time<e.length;time++){
+		    			for(var time=0;time<e.length&&time<4;time++){
 	       					var newContent = template("test",e[time]);
 	       				$("#div1").append(newContent);
 		    			}
+		    			$("#pagenum").html(page);
 		    		}		
 			});	
 	    	})
@@ -633,38 +665,58 @@
 	    	$("#down").click(function(){
 	    		$.ajax({
 		    		type:'post',
-		    		url:'listdown',
-		    		data:{page:page},
+		    		url:'shoplist',
+		    		data:{search:search},
 		    		dataType:'json',
 		    		success:function(e){
-		    			if(e.length==0)
+		    			if(e.length<=page*4)
 		    				{
 		    				layer.msg("没有更多内容");
 		    				return ;
 		    				}
 		    			console.log(JSON.stringify(e));
 		    			$("#div1").html("");
-		    			for(var time=0;time<e.length;time++){
-	       					var newContent = template("test",e[time]);
+		    			for(var time=0;time+page*4<e.length&&time<4;time++){
+	       					var newContent = template("test",e[time+page*4]);
 	       					$("#div1").append(newContent);
 		    			}
 		    			page=page+1;
+		    			$("#pagenum").html(page);
 		    		}		
 			});	
 	    	
 	    	})
 	    	
-	    	$(".class").click(function(){
+	    	$(".type").click(function(){
+	    		search = $(this).html();
 	    		
-	    		
+	    		page=1;
+	    		$.ajax({
+		    		type:'post',
+		    		url:'shoplist',
+		    		data:{search:search},
+		    		dataType:'json',
+		    		success:function(e){
+		    			
+		    			console.log(JSON.stringify(e));
+		    			$("#div1").html("");
+		    			for(var time=0;time<e.length&&time<4;time++){
+	       					var newContent = template("test",e[time]);
+	       				$("#div1").append(newContent);
+		    			}
+		    			$("#pagenum").html(page);
+		    		}		
+			});	
 	    	})
 	    	
+	    	
+	    
 	    	$("#up").click(function(){
 	    		
 	    		$.ajax({
 		    		type:'post',
-		    		url:'listup',
-		    		data:{page:page},
+		    		url:'shoplist',
+		    		data:{search:search},
 		    		dataType:'json',
 		    		success:function(e){
 		    			if(page<2)
@@ -674,17 +726,19 @@
 		    				}
 		    			console.log(JSON.stringify(e));
 		    			$("#div1").html("");
-		    			for(var time=0;time<e.length;time++){
-		    				var newContent = template("test",e[0]);
+		    			for(var time=0;time<4;time++){
+		    				var newContent = template("test",e[time+(page-2)*4]);
 	       					$("#div1").append(newContent);
 		    			}
 		    			page=page-1;
+		    			$("#pagenum").html(page);
 		    		}		
 			});	
 	    	
 	    	})
 	    	$("#show").live("click",function(){
-	    		layer.msg('不准看');
+	    		var libid=$(this).attr("name");
+	    		window.location.href="toshowquestionlib?libid="+libid;
 	    	})
 	    	$("#buy").live("click",function(){
 				//alert("111111");
@@ -737,7 +791,7 @@
 		<script type="text/html" id="test">								
 	    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12 bk-margin-bottom-20">
         <ul>
-	    <li ><input type='button' class="btn btn-sm btn-warning" name="{{libid}}" id="show" value='{{libname}}' /></li>								
+	    <li ><input type='button' class="btn btn-sm btn-warning" style="width:80px" name="{{libid}}" id="show" value='{{libname}}' /></li>								
 	    <li class="price">{{libprice}}积分</li>								
 		<li>题库类型：{{libtype}}</li>
 		<li>发布者:{{nickname}}</li>
@@ -753,7 +807,7 @@
 		<div class="pricing-wrap">
 		<div class="plan bk-padding-left-10">
 			<div class="bk-padding-left-40">
-				<h2><input type='button' class="btn btn-sm btn-warning" name="{{libid}}" id="show" value='{{libname}}' /></h2>
+				<h2><input type='button' class="btn btn-sm btn-warning" name="{{libid}}" id="show" value='{{libname}}' style="width:80px" /></h2>
 			</div>
 			<div class="list-style bk-margin-top-20 bk-margin-bottom-20">
 				<ul class="text-left">
@@ -777,8 +831,7 @@
 			<div class="pricing-wrap most-popular">
 		<div class="plan bk-padding-left-50">
 			<div class="bk-padding-left-20">	
-				<input type='button' class="btn btn-sm btn-warning" name="{{libid}}" id="show" value='{{libname}}' />
-			</div>
+				<input type='button' class="btn btn-warning" name="{{libid}}" id="show" value='{{libname}}'style="width:80px" />
 			<div class="list-style bk-margin-top-30 bk-margin-bottom-20">
 				<ul class="text-left">
                     <li >{{libprice}}积分</li>

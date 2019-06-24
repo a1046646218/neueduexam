@@ -1,6 +1,7 @@
 package neueduexam.GZKcontroller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.Cookie;
@@ -10,10 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import neueduexam.DTFservice.UserService;
 import neueduexam.GZKservice.GZKUserService;
 import neueduexam.api.IdCodeApi;
+import neueduexam.api.SHAjiamiApi;
 import neueduexam.api.messageApi;
 import neueduexam.entity.questionlib;
 import neueduexam.entity.user;
@@ -28,12 +29,20 @@ public class controller {
 		public String tologin(){
 			return "login";
 		}
+		@RequestMapping("/toaddexam")
+		public String toaddexam(HttpServletRequest req){
+			user user = tuserservice.getuserbyid(1);
+			req.getSession().setAttribute("user", user);
+			return "addexam";
+		}
 		@RequestMapping("/logincontroller")
-		public String logincontroller(HttpServletRequest req){
+		public String logincontroller(HttpServletRequest req) throws Exception{
 			String phone=req.getParameter("phone");
 			System.out.println("phone"+phone);
 			List<user> list=userservice.login(phone);
 			String password = req.getParameter("password");
+			SHAjiamiApi SHAjiamiApi=new SHAjiamiApi();
+			password =SHAjiamiApi.shaEncode(password);
 			if (list.size()==0) 
 			{
 				req.setAttribute("errorMsg", "0");
@@ -111,7 +120,7 @@ public class controller {
 				return true;
 			}
 			@RequestMapping("/registercontroller")
-			public String registercontroller(HttpServletRequest req){
+			public String registercontroller(HttpServletRequest req) throws Exception{
 				String phone=req.getParameter("phone");
 				String realName=req.getParameter("realName");
 				String identityCard=req.getParameter("identityCard");
@@ -140,41 +149,25 @@ public class controller {
 			public List<questionlib> shoplist(HttpServletRequest req){
 				String search=req.getParameter("search");
 				List<questionlib> list= userservice.selectlist(search);
-				req.getSession().setAttribute("list", list);
-				List<questionlib> list1 = new ArrayList<questionlib>();
-				for(int time=0;time<list.size()&&time<4;time++){
-					list1.add(list.get(time));
+				List<questionlib> list1= userservice.selectlistbytype(search);
+				HashMap<Integer, String> hash=new HashMap<Integer, String>();
+				for(int i=0;i<list.size();i++)
+				{
+					hash.put(list.get(i).getLibid(), "id");
 				}
 				
-			    return list1;
-				
-			}
 			
-			@RequestMapping("/listdown")
-			@ResponseBody
-			public List<questionlib> listdown(HttpServletRequest req){
-				int page=Integer.parseInt(req.getParameter("page"));
-				List<questionlib> list=(List<questionlib>)req.getSession().getAttribute("list");
-				List<questionlib> list1 = new ArrayList<questionlib>();
-				for(int time=0;time+page*4<list.size()&&time<4;time++){
-					list1.add(list.get(time+page*4));
-				}
+				for(int i=0;i<list1.size();i++)
+			    {
 				
-			    return list1;
+			        if(hash.get(list1.get(i).getLibid())==null)
+			        {
+			    	list.add(list1.get(i));
+			    	hash.put(list.get(i).getLibid(), "id");
+			        }
+			    }
 				
-			}
-			
-			@RequestMapping("/listup")
-			@ResponseBody
-			public List<questionlib> listup(HttpServletRequest req){
-				int page=Integer.parseInt(req.getParameter("page"));
-				List<questionlib> list=(List<questionlib>)req.getSession().getAttribute("list");
-				List<questionlib> list1 = new ArrayList<questionlib>();
-				for(int time=0;time+page*4<list.size()&&time<4;time++){
-					list1.add(list.get(time+page*4));
-				}
-				
-			    return list1;
+			    return list;
 				
 			}
 			
@@ -204,4 +197,22 @@ public class controller {
 			    return "3";
 				
 			}
+			@RequestMapping("/toshowquestionlib")
+			public String toshowquestionlib(HttpServletRequest req){
+	             int libid=	Integer.parseInt(req.getParameter("libid"));
+	             req.setAttribute("libid", libid);
+				 
+				 
+				return "showquestionlib";
+			}
+			
+			@RequestMapping("/selectlibAjax")
+			@ResponseBody
+			public questionlib selectlibAjax(HttpServletRequest req){
+				int id=Integer.parseInt(req.getParameter("libid"));
+				questionlib questionlib=userservice.selectlist(id).get(0);
+				return questionlib;
+				
+			}
+			
 }

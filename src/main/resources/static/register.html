@@ -247,17 +247,15 @@
       })
         $("#first").click(function(){
     	var code1=$("#code1").val();
-    	alert(code);
-    	alert(code1);
-    	//if(code1==code)
-    		//{
+    	if(code1==code)
+    		{
     		$("li:eq(1)").addClass("active");
         	$(".tab-pane:eq(1)").css("display","inline");
         	$(".tab-pane:eq(0)").css("display","none");
-    		//}
-    	//else{
-    	//$("#scan1").html("验证码不正确");
-    	//}
+    		}
+    	else{
+    	$("#scan1").html("验证码不正确");
+    	}
       })
    $("#phone").blur(checkphone);
    $("#email").blur(checkemail);
@@ -463,7 +461,7 @@
 				var $msg=$('#scan6').html("");
 				if(realName==''){
 					$msg.html("<font style=\"color: #BD2D29;\">真实姓名不能为空</font>");
-					return false;
+  				return false;
 				}
 				$msg.html("<font style=\"color:  #01B6AD;\">输入正确</font>");
 				return true; 
