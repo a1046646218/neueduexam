@@ -42,4 +42,17 @@ public class TestSituationServiceImpl implements TestSituationService {
 		
 	}
 
+	@Override
+	public List<TestSituationEntity> MakeTestSituationExcelByTestId(String testId) {
+		int i_testId = Integer.parseInt(testId);
+		
+		personexampaperExample pE = new personexampaperExample();
+		pE.createCriteria().andTestidEqualTo(i_testId);
+		List<TestSituationEntity>  list = personexampaperMapper.makeExcelByTestId(pE);
+		for(TestSituationEntity t:list)
+			System.out.println(t.toString());
+
+		return list;
+	}
+
 }

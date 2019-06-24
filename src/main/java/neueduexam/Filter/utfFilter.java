@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Component;
 
@@ -38,10 +39,11 @@ public class utfFilter implements Filter {
 			ServletRequest request,
 			ServletResponse response,
 			FilterChain chain) throws IOException, ServletException {
-
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
+		HttpServletRequest request2 = (HttpServletRequest)request;
+		String requestURI = request2.getRequestURI();
+		if(!requestURI.equals("/writeHxbExcel"))
+			response.setContentType("text/html;charset=UTF-8");	 
 		chain.doFilter(request, response);
 	}
 

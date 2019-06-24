@@ -17,6 +17,22 @@
     <result column="other1" property="other1" jdbcType="VARCHAR" />
     <result column="other2" property="other2" jdbcType="VARCHAR" />
   </resultMap>
+   <resultMap id="BaseResultMap2" type="neueduexam.HXBservicelmp.TestSituationEntity" >
+    <id column="pExamId" property="pexamid" jdbcType="INTEGER" />
+    <result column="testId" property="testid" jdbcType="INTEGER" />
+    <result column="stuId" property="stuid" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="stuNickName" property="stunickname" jdbcType="VARCHAR" />
+    <result column="browser" property="browser" jdbcType="VARCHAR" />
+    <result column="ipAddress" property="ipaddress" jdbcType="VARCHAR" />
+    <result column="operatingSystem" property="operatingsystem" jdbcType="VARCHAR" />
+    <result column="changeOut" property="changeout" jdbcType="INTEGER" />
+    <result column="duration" property="duration" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="local" property="local" jdbcType="VARCHAR" />
+    <result column="other1" property="other1" jdbcType="VARCHAR" />
+    <result column="other2" property="other2" jdbcType="VARCHAR" />
+  </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
@@ -350,4 +366,18 @@
       other2 = #{other2,jdbcType=VARCHAR}
     where pExamId = #{pexamid,jdbcType=INTEGER}
   </update>
+   <select id="makeExcelByTestId" resultMap="BaseResultMap2" parameterType="neueduexam.entity.personexampaperExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from personexampaper
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>
