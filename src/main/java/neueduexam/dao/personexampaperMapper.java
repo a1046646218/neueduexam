@@ -33,4 +33,6 @@ public interface personexampaperMapper {
     int updateByPrimaryKey(personexampaper record);
 
 	List<TestSituationEntity> makeExcelByTestId(personexampaperExample pE);
+	
+	int insertandgetkey(personexampaper record);
 }
