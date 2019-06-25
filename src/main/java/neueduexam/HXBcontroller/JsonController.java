@@ -63,15 +63,15 @@ public class JsonController {
 	}
 	
 	@RequestMapping("/createTestPaperJson")
-	public String createTestPaperJson(@RequestParam("libId[]") List<Integer> libIds,@RequestParam("scores[]") List<Integer>scores,
-			@RequestParam("quesNums[]") List<Integer>quesNums) {
-		for(int i:quesNums)
-			System.out.println(i);
+	public String createTestPaperJson(@RequestBody ExamData examData) {
+		
+		System.out.println(examData.toString());
 		//test
 		int userId = 1;
-		 createExamService.createExamPaper(libIds, scores, quesNums,userId);
+		examData.setUserId(userId);
+		 createExamService.createExamPaper(examData);
 		return "ok";
-	}
+	}	
 	@RequestMapping("/getQuestionListJson")
 	public String getQuestionListJson(int libId,String quesType) {
 		String json = selectQuestionListService.getQuestionList(libId, quesType);

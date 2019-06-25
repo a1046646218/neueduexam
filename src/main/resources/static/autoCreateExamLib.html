@@ -495,7 +495,17 @@
 			{{/each}}
         </script>
         
+        <script>
+		     //清空输入框 
+			$("input[!name]").each(function(){
+				$(this).val("");
+			});
+        </script>
+        
         <script type="text/javascript">
+        
+
+	      
 			function checkTestInput(Did){
 				var v = $("#"+Did).val();
 				if(v==""){
@@ -513,12 +523,15 @@
 				checkTestInput("testType");
 			});
 			$("#testProfile").blur(function(){
-				checkTestInput("testType");
+				checkTestInput("testProfile");
 			});
    		</script>
 	
 		<script>
+			
+			
 			$(document).ready(function() {
+				
     			$('#example').DataTable({
     				sDom: "<'row datatables-header form-inline'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-6'f>r<'col-sm-12 col-md-2'<'#abutton'>>><'table-responsive't><'row datatables-footer'<'col-sm-12 col-md-9'i><'col-sm-12 col-md-3 fanye' p>>",
     				//json格式  
@@ -551,7 +564,7 @@
 							},
 							"oAria": {
 								"sSortAscending":  ": 以升序排列此列",
-								"sSortDescending": ": 以降序排列此列"
+								"sSortDescending": ": 以降序排列此列" 
 							}
        				},
        				//lengthMenu代表每页显示数量 详情见:http://datatables.club/reference/option/lengthMenu.html
@@ -653,20 +666,20 @@
     				compute();
     			});
     			
-    			//清空输入框 
-    			$("input[!name]").each(function(){
-    				$(this).val("");
-    			});
-    			
     			//分数输入框的逻辑
   				$("input[id='fenzhi']").blur(function(){
     				var x = $(this).val();
+
 					if(!(reg.test(x))){
 						layer.msg("请输入正整数")
 						$(this).val("0");
 					}
     				compute();
     			});
+    			
+
+    			
+
     			
     			//提交试卷的逻辑
     			$("button[id='submit']").click(function(){
@@ -676,12 +689,12 @@
 		    					shake("button[id='submit']");
 		    					layer.msg("请让试卷总分值达到100"); 
 		    				}else{
-		    					var libId = [];
+		    					var libIds = [];
 		    					var scores = [];
 		    					var quesNums = [];
 		
 								$("div[class='checkbox checkbox-success'").each(function(){
-									libId[libId.length] = $(this).attr("id");
+									libIds[libIds.length] = $(this).attr("id");
 								});
 								$("input[id='fenzhi']").each(function(){
 									var v = $(this).val();
@@ -697,12 +710,15 @@
 									}
 									quesNums.push(v);
 								});
-		
+								var testName = $("#testName").val();
+								var testType = $("#testType").val();
+								var testProfile = $("#testProfile").val();
 		    					$.ajax({
 		    						type:"post",
 		    						url:"/createTestPaperJson",
 		    						async:true,
-		    						data:{libId:libId,scores:scores,quesNums:quesNums},
+		    						data:JSON.stringify({"libIds":libIds,"scores":scores,"quesNums":quesNums,"testName":testName,"testType":testType,"testProfile":testProfile}),
+		    						contentType:"application/json",
 		    						success:function(){
 		    							layer.msg("成功");
 		    						}

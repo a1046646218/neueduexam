@@ -1,6 +1,6 @@
 package neueduexam.HXBservicelmp;
 
-import java.sql.SQLException;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,9 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import neueduexam.HXBcontroller.ExamData;
 import neueduexam.HXBservice.CreateExamPaperService;
 import neueduexam.dao.*;
-import neueduexam.entity.question;
+
 import neueduexam.entity.questionandlib;
 import neueduexam.entity.questionlib;
 import neueduexam.entity.userhavelib;
@@ -33,16 +34,16 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 	
 	@Override
 	@Transactional(rollbackFor = Exception.class)
-	public String createExamPaper(List<Integer> libIds, List<Integer> scores, List<Integer> quesNums,int userId) {
+	public String createExamPaper(ExamData examData) {
 		
 		//生成题库记录,返回新生成的题库id
-		int libid = insertQuestionLib(quesNums,userId);
+		int libid = insertQuestionLib(examData.getQuesNums(),examData.getUserId());
 		//生成用户拥有题库记录
-		insertUserHaveLib(libid,userId);
+		insertUserHaveLib(libid,examData.getUserId());
 
 		
 		//根据libId，找出所有的quesId
-		List<Integer> quesIdList = selectQuesIdByLibIds(libIds);
+		List<Integer> quesIdList = selectQuesIdByLibIds(examData.getLibIds());
 
 		//将题目分类
 		List<Integer> singleIdList = new ArrayList<Integer>();
@@ -74,8 +75,8 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 
 		
 		for(int i=0;i<5;i++) {
-			int score = scores.get(i);
-			int ReqQuesNum = quesNums.get(i);
+			int score = examData.getScores().get(i);
+			int ReqQuesNum = examData.getQuesNums().get(i);
 			List<Integer> list = null;
 			switch(i) {
 			case 0:	
