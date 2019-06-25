@@ -542,6 +542,7 @@
    	$("#seequestioncontext").html(yulanquescontext);//题干
 	if("单选"==type||"多选"==type){
    		$("#seeselect").show();
+   		$("#seejudge").hide();
    		var selectA=$("#quesinputA").val().trim().replace(/\s/g,"");
    		var selectB=$("#quesinputB").val().trim().replace(/\s/g,"");
    		var selectC=$("#quesinputC").val().trim().replace(/\s/g,"");
@@ -550,9 +551,15 @@
    		$("#seeselectA").html("A:"+selectA);$("#seeselectB").html("B:"+selectB);
    		$("#seeselectC").html("C:"+selectC);$("#seeselectD").html("D"+selectD);
    	}
-   	else{
+   	else if("判断"==type)
+   {
    		$("#seeselect").hide();
+   		$("#seejudge").show();
    	}
+   else{
+     	$("#seeselect").hide();
+   		$("#seejudge").hide();
+   }
     $("#seequestion").click();
      });
      
@@ -625,6 +632,18 @@
 										<li class="list-group-item">
 									
 											<span id="seeselectD" class="help-block">B</span>
+										</li>
+									</ul>
+								</div>
+								<div id="seejudge" class="col-md-10" style="padding-left: 35PX;">
+									<ul class="list-group">
+										<li class="list-group-item">
+											<input type="radio" name="judgequesAnswer" value="1">
+											<label for="radio1"> 对</label>
+										</li>
+										<li class="list-group-item">
+										<input type="radio" name="judgequesAnswer" value="1">
+										<label for="radio1">错</label>
 										</li>
 									</ul>
 								</div>

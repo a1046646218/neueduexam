@@ -642,7 +642,7 @@
 			<li>
 			<span id="quescore_{{perquesid}}">满分：{{perquesscore}}</span>
 			<span>|</span>
-			<span id="scorestate_{{perquesid}}">未评分</span>
+			<span name="pingfenhl" id="scorestate_{{perquesid}}">未评分</span>
 			</li>
 			<li class="bk-padding-off-right" >
 			<button  name="edithl" perid="{{perquesid}}" id="edit_{{perquesid}}">编辑:</button>
@@ -1080,7 +1080,7 @@ var pexamid =2;
 			     	    $('#judcontent').append(judcontent);
 			     	    var n=result.jud.queslist[i].quesid;
 			     	    var quesscore=result.jud.perqueslist[i].perquesscore;
-			     	    $("#hljudscore_"+n).html((i+1)+".多选题:("+quesscore+"分) ");
+			     	    $("#hljudscore_"+n).html((i+1)+".判断题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.jud.perqueslist[i].stuanswer);
 			     	    var judscore = template("scoreinfotemplate",result.jud.perqueslist[i]);
 			     	    $('#scoreinfo_'+n).append(judscore);
@@ -1108,7 +1108,7 @@ var pexamid =2;
 			     	    $('#tiancontent').append(tiancontent);
 			     	    var n=result.tian.queslist[i].quesid;
 			     	     var quesscore=result.tian.perqueslist[i].perquesscore;
-			     	    $("#hltianscore_"+n).html((i+1)+".多选题:("+quesscore+"分) ");
+			     	    $("#hltianscore_"+n).html((i+1)+".填空题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.tian.perqueslist[i].stuanswer);
                          var paperstate=$("#state").attr("name");
                          if(paperstate=="未评分"){
@@ -1143,7 +1143,7 @@ var pexamid =2;
 			     	    $('#jiancontent').append(jiancontent);
 			     	    var n=result.jian.queslist[i].quesid;
 			     	     var quesscore=result.jian.perqueslist[i].perquesscore;
-			     	    $("#hljianscore_"+n).html((i+1)+".多选题:("+quesscore+"分) ");
+			     	    $("#hljianscore_"+n).html((i+1)+".简答题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.jian.perqueslist[i].stuanswer);
                          var paperstate=$("#state").attr("name");
                          if(paperstate=="未评分"){
@@ -1182,7 +1182,7 @@ $("[name=cancelhl]").live("click", function() {
 })
 
 $("[name=editscorehl]").live("click", function() {
-	var perquesid=$(this).attr('perid')
+	    var perquesid=$(this).attr('perid')
 		var stuscore=$("#score_"+perquesid).val();
 		var quescore=$("#quescore_"+perquesid).text();
 		
@@ -1203,8 +1203,14 @@ $("[name=editscorehl]").live("click", function() {
 		var stutotalscore=result.single.totalscore+result.mul.totalscore+
 		result.jud.totalscore+result.tian.totalscore+result.jian.totalscore;
 		 
-		
-		$.ajax({
+		var pingfenresult=$("[name=pingfenhl]").text();
+		var reg = RegExp(/未评分/);
+		if(pingfenresult.match(reg)){
+			layer.msg("请全部评分后再提交");
+		}
+		else{
+			
+	        $.ajax({
 			type:"get",
 			url:"updateperexampaperAjax",
 		    data:"pexamid="+pexamid ,
@@ -1214,6 +1220,7 @@ $("[name=editscorehl]").live("click", function() {
 				} 
 			 }
 		});
+		}
 	})		
 	
     }

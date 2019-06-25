@@ -325,7 +325,8 @@
 												  <tr>
 													  <th>题型</th>
 													  <th>题目数</th>
-													  <th>分数</th>
+													  <th>总分数</th>
+													  <th>学生得分</th>
 													  <th>正确率</th>                                          
 												  </tr>
 											  </thead>   
@@ -551,41 +552,50 @@
 	<tr>
 													<td>单选题</td>
 													<td>{{numofsingle}}</td>
+													<td id="singlescore">0</td>
 													<td ><div id="singletotalscore">22</div></td>
 													<td>
-														<span class="label label-success">Active</span>
+														<span class="label label-success">简单</span>
 													</td>                                       
 												</tr>
 												<tr>
 													<td>多选题</td>
 													<td>{{numofmultiple}}</td>
+													<td id="mulscore">0</td>
 													<td><div id="multotalscore">22</div></td>
+													
 													<td>
-														<span class="label label-danger">Banned</span>
-													</td>                                       
+														<span class="label label-warning">中等</span>
+													</td>                                        
 												</tr>
 												<tr>
 													<td>判断题</td>
 													<td>{{numofjudge}}</td>
+													<td id="judscore">1269$</td>
 													<td><div id="judtotalscore">22</div></td>
+													
 													<td>
-														<span class="label label-default">Inactive</span>
-													</td>                                        
+														<span class="label label-warning">中等</span>
+													</td>                                             
 												</tr>
 												<tr>
 													<td>填空题</td>
 													<td>{{numofblank}}</td>
+													<td id="tianscore">0</td>
 													<td><div id="tiantotalscore">22</div></td>
+													
 													<td>
-														<span class="label label-warning">Pending</span>
-													</td>                                       
+														<span class="label label-danger">困难</span>
+													</td>                                          
 												</tr>	
 												<tr>
 													<td>简答题</td>
 													<td>{{numofanswer}}</td>
+													<td id="jianscore">0</td>
 													<td><div id="jiantotalscore">22</div></td>
+													
 													<td>
-														<span class="label label-warning">Pending</span>
+														<span class="label label-danger">困难</span>
 													</td>                                       
 												</tr>
 	</script>
@@ -623,14 +633,14 @@
 								<div class="panel-heading" >
 									<div class="row">
 										<div class="col-md-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.单选题（5分）标签：{{tag}} &nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hlsinglescore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}} &nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 										<div id="scoreinfo_{{quesid}}" class="col-md-4 pull-right">
 											
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa fa-star"></i> 题目：{{quescontext}}</div>
 								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 									<div class="panel-body" style="padding-top: 10px;">
 										<span>选项：</span>
@@ -688,14 +698,14 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.多选题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hlmulscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 										<div id="scoreinfo_{{quesid}}" class="col-md-4 pull-right">
 											
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa fa-star"></i> 题目：{{quescontext}}</div>
 								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 									<div class="panel-body" style="padding-top: 10px;">
 										<span>选项：</span>
@@ -752,14 +762,14 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.判断题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hljudscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 										<div id="scoreinfo_{{quesid}}" class="col-md-4 pull-right">
 											
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa  fa-asterisk"></i> 题目：{{quescontext}}</div>
 								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 									<div class="panel-body" style="padding-top: 10px;">
 										<!--<span>选项：</span>-->
@@ -809,14 +819,14 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.填空题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hltianscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 										<div id="scoreinfo_{{quesid}}" class="col-md-4 pull-right">
 											
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa   fa-star-o"></i> 题目：{{quescontext}}</div>
 							<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 						</div>	
 						<div class="content">
@@ -850,14 +860,14 @@
 								<div class="panel-heading">
 									<div class="row">
 										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">1.简答题（5分）标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+											<h6 class="bk-margin-off"><h6 id="hljianscore_{{quesid}}">题型</h6>&nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
 										</div>
 										<div id="scoreinfo_{{quesid}}" class="col-md-4 pull-right">
 											
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{quescontext}}</div>
+							<div class="panel-body"><i class="fa fa-star"></i> 题目：{{quescontext}}</div>
 							<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
 						</div>	
 						<div class="content">
@@ -986,7 +996,9 @@ var pexamid =2;
 						var singlecontent = template("singletemplate",result.single.queslist[i]);
 			     	    $('#singlecontent').append(singlecontent);
 			     	   
-			     	   var n=result.single.queslist[i].quesid; 
+			     	    var n=result.single.queslist[i].quesid; 
+			     	    var quesscore=result.single.perqueslist[i].perquesscore;
+			     	    $("#hlsinglescore_"+n).html((i+1)+".单选题:("+quesscore+"分) ");
 			     	   $("#stuanswer_"+n).html("学生答案："+result.single.perqueslist[i].stuanswer);
 			     	    var singlescore = template("scoreinfotemplate",result.single.perqueslist[i]);
 			     	    $('#scoreinfo_'+n).append(singlescore);
@@ -999,6 +1011,8 @@ var pexamid =2;
 			     	        $("#statefail_"+n).show();
 			     	    } 
 					}	
+					var singlescore=parseInt(quesscore)*result.single.queslist.length;
+				    $("#singlescore").html(singlescore+"分");
 				}
 				else{
 						$("#singlecontent").hide();
@@ -1013,6 +1027,8 @@ var pexamid =2;
 			     	    $('#mulcontent').append(mulcontent);
 			     	    
 			     	    var n=result.mul.queslist[i].quesid;
+			     	    var quesscore=result.mul.perqueslist[i].perquesscore;
+			     	    $("#hlmulscore_"+n).html((i+1)+".多选题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.mul.perqueslist[i].stuanswer);
 			     	    var mulscore = template("scoreinfotemplate",result.mul.perqueslist[i]);
 			     	    $('#scoreinfo_'+n).append(mulscore);
@@ -1025,6 +1041,8 @@ var pexamid =2;
 			     	        $("#statefail_"+n).show();
 			     	    } 
 				}
+					var mulscore=parseInt(quesscore)*result.mul.queslist.length;
+				    $("#mulscore").html(mulscore+"分");
 				}
 				else{
 						$("#mulcontent").hide();
@@ -1037,6 +1055,8 @@ var pexamid =2;
 						var judcontent = template("judtemplate",result.jud.queslist[i]);
 			     	    $('#judcontent').append(judcontent);
 			     	    var n=result.jud.queslist[i].quesid;
+			     	    var quesscore=result.jud.perqueslist[i].perquesscore;
+			     	    $("#hljudscore_"+n).html((i+1)+".判断题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.jud.perqueslist[i].stuanswer);
 			     	    var judscore = template("scoreinfotemplate",result.jud.perqueslist[i]);
 			     	    $('#scoreinfo_'+n).append(judscore);
@@ -1049,6 +1069,8 @@ var pexamid =2;
 			     	        $("#statefail_"+n).show();
 			     	    } 
 					}	
+					var judscore=parseInt(quesscore)*result.jud.queslist.length;
+				    $("#judscore").html(judscore+"分");
 				}
 				else{
 						$("#judcontent").hide();
@@ -1061,6 +1083,8 @@ var pexamid =2;
 						var tiancontent = template("tiantemplate",result.tian.queslist[i]);
 			     	    $('#tiancontent').append(tiancontent);
 			     	    var n=result.tian.queslist[i].quesid;
+			     	    var quesscore=result.tian.perqueslist[i].perquesscore;
+			     	    $("#hltianscore_"+n).html((i+1)+".填空题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.tian.perqueslist[i].stuanswer);
                          var paperstate=$("#state").attr("name");
                          if(paperstate=="未评分"){
@@ -1080,6 +1104,8 @@ var pexamid =2;
 			     	    } 
                          }
 					}	
+					var tianscore=parseInt(quesscore)*result.tian.queslist.length;
+				    $("#tianscore").html(tianscore+"分");
 				}
 				else{
 						$("#tiancontent").hide();
@@ -1092,6 +1118,8 @@ var pexamid =2;
 						var jiancontent = template("jiantemplate",result.jian.queslist[i]);
 			     	    $('#jiancontent').append(jiancontent);
 			     	    var n=result.jian.queslist[i].quesid;
+			     	    var quesscore=result.jian.perqueslist[i].perquesscore;
+			     	    $("#hljianscore_"+n).html((i+1)+".简答题:("+quesscore+"分) ");
 			     	    $("#stuanswer_"+n).html("学生答案："+result.jian.perqueslist[i].stuanswer);
                          var paperstate=$("#state").attr("name");
                          if(paperstate=="未评分"){
@@ -1111,9 +1139,11 @@ var pexamid =2;
 			     	    } 
                          }
 					}	
+					var jianscore=parseInt(quesscore)*result.jian.queslist.length;
+				    $("#jianscore").html(jianscore+"分");
 				}
 				else{
-						$("#tiancontent").hide();
+						$("#jiancontent").hide();
 				}	
 		}
     });

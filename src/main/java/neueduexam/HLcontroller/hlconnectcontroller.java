@@ -30,4 +30,9 @@ public class hlconnectcontroller {
 		return "showteacherpaper";
 	}
 	
+	@RequestMapping("/tohlshop")
+	public String tohlshop(){
+		return "hlshop";
+	}
+	
 }
