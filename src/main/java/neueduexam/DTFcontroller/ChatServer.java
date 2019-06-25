@@ -44,6 +44,7 @@ public class ChatServer {
 			rooms.get(roomid).addElement(session);
 		}else {
 			rooms.put(roomid, new Vector<Session>());
+			rooms.get(roomid).addElement(session);
 		}
 	}
 	

@@ -343,15 +343,16 @@
 					<div class = "row" rownum="0"></div>
 					<div class = "row" rownum="1"></div>
 					<div class="row">
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class=" bk-margin-5 btn-group btn-group-justified  ">
-											<a class="btn btn-warning" role="button" id="beforepage">上一页</a>
+					<div style="float:right;padding-right:100px;">
+						<div>
+							<button type="button" id="beforepage" class="bk-margin-5 btn btn-default">上一页</button>
+							<button type="button" class="btn btn-default" id="pagenum" >1</button>
+							<button type="button" id="afterpage" class="bk-margin-5 btn btn-default">下一页</button>
+											<!-- <a class="btn btn-warning" role="button" id="beforepage">上一页</a>
 											<a class="btn btn-warning" role="button" id="pagenum">1</a>
-											<a class="btn btn-warning" role="button" id="afterpage">下一页</a>
+											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> -->
 						</div>
 					</div>
-					<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"></div>
 					</div>
 					</div>
 					</div>	
@@ -394,19 +395,19 @@
 		<!-- <script th:src="@{static/assets/js/pages/map-basic.js}"></script> -->
 		<!-- end: JavaScript-->
 		<script type="text/html" id="contentTemplate">
-				<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<div class="tabs tabs-vertical tabs-left">
-							<ul class="nav nav-tabs col-sm-3 col-xs-5">
-								<li class="active">
-									<a href="#{{libid}}_home" data-toggle="tab"><i class="fa fa-home"></i> 简介</a>
-								</li>
-								<li>
-									<a href="#{{libid}}_char" data-toggle="tab">题型</a>
-								</li>
-								<li>
-									<a href="#{{libid}}_easy" data-toggle="tab">难易</a>
-								</li>
-							</ul>
+				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+				<div class="tabs">
+								<ul class="nav nav-tabs nav-justified">
+									<li class="active">
+										<a href="#{{libid}}_home" data-toggle="tab"><i class="fa fa-home"></i> 简介</a>
+									</li>
+									<li>
+										<a href="#{{libid}}_char" data-toggle="tab">题型</a>
+									</li>
+									<li>
+										<a href="#{{libid}}_easy" data-toggle="tab">难易</a>
+									</li>
+								</ul>
 							<div class="tab-content">
 								<div id="{{libid}}_home" class="tab-pane active"  style="width: 100%;height:300px">
 											<div class="row">
@@ -452,7 +453,7 @@
 				        text: '题型个数'
 				    },
 					radius: '80%',
-					center: ['70%','50%'],
+					center: ['60%','50%'],
 					toolbox:{
 						show:true,
 						feature:{
@@ -460,8 +461,8 @@
 							dataView:{show:true},
 							restore:{show:true},
 							dataZoom:{show:true}
-						}
-						
+						},
+						x:"220px"
 					},
 				    tooltip: {},
 				    xAxis: {
@@ -494,7 +495,8 @@
 							feature:{
 								saveAsImage:{show:true},
 								dataView:{show:true},
-							}
+							},
+							x:"300px"
 							
 						},
 						color: ['#7FFFD4', '#00CED1', '#87CEFA'],
@@ -546,12 +548,12 @@
        			$("[rownum=\"1\"]").empty();
        			$("[rownum=\"0\"]").empty();
        			// //alert(JSON.stringify(result));
-       			var num = result.length%2;
+       			var num = result.length%3;
        			if(num!=0)
        				num=1;
-       			for(var i=0;i<result.length/2+num;i++){
+       			for(var i=0;i<result.length/3+num;i++){
        				var j=0;
-       				for(var time=i*2;time<result.length&&j<2;j++,time++){
+       				for(var time=i*3;time<result.length&&j<3;j++,time++){
        					var newContentNews = template("contentTemplate",result[time]);
        					$("[rownum=\""+i+"\"]").append(newContentNews);
 						addnum(result[time]);

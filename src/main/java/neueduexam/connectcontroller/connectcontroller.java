@@ -77,5 +77,8 @@ public class connectcontroller {
 	public String grouphome() {
 		return "grouphome";
 	}
-	
+	@RequestMapping("/webcamcode")
+	public String webcamcode() {
+		return "webcamcode";
+	}
 }
