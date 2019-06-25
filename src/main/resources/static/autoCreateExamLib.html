@@ -250,14 +250,14 @@
 		
 		<!-- Start: Content -->
 		<div class="container-fluid content">			
-				<div class="main" style="padding-left:200px;padding-right:200px">
+				<div class="main" style="padding-left:200px;padding-right:200px;padding-top:100px">
 					<!-- Page Header -->
 					<!-- End Page Header -->					
 					<!-- 我的位置 头部 -->
 					<!-- Start: Content -->	
 						<div class="row">
 							<!--真表格开始 -->
-							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:0px">
 								<div class="panel panel-default bk-bg-white">
 									<div class="panel-heading bk-bg-white">
 										<h6 id="biaoti"><span class="break"></span>智能生成试卷</h6>							
@@ -268,8 +268,38 @@
 									</div>
 									<div class="panel-body">
 										<div class="row">
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:10px">
-												<table class="table  table-bordered table-hover" id="example">
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:10px;padding-left:70px">
+												<form  class="form-horizontal " style="padding-bottom:20px">
+													
+													<div class="form-group" style="margin-top: 25px;">
+														<label class="col-md-1 control-label" for="text-input"></label>
+														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试名称</strong>
+														<div class="col-md-8" style="padding-left:0px">
+															<input type="text" id="testName" name="quesContext" class="form-control" placeholder="考试名称" style="border-left: 7px solid #0FB492;">
+															<!--<div id="hlmessage" style="color: crimson;padding-top:7px;"></div>-->
+															<span  id="testNameMessage" class="help-block">请输入考试名称</span>
+														</div>
+													</div>	
+													<div class="form-group" style="margin-top: 25px;">
+														<label class="col-md-1 control-label" for="text-input"></label>
+														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试名称</strong>
+														<div class="col-md-8" style="padding-left:0px">
+															<input type="text" id="testType" name="quesContext" class="form-control" placeholder="考试类型" style="border-left: 7px solid #0FB492;">
+															<!--<div id="hlmessage" style="color: crimson;padding-top:7px;"></div>-->
+															<span  id="testTypeMessage" class="help-block">请输入考试类型</span>
+														</div>
+													</div>									
+													<div class="form-group" style="margin-top: 25px;">
+														<label class="col-md-1 control-label" for="text-input"></label>
+														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试名称</strong>
+														<div class="col-md-8" style="padding-left:0px">
+															<textarea id="testProfile" cols="40" rows="3" name="quesContext" class="form-control" placeholder="考试简介" style="border-left: 7px solid #0FB492;"></textarea>
+															<!--<div id="hlmessage" style="color: crimson;padding-top:7px;"></div>-->
+															<span  id="testProfileMessage" class="help-block">请输入考试简介</span>
+														</div>
+													</div>							
+												</form>
+												<table class="table  table-bordered table-hover" id="example" style="padding-left:25px;padding-top:50px">
 													<thead>
 														<tr>
 															<th>题库id</th>
@@ -289,7 +319,7 @@
 													</tbody>
 												</table>
 											</div>
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" >										
+											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:80px" >										
 												<form class="form-horizontal" role="form" style="padding-top:10px">
 													 <div class="form-group" style="padding-left:130px;padding-bottom:10px" >
 												  		<h4>试卷当前分数:<span id="fenzhi">0</span></h4>
@@ -299,7 +329,7 @@
 												    	<button type="button" class=" btn btn-info" style="padding-top:6px">输入单选题数量</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数">
+												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数" style="border-left: 7px solid #5bc0de;">
 												    </div>
 												    <span for="danxuan" class="col-sm-4 " style="padding-top:7px;padding-left:0px">0</span>
 												  </div>
@@ -308,7 +338,7 @@
 												    	<button type="button" class=" btn btn-info" style="padding-top:6px">输入单选题分值</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input id="fenzhi" type="text" class="form-control" placeholder="0">
+												      <input id="fenzhi" type="text" class="form-control" placeholder="0" style="border-left: 7px solid #5bc0de;">
 												    </div>
 												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px"></span>
 												  </div>
@@ -317,7 +347,7 @@
 												    	<button type="button" class="btn btn-success" style="padding-top:6px">输入多选题数量</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数">
+												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数" style="border-left: 7px solid #0FB492;">
 												    </div>
 												    <span for="duoxuan" class="col-sm-4 " style="padding-top:7px;padding-left:0px">0</span>
 												  </div>
@@ -326,7 +356,7 @@
 												    	<button type="button" class="btn btn-success" style="padding-top:6px">输入多选题分值</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input id="fenzhi" type="text" class="form-control" placeholder="0">
+												      <input id="fenzhi" type="text" class="form-control" placeholder="0" style="border-left: 7px solid #0FB492;">
 												    </div>
 												    <span for="multiple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px"></span>
 												  </div>
@@ -335,7 +365,7 @@
 												    	<button type="button" class="btn btn-primary" style="padding-top:6px">输入填空题数量</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数">
+												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数" style="border-left: 7px solid #337ab7;">
 												    </div>
 												    <span for="tiankong" class="col-sm-4 " style="padding-top:7px;padding-left:0px">0</span>
 												  </div>
@@ -344,7 +374,7 @@
 												    	<button type="button" class="btn btn-primary" style="padding-top:6px">输入填空题分值</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input id="fenzhi" type="text" class="form-control"  placeholder="0">
+												      <input id="fenzhi" type="text" class="form-control"  placeholder="0" style="border-left: 7px solid #337ab7;">
 												    </div>
 												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px"></span>
 												  </div>
@@ -353,7 +383,7 @@
 												    	<button type="button" class="btn btn-warning" style="padding-top:6px">输入判断题数量</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数">
+												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数" style="border-left: 7px solid #f0ad4e;">
 												    </div>
 												    <span for="panduan" class="col-sm-4 " style="padding-top:7px;padding-left:0px">0</span>
 												  </div>
@@ -362,7 +392,7 @@
 												    	<button type="button" class="btn btn-warning" style="padding-top:6px">输入判断题分值</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input id="fenzhi" type="text" class="form-control"  placeholder="0">
+												      <input id="fenzhi" type="text" class="form-control"  placeholder="0" style="border-left: 7px solid #f0ad4e;">
 												    </div>
 												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px"></span>
 												  </div>
@@ -371,7 +401,7 @@
 												    	<button type="button" class="btn btn-danger" style="padding-top:6px">输入简答题数量</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数">
+												      <input type="text" class="form-control" id="xuanzeti" placeholder="请输入正整数" style="border-left: 7px solid #d9534f;">
 												    </div>
 												    <span for="jianda" class="col-sm-4 " style="padding-top:7px;padding-left:0px">0</span>
 												  </div>
@@ -380,7 +410,7 @@
 												    	<button type="button" class="btn btn-danger" style="padding-top:6px">输入简答题分值</button>
 												    </label>
 												    <div class="col-sm-4">
-												      <input id="fenzhi" type="text" class="form-control" placeholder="0">
+												      <input id="fenzhi" type="text" class="form-control" placeholder="0" style="border-left: 7px solid #d9534f;">
 												    </div>
 												    <span for="simple-2" class="col-sm-4 " style="padding-top:7px;padding-left:0px"></span>
 												  </div>
@@ -465,17 +495,39 @@
 			{{/each}}
         </script>
         
-
+        <script type="text/javascript">
+			function checkTestInput(Did){
+				var v = $("#"+Did).val();
+				if(v==""){
+					$("#"+Did+"Message").html("<font style=\"color: #BD2D29;\">输入不能为空</font>")
+					return false
+				}else{
+    				$("#"+Did+"Message").html('<font style=\"color:  #01B6AD;\">输入正确</font>');
+ 			       return true;
+				}
+			}
+			$("#testName").blur(function(){
+				checkTestInput("testName");
+			});
+			$("#testType").blur(function(){
+				checkTestInput("testType");
+			});
+			$("#testProfile").blur(function(){
+				checkTestInput("testType");
+			});
+   		</script>
 	
 		<script>
 			$(document).ready(function() {
     			$('#example').DataTable({
+    				sDom: "<'row datatables-header form-inline'<'col-sm-12 col-md-4'l><'col-sm-12 col-md-6'f>r<'col-sm-12 col-md-2'<'#abutton'>>><'table-responsive't><'row datatables-footer'<'col-sm-12 col-md-9'i><'col-sm-12 col-md-3 fanye' p>>",
     				//json格式  
     				//
     				//分页样式 http://datatables.club/reference/option/pagingType.html
   					//"pagingType": "simple_numbers",
     				//proccessing 用于当处理大量数据时，提示正在加载 http://datatables.club/reference/option/processing.html
     				"processing": true,
+    				"autoWidth":false,
     				// language代表语言
     				"language": {
     						"sProcessing":   "处理中...",
@@ -520,7 +572,7 @@
 									json.data[i].libId = template("contentTemplate2",JSON.parse(result));  
 								}						
 							}
-							alert(JSON.stringify(json.data))
+							//alert(JSON.stringify(json.data))
 							return json.data;
     					}
     				},
@@ -532,7 +584,7 @@
            			]
     			});
 
-			
+				$("div[class='col-sm-12 col-md-3 fanye']").attr("style","padding-left:50px")
     			
     			$("#abutton").append("<button type='button' class='btn btn-primary'>绑定题库</button>");
     			
@@ -602,7 +654,7 @@
     			});
     			
     			//清空输入框 
-    			$("input[type='text']").each(function(){
+    			$("input[!name]").each(function(){
     				$(this).val("");
     			});
     			
@@ -618,43 +670,47 @@
     			
     			//提交试卷的逻辑
     			$("button[id='submit']").click(function(){
-    				var x = $("span[id='fenzhi']").text();
-    				if(x!='100'){
-    					shake("button[id='submit']");
-    					layer.msg("请让试卷总分值达到100"); 
-    				}else{
-    					var libId = [];
-    					var scores = [];
-    					var quesNums = [];
-
-						$("div[class='checkbox checkbox-success'").each(function(){
-							libId[libId.length] = $(this).attr("id");
-						});
-						$("input[id='fenzhi']").each(function(){
-							var v = $(this).val();
-							if(!(parseInt(v)>=0)){
-								v = 0;
-							}
-							scores.push(v);
-						});
-						$("input[id='xuanzeti']").each(function(){
-							var v = $(this).val();
-							if(!(parseInt(v)>=0)){
-								v = 0;
-							}
-							quesNums.push(v);
-						});
-
-    					$.ajax({
-    						type:"post",
-    						url:"/createTestPaperJson",
-    						async:true,
-    						data:{libId:libId,scores:scores,quesNums:quesNums},
-    						success:function(){
-    							layer.msg("成功");
-    						}
-    					});
-    				}
+	    				if(checkTestInput("testName")&&checkTestInput("testType")&&checkTestInput("testProfile")){
+		    				var x = $("span[id='fenzhi']").text();
+		    				if(x!='100'){
+		    					shake("button[id='submit']");
+		    					layer.msg("请让试卷总分值达到100"); 
+		    				}else{
+		    					var libId = [];
+		    					var scores = [];
+		    					var quesNums = [];
+		
+								$("div[class='checkbox checkbox-success'").each(function(){
+									libId[libId.length] = $(this).attr("id");
+								});
+								$("input[id='fenzhi']").each(function(){
+									var v = $(this).val();
+									if(!(parseInt(v)>=0)){
+										v = 0;
+									}
+									scores.push(v);
+								});
+								$("input[id='xuanzeti']").each(function(){
+									var v = $(this).val();
+									if(!(parseInt(v)>=0)){
+										v = 0;
+									}
+									quesNums.push(v);
+								});
+		
+		    					$.ajax({
+		    						type:"post",
+		    						url:"/createTestPaperJson",
+		    						async:true,
+		    						data:{libId:libId,scores:scores,quesNums:quesNums},
+		    						success:function(){
+		    							layer.msg("成功");
+		    						}
+		    					});
+		    				}
+	    				}else{
+	    					layer.msg("请填写考试名称、考试类型、考试简介");
+	    				}
     			});
     			
     			//让按钮震动的函数

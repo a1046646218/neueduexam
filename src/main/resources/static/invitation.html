@@ -350,7 +350,7 @@
 										</div>
 									</div>
 									<div class="panel-body">
-										<table class="table table-striped table-bordered table-hover" id="example">
+										<table class="table table-striped table-bordered table-hover" id="example" >
 											<thead>
 												<tr>
 													<th>id</th>
@@ -434,13 +434,15 @@
         -->
 		<script>
 			$(document).ready(function() {
-    			$('#example').DataTable({
+    			var dataTable = $('#example').DataTable({
+    				sDom: "<'row datatables-header form-inline'<'col-sm-12 col-md-10'l><'col-sm-12 col-md-2'f>r><'table-responsive't><'row datatables-footer'<'col-sm-12 col-md-10'i><'col-sm-12 col-md-2'p>>",
     				//json格式  
-    				//
     				//分页样式 http://datatables.club/reference/option/pagingType.html
   					//"pagingType": "simple_numbers",
     				//proccessing 用于当处理大量数据时，提示正在加载 http://datatables.club/reference/option/processing.html
     				"processing": true,
+    				//"sScrollX": "50%",
+    				"bAutoWidth": false,
     				// language代表语言
     				"language": {
     						"sProcessing":   "处理中...",
@@ -489,8 +491,9 @@
                			{"data":"invitationTime"}
            			]
     			});
+    			
 			})
-
+			
 		</script>
 		      
 		

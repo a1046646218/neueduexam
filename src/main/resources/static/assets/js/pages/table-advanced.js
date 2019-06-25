@@ -13,7 +13,7 @@
 	if ( $.isFunction( $.fn[ 'dataTable' ] ) ) {
 
 		$.extend(true, $.fn.dataTable.defaults, {
-			sDom: "<'row datatables-header form-inline'<'col-sm-12 col-md-5'l><'col-sm-12 col-md-3'<'#abutton'>><'col-sm-12 col-md-4'f>r><'table-responsive't><'row datatables-footer'<'col-sm-12 col-md-6'i><'col-sm-12 col-md-6'p>>",
+			sDom: "<'row datatables-header form-inline'<'col-sm-12 col-md-7'l><'col-sm-12 col-md-3'f>r<'col-sm-12 col-md-2'<'#abutton'>>><'table-responsive't><'row datatables-footer'<'col-sm-12 col-md-9'i><'col-sm-12 col-md-3'p>>",
 			oLanguage: {
 				sLengthMenu: '_MENU_ records per page',
 				sProcessing: '<i class="fa fa-spinner fa-spin"></i> Loading'
