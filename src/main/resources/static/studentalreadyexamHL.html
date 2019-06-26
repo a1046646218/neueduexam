@@ -333,7 +333,9 @@
 					</div>
 					<!-- End Page Header -->					
 					<!--/container-->
-					<div class="row" rownum="0"></div>
+					<div class="row" rownum="0">
+						
+					</div>
 					<div class="row" rownum="1"></div>
 					<div class="row">
 					<div style="float:right;padding-right:100px;">
@@ -379,47 +381,59 @@
 	</body>
 	<script type="text/html" id="contentTemplate">
 			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-				<div class="tabs">
-								<ul class="nav nav-tabs nav-justified">
-									<li class="active">
-										<a href="#{{pexamid}}_home" data-toggle="tab" class="text-center"><i class="fa fa-home"></i>考试</a>
-									</li>
-									<li>
-										<a href="#{{pexamid}}_profile" data-toggle="tab" class="text-center">信息</a>
-									</li>
-								</ul>
-					<div class="tab-content">
-						<div id="{{pexamid}}_home" class="tab-pane active">
-									<div class="row">
-											<div  class="col-lg-7 col-md-7 col-sm-7">
-												<h4 style="padding-top: 10px;">{{other1}}</h4>
-												<h5 style="padding-top: 10px;">用时:{{duration}}</h5>	
-												<h5 style="padding-top: 10px;">切出次数: {{changeout}}次</h5>	
-											</div>
-											<div  class="col-lg-5 col-md-5 col-sm-5">
-												<br>
-												<font class="bk-margin-off" style="color: #00ACED;font-size: 50px;">{{score}}</font>
-											</div>
+			<div class="panel bk-widget bk-border-off" >
+					<div class="panel-body" style="border-top:3px solid #0FB492;">
+						<div class="text-left bk-bg-white">
+							<div class="row">
+								<div class="col-xs-8 bk-vcenter" style="padding-right: 0px;">
+									<h5 class="bk-margin-off">试卷名：{{other1}}</h5>
+									<small>试卷发布时间：</small>
+									<small>2016/01/01</small>
+								</div>
+								<div class="col-xs-4 bk-vcenter" style="padding-left: 0px;">
+									<div class="bk-avatar" style="border:1px solid #C6C6C6;">
+										<span class="label label-info" style="padding-right:8px;">考试得分</span>
+										<font class="bk-margin-off" style="color: #00ACED;font-size: 45px;">{{score}}</font>
 									</div>
-								<center style="padding-top: 25px;"><button type="button" class="bk-margin-5 btn btn-success"><i class="fa fa-magic"></i>查看考试</button></center>
+								</div>
+								
+							</div>
 						</div>
-						<div id="{{pexamid}}_profile" class="tab-pane">
-							<div class="panel-body">
-									<div class="table-responsive">
-										<table class="table">
-											  <tbody>
-												<tr><td>用时</td><td>{{duration}}</td></tr>
-												<tr><td>ip地址</td><td>{{ipaddress}}</td></tr>
-												<tr><td>答题位置</td><td>{{local}}</td></tr>
-												<tr><td>浏览器</td><td>{{browser}}</td></tr>
-											  </tbody>
-										</table>
-									</div>
+						<div class="bk-bg-white bk-padding-10">
+							<blockquote class="bk-margin-off-bottom">
+								<small>考试时间：{{duration}}秒</small>
+								<small>离开次数：{{changeout}}次</small>
+							</blockquote>
+						</div>
+						<div class="bk-ltr bk-bg-white bk-padding-off">
+							<div class="row text-center">
+								<a href="#" title="" data-rel="tooltip" tips="{{operatingsystem}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bk-bg-white bk-bg-darken bk-fg-success bk-padding-5" id="{{pexamid}}_id1" onmouseover="show('{{pexamid}}_id1')">
+									<i class="fa fa-clock-o fa-2x"></i><br>
+									<small>操作系统</small>
+								</a>
+								<a href="#" title="" data-rel="tooltip" tips="{{ipaddress}}"  class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bk-bg-white bk-bg-darken bk-fg-info bk-padding-5" id="{{pexamid}}_id2" onmouseover="show('{{pexamid}}_id2')">
+									<i class="fa  fa-windows fa-2x"></i><br>
+									<small>IP</small>
+								</a>
+								<a href="#" title="" data-rel="tooltip" tips="{{local}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bk-bg-white bk-bg-darken bk-fg-primary bk-padding-5" id="{{pexamid}}_id3" onmouseover="show('{{pexamid}}_id3')">
+									<i class="fa  fa-building-o fa-2x"></i><br>
+									<small>位置</small>
+								</a>
+								<a href="#" title="" data-rel="tooltip" tips="{{browser}}" class="col-lg-3 col-md-3 col-sm-3 col-xs-6 bk-bg-white bk-bg-darken bk-fg-warning bk-padding-5" id="{{pexamid}}_id4" onmouseover="show('{{pexamid}}_id4')">
+									<i class="fa fa-globe fa-2x"></i><br>
+									<small>浏览器</small>
+								</a>
+							</div>
+						</div>
+						<div class="bk-bg-white bk-padding-5">
+							<div class="row">
+								<div class="col-xs-9 pull-right text-right">
+									<button type="button" class="bk-margin-5 btn btn-success"><small>查看考试 <i class="fa fa-hand-o-right"></i></small></button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-				<!-- End Main Page -->
 			</div>
     </script>	
 	
@@ -470,5 +484,11 @@
 		$(document).ready(function(){
 			change(page);
 		});
+		function show(id) {
+        layer.tips($("#"+id).attr("tips"), "#"+id+"", {
+          tips: [3, "#D0D0D0"]
+        });
+    }
+		
 </script>
 </html>

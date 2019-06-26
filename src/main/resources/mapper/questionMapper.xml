@@ -339,7 +339,7 @@
      <selectKey keyProperty="quesid" resultType="int">
       select LAST_INSERT_ID() 
       </selectKey>
-    insert into question
+   insert into question
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="quesid != null" >
         quesId,

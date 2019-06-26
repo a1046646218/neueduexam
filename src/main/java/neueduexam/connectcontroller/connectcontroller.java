@@ -23,7 +23,7 @@ public class connectcontroller {
 	}
 	@RequestMapping("/tostudentalreadyexam")
 	public String tostudentalreadyexam() {
-		return "studentalreadyexam";
+		return "studentalreadyexamHL";
 	}
 	@RequestMapping("/tostudentpayrecord")
 	public String tostudentpayrecord() {

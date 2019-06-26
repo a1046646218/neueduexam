@@ -453,44 +453,81 @@
 
 				<!-- Main Page -->
 				<div class="main">
-					<div class="row">
-						<div class="col-lg-2 col-md-2"></div>
-						<div class="bk-margin-5 btn-group">
-							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-								<font style="font-size: large;">查看所有题目</font><span class="caret"></span>
-							</button>
-							<ul class="dropdown-menu" role="menu" style="width: 500px; height: 300px;" id="questionindex">
-								<!-- 	<button class="bk-margin-5 btn btn-default btn-circle btn-lg" type="button"><span>5</span></button>
-								<button class="bk-margin-5 btn btn-success btn-circle btn-lg" type="button"><span>5</span></button>
- -->
-							</ul>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
+					<div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+						<div class="row mailbox">
+							<div class="panel">
+								<div class="panel-body bk-bg-very-light-gray mailbox-menu">
+									<div class="panel-group" id="accordion2">
+											<div class="panel panel-accordion">
+												<div class="panel-heading bk-bg-primary">
+													<h4 class="panel-title">
+														<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse2One">
+															<i class="fa fa-star"></i> 客观题
+														</a>
+													</h4>
+												</div>
+												<div id="collapse2One" class="accordion-body collapse" style="height: 0px;">
+													<div class="panel-body" id="myindex">
+													</div>
+												</div>
+											</div>
+											<div class="panel panel-accordion panel-accordion-primary">
+												<div class="panel-heading bk-bg-primary">
+													<h4 class="panel-title">
+														<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2Two">
+															<i class="fa fa-cogs"></i> 主观题
+														</a>
+													</h4>
+												</div>
+												<div id="collapse2Two" class="accordion-body collapse in" style="">
+													<div class="panel-body" id="yourindex">
+													</div>
+												</div>
+											</div>
+									</div>
+									
+									<div class="row" style="margin-top: 40px;">
+										<label class="control-label"></label>
+										<strong class="bk-fg-primary" style="font-size: 18px;margin-top: 5px;">
+											<div class="point point-success point-lg"></div>倒计时：<span id="hour"></span>时<span id="minutes"></span>分<span id="seconds"></span>秒
+										</strong>
+									</div>
+									<div class="row" style="margin-top: 40px;">
+										<label class="control-label"></label>
+										<strong class=" bk-fg-primary" style="font-size: 18px;margin-top: 5px;">
+											<div class="point point-success point-lg"></div>试卷名：<span id="textname"></span>
+										</strong>
+									</div>
+									<div class="row" style="margin-top: 40px;">
+										<label class="control-label"></label>
+										<strong class=" bk-fg-primary" style="font-size: 18px;margin-top: 5px;">
+											<div class="point point-success point-lg"></div>答题人：<span th:text="${session.user.nickname}"></span>
+										</strong>
+									</div>
+									<hr>
+									<div class="row" style="margin-top: 30px;">
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>
+										<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+											<div class="row">
+												<button type="button" id="beforequestion" class="bk-margin-5 btn btn-primary">上一题</button>
+												<button type="button" id="nextquestion" class="bk-margin-5 btn btn-primary">下一题</button>
+												<button type="button" id="sumitquestion" class="bk-margin-5 btn btn-primary">提交</button>
+											</div>
+										</div>
+										<div class="col-lg-2 col-md-2 col-sm-2 col-xs-12"></div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+
+					</div>
+					<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+						<div class="row" id="allquestion">
 						</div>
 					</div>
-					<div class="row" style="margin-top: 30px;">
-						<!-- Page Header -->
-
-						<!-- End Page Header -->
-						<div class="col-lg-2 col-md-2"></div>
-						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" id="allquestion" style="height:500px">
-
-						</div>
-						<div class="col-lg-2 col-md-2">
-							<div class="row">
-								<button type="button" id="beforequestion" class="bk-margin-5 btn btn-primary">上一题</button>
-								<button type="button" id="nextquestion" class="bk-margin-5 btn btn-primary">下一题</button>
-							</div>
-							<div class="row">
-								<div>倒计时：<span id="hour"></span>时<span id="minutes"></span>分<span id="seconds"></span>秒</div>
-								<button type="button" id="sumitquestion" class="bk-margin-5 btn btn-primary">提交</button>
-							</div>
-						</div>
-						<!-- End Main Page -->
-
-						<!-- Footer -->
-
-						<!-- End Footer -->
-
-					</div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-12"></div>
 				</div>
 			</div>
 			<!--/container-->
@@ -547,40 +584,43 @@
 		var hour = 0;
 		var minutes = 0;
 		var seconds = 0;
-		var local ="";
-		function GetJsonData(quesid,stuanswer) {
+		var local = "";
+
+		function GetJsonData(quesid, stuanswer) {
 			var json = {
 				"quesid": quesid,
-				"stuanswer":stuanswer
+				"stuanswer": stuanswer
 			};
 			return json;
 		}
-		function getanswer(i){
+
+		function getanswer(i) {
 			var result = "";
-			if($("[nowquestion=" + i + "]").find("input[value='A']").is(':checked')){
-				result = result+"A";
+			if ($("[nowquestion=" + i + "]").find("input[value='A']").is(':checked')) {
+				result = result + "A";
 			}
-			if($("[nowquestion=" + i + "]").find("input[value='B']").is(':checked')){
-				result = result+"B";
+			if ($("[nowquestion=" + i + "]").find("input[value='B']").is(':checked')) {
+				result = result + "B";
 			}
-			if($("[nowquestion=" + i + "]").find("input[value='C']").is(':checked')){
-				result = result+"C";
+			if ($("[nowquestion=" + i + "]").find("input[value='C']").is(':checked')) {
+				result = result + "C";
 			}
-			if($("[nowquestion=" + i + "]").find("input[value='D']").is(':checked')){
-				result = result+"D";
+			if ($("[nowquestion=" + i + "]").find("input[value='D']").is(':checked')) {
+				result = result + "D";
 			}
-			if($("[nowquestion=" + i + "]").find("[gettext]").val()==""){
+			if ($("[nowquestion=" + i + "]").find("[gettext]").val() == "") {
 				result = result + $("[nowquestion=" + i + "]").find("[gettextarea]").val();
-			}else{
+			} else {
 				result = result + $("[nowquestion=" + i + "]").find("[gettext]").val();
 			}
 			return result;
 		}
-		function getsaveanswer(i){
+
+		function getsaveanswer(i) {
 			var result = "";
-			if($("[nowquestion=" + i + "]").find("[gettext]").val()==""){
+			if ($("[nowquestion=" + i + "]").find("[gettext]").val() == "") {
 				result = result + $("[nowquestion=" + i + "]").find("[gettextarea]").val();
-			}else{
+			} else {
 				result = result + $("[nowquestion=" + i + "]").find("[gettext]").val();
 			}
 			return result;
@@ -594,104 +634,105 @@
 				data: {
 					testid: testid
 				},
-				success: function(e) {
-					console.log(e);
-					time = e.countdown;
-					count = e.limitchanges;
-					hour = Math.floor(time / 3600);
-					minutes = Math.floor(time % 3600 / 60);
-					seconds = time % 60;
-					$("#hour").html(hour);
-					$("#minutes").html(minutes);
-					$("#seconds").html(seconds);
-					$.ajax({
-						type:'post',
-						url: 'getsavetime',
-						async: false,
-						data: {
-							testid:testid
-						},
-						success: function(result) {
-							if(result.state==0){
-								console.log("xxx");
-							}else{
-								mycount = result.mycount;
-								hour = result.hour;
-								minutes = result.minutes;
-								seconds = result.seconds;
-								$("#hour").html(hour);
-								$("#minutes").html(minutes);
-								$("#seconds").html(seconds);
-								console.log("hhh");
-							}
-							setInterval(function() {
-								if (seconds == 0) {
-									if (minutes == 0) {
-										if (hour == 0) {
-											$("#sumitquestion").click();
-										} else {
-											hour--;
-											minutes = 59;
-											seconds = 59;
-											$("#hour").html(hour);
-											$("#minutes").html(minutes);
-											$("#seconds").html(seconds);
-										}
-									} else {
-										minutes = minutes - 1;
-										seconds = 59;
-										$("#seconds").html(seconds);
-										$("#minutes").html(minutes);
-									}
-								} else {
-									seconds = seconds - 1;
+								success: function(e) {
+									console.log(e);
+									time = e.countdown;
+									count = e.limitchanges;
+									hour = Math.floor(time / 3600);
+									minutes = Math.floor(time % 3600 / 60);
+									seconds = time % 60;
+									$("#hour").html(hour);
+									$("#minutes").html(minutes);
 									$("#seconds").html(seconds);
-								}
-								if(seconds%10==0){
+									$("#textname").html(e.testname);
 									$.ajax({
 										type:'post',
-										url: 'savetime',
+										url: 'getsavetime',
 										async: false,
 										data: {
-											hour:hour,
-											minutes:minutes,
-											seconds:seconds,
-											mycount:mycount,
 											testid:testid
 										},
 										success: function(result) {
-											
+											if(result.state==0){
+												console.log("xxx");
+											}else{
+												mycount = result.mycount;
+												hour = result.hour;
+												minutes = result.minutes;
+												seconds = result.seconds;
+												$("#hour").html(hour);
+												$("#minutes").html(minutes);
+												$("#seconds").html(seconds);
+												console.log("hhh");
+											}
+											setInterval(function() {
+												if (seconds == 0) {
+													if (minutes == 0) {
+														if (hour == 0) {
+															$("#sumitquestion").click();
+														} else {
+															hour--;
+															minutes = 59;
+															seconds = 59;
+															$("#hour").html(hour);
+															$("#minutes").html(minutes);
+															$("#seconds").html(seconds);
+														}
+													} else {
+														minutes = minutes - 1;
+														seconds = 59;
+														$("#seconds").html(seconds);
+														$("#minutes").html(minutes);
+													}
+												} else {
+													seconds = seconds - 1;
+													$("#seconds").html(seconds);
+												}
+												if(seconds%10==0){
+													$.ajax({
+														type:'post',
+														url: 'savetime',
+														async: false,
+														data: {
+															hour:hour,
+															minutes:minutes,
+															seconds:seconds,
+															mycount:mycount,
+															testid:testid
+														},
+														success: function(result) {
+															
+														}
+													});
+												}
+												if(seconds%30==0){
+													var quesdata =[];
+													for(var i=1;i<=nowquestionpage;i++){
+														if(getsaveanswer(i)!=""){
+															quesdata.push(GetJsonData($("[nowquestion=" + i + "]").attr("question"),getsaveanswer(i)));
+														}
+													}
+													console.log(quesdata);
+													var answerlist = JSON.stringify(quesdata);
+													console.log(quesdata);
+													$.ajax({
+														type:'post',
+														url: 'savequestion',
+														async: false,
+														data: {
+															testid:testid,
+															answerlist:answerlist
+														},
+														success: function(result) {
+															
+														}
+													});
+													
+												}
+											}, 1000);
 										}
 									});
 								}
-								if(seconds%30==0){
-									var quesdata =[];
-									for(var i=1;i<=nowquestionpage;i++){
-										if(getsaveanswer(i)!=""){
-											quesdata.push(GetJsonData($("[nowquestion=" + i + "]").attr("question"),getsaveanswer(i)));
-										}
-									}
-									console.log(quesdata);
-									var answerlist = JSON.stringify(quesdata);
-									console.log(quesdata);
-									$.ajax({
-										type:'post',
-										url: 'savequestion',
-										async: false,
-										data: {
-											testid:testid,
-											answerlist:answerlist
-										},
-										success: function(result) {
-											
-										}
-									});
-									
-								}
-							}, 1000);
-						}
-					});
-				}
 			});
 
 			$.ajax({
@@ -712,7 +753,7 @@
 							nowquestionpage);
 						$("[question=" + result.single[i].lq.quesid + "]").find("#textquestion").hide();
 						$("[question=" + result.single[i].lq.quesid + "]").find("#jianquestion").hide();
-						$("#questionindex").append("<button toquestionfast=\"" + nowquestionpage +
+						$("#myindex").append("<button toquestionfast=\"" + nowquestionpage +
 							"\" class=\"bk-margin-5 btn btn-default btn-circle btn-lg\" type=\"button\">" +
 							"<span>" + nowquestionpage + "</span></button>");
 						if (nowquestionpage == 1) {} else {
@@ -729,7 +770,7 @@
 							nowquestionpage);
 						$("[question=" + result.mul[i].lq.quesid + "]").find("#textquestion").hide();
 						$("[question=" + result.mul[i].lq.quesid + "]").find("#jianquestion").hide();
-						$("#questionindex").append("<button toquestionfast=\"" + nowquestionpage +
+						$("#myindex").append("<button toquestionfast=\"" + nowquestionpage +
 							"\" class=\"bk-margin-5 btn btn-default btn-circle btn-lg\" type=\"button\">" +
 							"<span>" + nowquestionpage + "</span></button>");
 						if (nowquestionpage == 1) {} else {
@@ -748,7 +789,7 @@
 						$("[question=" + result.jud[i].lq.quesid + "]").find("#jianquestion").hide();
 						$("[question=" + result.jud[i].lq.quesid + "]").find("#" + result.jud[i].lq.quesid + "_c").hide();
 						$("[question=" + result.jud[i].lq.quesid + "]").find("#" + result.jud[i].lq.quesid + "_d").hide();
-						$("#questionindex").append("<button toquestionfast=\"" + nowquestionpage +
+						$("#myindex").append("<button toquestionfast=\"" + nowquestionpage +
 							"\" class=\"bk-margin-5 btn btn-default btn-circle btn-lg\" type=\"button\">" +
 							"<span>" + nowquestionpage + "</span></button>");
 						if (nowquestionpage == 1) {} else {
@@ -768,7 +809,7 @@
 						$("[question=" + result.tian[i].lq.quesid + "]").find("#" + result.tian[i].lq.quesid + "_b").hide();
 						$("[question=" + result.tian[i].lq.quesid + "]").find("#" + result.tian[i].lq.quesid + "_c").hide();
 						$("[question=" + result.tian[i].lq.quesid + "]").find("#" + result.tian[i].lq.quesid + "_d").hide();
-						$("#questionindex").append("<button toquestionfast=\"" + nowquestionpage +
+						$("#yourindex").append("<button toquestionfast=\"" + nowquestionpage +
 							"\" class=\"bk-margin-5 btn btn-default btn-circle btn-lg\" type=\"button\">" +
 							"<span>" + nowquestionpage + "</span></button>");
 						if (nowquestionpage == 1) {} else {
@@ -788,7 +829,7 @@
 						$("[question=" + result.jian[i].lq.quesid + "]").find("#" + result.jian[i].lq.quesid + "_b").hide();
 						$("[question=" + result.jian[i].lq.quesid + "]").find("#" + result.jian[i].lq.quesid + "_c").hide();
 						$("[question=" + result.jian[i].lq.quesid + "]").find("#" + result.jian[i].lq.quesid + "_d").hide();
-						$("#questionindex").append("<button toquestionfast=\"" + nowquestionpage +
+						$("#yourindex").append("<button toquestionfast=\"" + nowquestionpage +
 							"\" class=\"bk-margin-5 btn btn-default btn-circle btn-lg\" type=\"button\">" +
 							"<span>" + nowquestionpage + "</span></button>");
 						if (nowquestionpage == 1) {} else {
@@ -797,21 +838,21 @@
 
 					}
 					$.ajax({
-						type:'post',
+						type: 'post',
 						url: 'getsaveques',
 						async: false,
 						data: {
-							testid:testid
+							testid: testid
 						},
 						success: function(result) {
 							console.log("让我seesee");
 							console.log(result);
-							for(var i=0;i<result.length;i++){
+							for (var i = 0; i < result.length; i++) {
 								//alert(result[i].stuanswer);
 								$("[question=" + result[i].quesid + "]").find("[gettext]").val(result[i].stuanswer);
 								$("[question=" + result[i].quesid + "]").find("[gettextarea]").val(result[i].stuanswer);
 							}
-							
+
 						}
 					});
 				}
@@ -850,182 +891,184 @@
 			$("[toquestionfast=" + i + "]").addClass("btn-success");
 		});
 
-		$("#sumitquestion").click(function(){
+		$("#sumitquestion").click(function() {
 			var testid = $("#nowtestid").val();
 			var ipaddress = returnCitySN["cip"];
 			var brower = myBrowser();
 			var os = detectOS();
 			var data = [];
-			for(var i=1;i<=nowquestionpage;i++){
-				data.push(GetJsonData($("[nowquestion=" + i + "]").attr("question"),getanswer(i)));
+			for (var i = 1; i <= nowquestionpage; i++) {
+				data.push(GetJsonData($("[nowquestion=" + i + "]").attr("question"), getanswer(i)));
 			}
 			console.log(data);
 			var answerlist = JSON.stringify(data);
-			var lessdu = hour*3600+minutes*60+seconds;
+			var lessdu = hour * 3600 + minutes * 60 + seconds;
 			$.ajax({
 				type: 'post',
 				url: 'subimtpaper',
 				async: false,
 				data: {
 					testid: testid,
-					ipaddress:ipaddress,
-					brower:brower,
-					os:os,
-					mycount:mycount,
-					lessdu:lessdu,
-					local:local,
-					answerlist:answerlist
+					ipaddress: ipaddress,
+					brower: brower,
+					os: os,
+					mycount: mycount,
+					lessdu: lessdu,
+					local: local,
+					answerlist: answerlist
 				},
 				success: function(result) {
-				alert(result);
+					alert(result);
 				}
 			});
 		});
-		
-		
-		
-		function myBrowser() {
-					var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
-					var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
-					var isIE = userAgent.indexOf("compatible") > -1
-							&& userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
-					var isEdge = userAgent.indexOf("Edge") > -1; //判断是否IE的Edge浏览器
-					var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
-					var isSafari = userAgent.indexOf("Safari") > -1
-							&& userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器
-					var isChrome = userAgent.indexOf("Chrome") > -1
-							&& userAgent.indexOf("Safari") > -1; //判断Chrome浏览器
 
-					if (isIE) {
-						var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
-						reIE.test(userAgent);
-						var fIEVersion = parseFloat(RegExp["$1"]);
-						if (fIEVersion == 7) {
-							return "IE7";
-						} else if (fIEVersion == 8) {
-							return "IE8";
-						} else if (fIEVersion == 9) {
-							return "IE9";
-						} else if (fIEVersion == 10) {
-							return "IE10";
-						} else if (fIEVersion == 11) {
-							return "IE11";
-						} else {
-							return "0";
-						}//IE版本过低
-						return "IE";
-					}
-					if (isOpera) {
-						return "Opera";
-					}
-					if (isEdge) {
-						return "Edge";
-					}
-					if (isFF) {
-						return "FF";
-					}
-					if (isSafari) {
-						return "Safari";
-					}
-					if (isChrome) {
-						return "Chrome";
-					}
-			
+
+
+		function myBrowser() {
+			var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+			var isOpera = userAgent.indexOf("Opera") > -1; //判断是否Opera浏览器
+			var isIE = userAgent.indexOf("compatible") > -1 &&
+				userAgent.indexOf("MSIE") > -1 && !isOpera; //判断是否IE浏览器
+			var isEdge = userAgent.indexOf("Edge") > -1; //判断是否IE的Edge浏览器
+			var isFF = userAgent.indexOf("Firefox") > -1; //判断是否Firefox浏览器
+			var isSafari = userAgent.indexOf("Safari") > -1 &&
+				userAgent.indexOf("Chrome") == -1; //判断是否Safari浏览器
+			var isChrome = userAgent.indexOf("Chrome") > -1 &&
+				userAgent.indexOf("Safari") > -1; //判断Chrome浏览器
+
+			if (isIE) {
+				var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+				reIE.test(userAgent);
+				var fIEVersion = parseFloat(RegExp["$1"]);
+				if (fIEVersion == 7) {
+					return "IE7";
+				} else if (fIEVersion == 8) {
+					return "IE8";
+				} else if (fIEVersion == 9) {
+					return "IE9";
+				} else if (fIEVersion == 10) {
+					return "IE10";
+				} else if (fIEVersion == 11) {
+					return "IE11";
+				} else {
+					return "0";
+				} //IE版本过低
+				return "IE";
+			}
+			if (isOpera) {
+				return "Opera";
+			}
+			if (isEdge) {
+				return "Edge";
+			}
+			if (isFF) {
+				return "FF";
+			}
+			if (isSafari) {
+				return "Safari";
+			}
+			if (isChrome) {
+				return "Chrome";
+			}
+
 		}
-		
-		
+
+
 		function detectOS() {
-			 var sUserAgent = navigator.userAgent.toLowerCase();   
-						var isWin = (navigator.platform == "Win32") || (navigator.platform == "Win64")|| (navigator.platform == "wow64");   
-						var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform == "Macintosh") || (navigator.platform == "MacIntel");   
-						if (isMac) return "Mac";   
-						var isUnix = (navigator.platform == "X11") && !isWin && !isMac;   
-						if (isUnix) return "Unix";   
-						var isLinux = (String(navigator.platform).indexOf("Linux") > -1);   
-						var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) == "android";  
-						if (isLinux) {  
-						if(bIsAndroid) return "Android";  
-						else return "Linux";   
-						}  
-						if (isWin) {   
-							var isWin2K = sUserAgent.indexOf("Windows nt 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;   
-							if (isWin2K) return "Win2000";   
-							var isWinXP = sUserAgent.indexOf("Windows nt 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1  
-							sUserAgent.indexOf("Windows XP") > -1;   
-							if (isWinXP) return "WinXP";   
-							var isWin2003 = sUserAgent.indexOf("Windows nt 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;   
-							if (isWin2003) return "Win2003";   
-							var isWinVista= sUserAgent.indexOf("Windows nt 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;   
-							if (isWinVista) return "WinVista";   
-							var isWin7 = sUserAgent.indexOf("Windows nt 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;   
-							if (isWin7) return "Win7";   
-							var isWin8 = sUserAgent.indexOf("windows nt 6.2") > -1 || sUserAgent.indexOf("Windows 8") > -1;  
-							if (isWin8) return "Win8"; 
-							var isWin10 = sUserAgent.indexOf("windows nt 10.0")>-1||sUserAgent.indexOf("Windows 10")>-1;	
-							if(isWin10)return "Win10";				
-						}  
-						return "other";
+			var sUserAgent = navigator.userAgent.toLowerCase();
+			var isWin = (navigator.platform == "Win32") || (navigator.platform == "Win64") || (navigator.platform == "wow64");
+			var isMac = (navigator.platform == "Mac68K") || (navigator.platform == "MacPPC") || (navigator.platform ==
+				"Macintosh") || (navigator.platform == "MacIntel");
+			if (isMac) return "Mac";
+			var isUnix = (navigator.platform == "X11") && !isWin && !isMac;
+			if (isUnix) return "Unix";
+			var isLinux = (String(navigator.platform).indexOf("Linux") > -1);
+			var bIsAndroid = sUserAgent.toLowerCase().match(/android/i) == "android";
+			if (isLinux) {
+				if (bIsAndroid) return "Android";
+				else return "Linux";
+			}
+			if (isWin) {
+				var isWin2K = sUserAgent.indexOf("Windows nt 5.0") > -1 || sUserAgent.indexOf("Windows 2000") > -1;
+				if (isWin2K) return "Win2000";
+				var isWinXP = sUserAgent.indexOf("Windows nt 5.1") > -1 || sUserAgent.indexOf("Windows XP") > -1
+				sUserAgent.indexOf("Windows XP") > -1;
+				if (isWinXP) return "WinXP";
+				var isWin2003 = sUserAgent.indexOf("Windows nt 5.2") > -1 || sUserAgent.indexOf("Windows 2003") > -1;
+				if (isWin2003) return "Win2003";
+				var isWinVista = sUserAgent.indexOf("Windows nt 6.0") > -1 || sUserAgent.indexOf("Windows Vista") > -1;
+				if (isWinVista) return "WinVista";
+				var isWin7 = sUserAgent.indexOf("Windows nt 6.1") > -1 || sUserAgent.indexOf("Windows 7") > -1;
+				if (isWin7) return "Win7";
+				var isWin8 = sUserAgent.indexOf("windows nt 6.2") > -1 || sUserAgent.indexOf("Windows 8") > -1;
+				if (isWin8) return "Win8";
+				var isWin10 = sUserAgent.indexOf("windows nt 10.0") > -1 || sUserAgent.indexOf("Windows 10") > -1;
+				if (isWin10) return "Win10";
+			}
+			return "other";
 		}
 
 		$.ajax({
 			//2bcfab7f32b3d497caa50b24652beaba
-			type:'get',
-			url:"https://restapi.amap.com/v3/ip?ip="+returnCitySN["cip"]+"&output=json&key=2bcfab7f32b3d497caa50b24652beaba",
-			async:false,
-			success:function(result){
-				var a= "";
-				local = result.province+result.city;
+			type: 'get',
+			url: "https://restapi.amap.com/v3/ip?ip=" + returnCitySN["cip"] +
+				"&output=json&key=2bcfab7f32b3d497caa50b24652beaba",
+			async: false,
+			success: function(result) {
+				var a = "";
+				local = result.province + result.city;
 			}
-		});		
-
-		document.addEventListener('visibilitychange', function() { //浏览器切换事件
-			if (document.visibilityState == 'hidden') { //状态判断
-				mycount++;
-				if (mycount > count) {
-					$("#sumitquestion").click();
-				} else {
-					layer.alert("禁止切出网页,已切出" + mycount + "次");
-				}
-			} else {}
 		});
+
+				document.addEventListener('visibilitychange', function() { //浏览器切换事件
+					if (document.visibilityState == 'hidden') { //状态判断
+						mycount++;
+						if (mycount > count) {
+							$("#sumitquestion").click();
+						} else {
+							layer.alert("禁止切出网页,已切出" + mycount + "次");
+						}
+					} else {}
+				});
 	</script>
 	<!--简答题-->
 	<script type="text/html" id="singletemplate">
-		<div class=" col-md-12 panel panel-info" question="{{lq.quesid}}" nowquestion="">
-								<div class="panel-heading">
+		<div class=" col-md-12 panel panel-info" question="{{lq.quesid}}" nowquestion="" style="padding-top: 20px;">
+								<div class="panel-heading bk-bg-primary" >
 									<div class="row">
-										<div class="col-xs-5 text-left bk-vcenter">
-											<h6 class="bk-margin-off">题目（{{ls.quesscore}}分）标签：{{lq.tag}} &nbsp;&nbsp;难度：{{lq.difficulty}}</h6>
+										<div class="text-left bk-vcenter">
+											<span class="bk-margin-off" style="font-size: 20px; padding-left: 10px;">题目（{{ls.quesscore}}分）标签：{{lq.tag}} &nbsp;&nbsp;难度：{{lq.difficulty}}</span>
 										</div>
 									</div>
 								</div>
-							<div class="panel-body">题目：{{lq.quescontext}}</div>
-								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
-									<div class="panel-body" style="padding-top: 10px;">
-										<span>答案：</span>
+							<div class="panel-body" style="font-size: 20px;">题目：{{lq.quescontext}}</div>
+								<div class="header" style="margin-top: 5px; margin-bottom:10px; ">	
+									<div class="panel-body" style="padding-top: 10px; ">
+										<span style="font-size: 20px;">答案：</span>
 										<div class="form-group">
-											<div class="col-md-6">
-												<div class="input-group" id="{{lq.quesid}}_a" style="margin-top: 10px;">
+											<div>
+												<div class="input-group" id="{{lq.quesid}}_a" style="margin-top: 30px;">
 													<span class="input-group-addon"><input type="checkbox" name="{{lq.quesid}}_radios1" value="A" checkischange=""></span>
-													<label class="form-control">{{lq.a}}</label>
+													<label class="form-control" style="font-size: 20px;">{{lq.a}}</label>
 												</div>
-												<div class="input-group" id="{{lq.quesid}}_b" style="margin-top: 10px;">
+												<div class="input-group" id="{{lq.quesid}}_b" style="margin-top: 30px;">
 													<span class="input-group-addon"><input type="checkbox"  name="{{lq.quesid}}_radios2" value="B" checkischange=""></span>
-													<label class="form-control">{{lq.b}}</label>
+													<label class="form-control" style="font-size: 20px;">{{lq.b}}</label>
 												</div>
-												<div class="input-group" id="{{lq.quesid}}_c" style="margin-top: 10px;">
+												<div class="input-group" id="{{lq.quesid}}_c" style="margin-top: 30px;">
 													<span class="input-group-addon"><input type="checkbox"  name="{{lq.quesid}}_radios3" value="C" checkischange=""></span>
-													<label class="form-control">{{lq.c}}</label>
+													<label class="form-control" style="font-size: 20px;">{{lq.c}}</label>
 												</div>
-												<div class="input-group" id="{{lq.quesid}}_d" style="margin-top: 10px;">
+												<div class="input-group" id="{{lq.quesid}}_d" style="margin-top: 30px;">
 													<span class="input-group-addon"><input type="checkbox"  name="{{lq.quesid}}_radios4" value="D" checkischange=""></span>
-													<label class="form-control">{{lq.d}}</label>
+													<label class="form-control" style="font-size: 20px;">{{lq.d}}</label>
 												</div>
-												<div class="input-group col-md-12" style="margin-top: 10px;" id="textquestion">
-												<input type="text" id="{{lq.quesid}}_text" name="text-input" class="form-control" gettext="" placeholder="Text" checkischange="">
+												<div class="input-group col-md-12" style="margin-top: 30px;" id="textquestion">
+												<input style="font-size: 20px;" type="text" id="{{lq.quesid}}_text" name="text-input" class="form-control" gettext="" placeholder="Text" checkischange="">
 												</div>
-												<div class="input-group col-md-12" style="margin-top: 10px;" id="jianquestion">
-												<textarea id="{{lq.quesid}}_textarea" style="resize: none;"name="textarea-input" gettextarea="" rows="3" class="form-control" placeholder="Content.." checkischange=""></textarea>
+												<div class="input-group col-md-12" style="margin-top: 30px;" id="jianquestion">
+												<textarea id="{{lq.quesid}}_textarea" style="resize: none;font-size: 20px;"name="textarea-input" gettextarea="" rows="6" class="form-control" placeholder="Content.." checkischange=""></textarea>
 												</div>
 											</div>
 										</div>

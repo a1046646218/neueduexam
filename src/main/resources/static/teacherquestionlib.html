@@ -428,10 +428,10 @@
 											</div>
 											<div class="row" style="padding-top: 10px;">
 												<div  class="col-lg-4 col-md-4 col-sm-4" id="removelib">
-													<button type="button" class="bk-margin-5 btn btn-danger">删除</button>
+													<button type="button" class="bk-margin-5 btn btn-danger">删除题库</button>
 												</div>
 												<div class="col-lg-4 col-md-4 col-sm-4" id="salelib">
-													<button type="button" class="bk-margin-5 btn btn-warning">出售</button>
+													<button type="button" class="bk-margin-5 btn btn-warning">出售题库</button>
 												</div>
 												<div  class="col-lg-4 col-md-4 col-sm-4">
 													<!-- <button type="button" class="bk-margin-5 btn btn-success">添加习题</button> -->
@@ -450,17 +450,17 @@
 											</div>
 								</div>
 								<div id="{{libid}}_char" class="tab-pane">
-									<div id="{{libid}}_chars" style="width:400px;height:300px"></div>
+									<!-- <div id="{{libid}}_chars" style="width:400px;height:300px"></div> -->
 								</div>
 								<div id="{{libid}}_easy" class="tab-pane">
-									<div id="{{libid}}_easy_chars" style="width:400px;height:300px">
+									<!-- <div id="{{libid}}_easy_chars" style="width:400px;height:300px"> -->
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 		</script>
-		<script type="text/javascript">
+<!-- 		<script type="text/javascript">
 			function addnum(jsonobj){
 				//jsoncomment.reviewId;
 				 var myChart = echarts.init(document.getElementById(jsonobj.libid+'_chars'));
@@ -545,7 +545,7 @@
 				};
 				myChart.setOption(option);
 			}
-</script>
+</script> -->
 	<script type="text/javascript">
        var page = 1;
        function change(num){
@@ -572,17 +572,17 @@
        				for(var time=i*3;time<result.length&&j<3;j++,time++){
        					var newContentNews = template("contentTemplate",result[time]);
        					$("[rownum=\""+i+"\"]").append(newContentNews);
-						addnum(result[time]);
-						//alert(result[time].libid);
-						$.ajax({
-							type:'post',
-							url:'getEasyNumAjaxControllerDTF',
-							async:false,
-							data:"libnum="+result[time].libid,
-							success:function(easyjson){
-								addeasy(result[time].libid,easyjson);
-							}
-						});
+						// addnum(result[time]);
+						// //alert(result[time].libid);
+						// $.ajax({
+						// 	type:'post',
+						// 	url:'getEasyNumAjaxControllerDTF',
+						// 	async:false,
+						// 	data:"libnum="+result[time].libid,
+						// 	success:function(easyjson){
+						// 		addeasy(result[time].libid,easyjson);
+						// 	}
+						// });
        				}
        			}
        		}
