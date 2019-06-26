@@ -5,22 +5,11 @@
 <title>Insert title here</title>
 <!--  <link type="text/css" rel="styleSheet"  href="css/style1.css" th:href="@{static/css/style1.css}" />-->
 <script type="text/javascript" src="js/jquery-1.8.3.min.js" th:src="@{static/js/jquery-1.8.3.min.js}"></script>
-<script type="text/javascript">
-$.ajax({
-	//2bcfab7f32b3d497caa50b24652beaba
-	type:'get',
-	url:'https://restapi.amap.com/v3/ip?ip=114.247.50.2&output=json&key=2bcfab7f32b3d497caa50b24652beaba',
-	async:false,
-	success:function(result){
-		var a= JSON.stringify(result);
-		alert(a);
-	}
-});		
-</script>
+
 </head>
 <body>
-<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin=1046646218&site=qq&menu=yes">来聊天呀</a>
-webapp下的网页 
-<img alt="" src="img/box.png" th:src="@{static/assets/img/bg1.jpg}">
+<table id="tableid">
+        <!-- 由于我在dt初始化代码里配置了columns.title属性，所以在html里不用再书写th标签-->
+</table>
 </body>
 </html>

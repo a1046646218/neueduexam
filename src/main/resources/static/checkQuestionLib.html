@@ -340,6 +340,19 @@
 					<div class="container-fluid content">	
 						<div class="row">
 							<!--真表格开始 -->
+							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom:10px">
+								<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12"  >
+									<div class="panel panel-default bk-bg-white" style="height:300px;" id="echart1">
+																	
+									</div>
+								</div>
+								<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+									<div class="panel panel-default bk-bg-white" style="height:300px;" id="echart2">
+																	
+									</div>									
+								</div>	
+							</div>
+						
 							<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 								<div class="panel panel-default bk-bg-white">
 									<div class="panel-heading bk-bg-white">
@@ -509,6 +522,8 @@
 		<script th:src="@{static/assets/js/pages/table-advanced.js}"></script>
 		<script th:src="@{static/js/template.js}"></script>
 		<script th:src="@{static/layer/layer.js}"></script>
+		<script th:src="@{static/js/echarts.min.js}"></script>
+		<script th:src="@{static/js/echarts-gl.min.js}"></script>
 		<!-- end: JavaScript-->
 		<!--
         	作者：hxb
@@ -554,7 +569,7 @@
 												正确答案:{{quesanswer}}
 											</blockquote>	
 								<div class="panel panel-accordion">
-									<div class="panel-heading bk-bg-success">
+									<div class="panel-heading " style='background-color:#0FB492'>
 										<h4 class="panel-title">
 											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionPrimary" href="#collapsePrimaryOne_{{quesid}}">
 												习题解析
@@ -614,7 +629,7 @@
 												正确答案:{{quesanswer}}
 											</blockquote>	
 								<div class="panel panel-accordion">
-									<div class="panel-heading bk-bg-success">
+									<div class="panel-heading " style='background-color:#0FB492'>
 										<h4 class="panel-title">
 											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionPrimary" href="#collapsePrimaryOne_{{quesid}}">
 												习题解析
@@ -666,7 +681,7 @@
 												正确答案:{{quesanswer}}
 											</blockquote>	
 								<div class="panel panel-accordion">
-									<div class="panel-heading bk-bg-success">
+									<div class="panel-heading " style='background-color:#0FB492'>
 										<h4 class="panel-title">
 											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionPrimary" href="#collapsePrimaryOne_{{quesid}}">
 												习题解析
@@ -706,14 +721,14 @@
 												正确答案:{{quesanswer}}
 											</blockquote>	
 								<div class="panel panel-accordion">
-									<div class="panel-heading bk-bg-success">
+									<div class="panel-heading " style='background-color:#0FB492;width:500px'>
 										<h4 class="panel-title">
 											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionPrimary" href="#collapsePrimaryOne_{{quesid}}">
 												习题解析
 											</a>
 										</h4>
 									</div>
-									<div id="collapsePrimaryOne_{{quesid}}" class="accordion-body collapse in" style="">
+									<div id="collapsePrimaryOne_{{quesid}}" class="accordion-body collapse in " style="">
 										<div class="panel-body">
 											{{analysis}}
 										</div>
@@ -744,7 +759,7 @@
 												正确答案:{{quesanswer}}
 											</blockquote>	
 								<div class="panel panel-accordion">
-									<div class="panel-heading bk-bg-success">
+									<div class="panel-heading " style='background-color:#0FB492;width:500px;'>
 										<h4 class="panel-title">
 											<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordionPrimary" href="#collapsePrimaryOne_{{quesid}}">
 												习题解析
@@ -784,6 +799,7 @@
 	    				//proccessing 用于当处理大量数据时，提示正在加载 http://datatables.club/reference/option/processing.html
 						"autoWidth":false,
 	    				"processing": true,
+	    				
 	    				// language代表语言
 	    				"language": {
 	    						"sProcessing":   "处理中...",
@@ -810,9 +826,9 @@
 									"sSortDescending": ": 以降序排列此列"
 								}
 	       				},
-		       			  "columnDefs": [
-		       			    { "width": "8%", "targets": 0 }
-		       			  ],
+		       			 // "columnDefs": [
+		       			 //   { "width": "8%", "targets": 0 }
+		       			 // ],
 	       				//lengthMenu代表每页显示数量 详情见:http://datatables.club/reference/option/lengthMenu.html
 	   					"lengthMenu": [ [10, 25, 50, 100,-1], [10, 25, 50, 100,"all"] ],
 	    				"ajax":{
@@ -853,7 +869,136 @@
 			})
 
 		</script>
-		       
+		
+		<script type="text/javascript"> 
+			function addnum(jsonobj){
+				//alert(jsonobj)
+				//jsoncomment.reviewId;
+				 var myChart = echarts.init(document.getElementById("echart2"));
+				// 指定图表的配置项和数据
+				 option = {
+				    title: {
+				        text: '题型个数',
+				        x:"center"
+				    },
+					radius: '80%',
+					center: ['70%','50%'],
+					toolbox:{
+						show:true,
+						feature:{
+							saveAsImage:{show:true},
+							dataView:{show:true},
+							restore:{show:true},
+							dataZoom:{show:true}
+						},
+						x:"right"
+					},
+				    legend:{
+				        //orient: 'vertical',
+				        //left: 'left',
+				        data: ["单选","多选","判断","填空","简答"],			    	
+				    },
+				    tooltip: {
+				    	trigger: 'axis',
+				        axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+				            type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+				        }				    	
+				    },
+				    xAxis: {
+				        data: ["单选","多选","判断","填空","简答"]
+				    },
+				    yAxis: {},
+				    series: [{
+				        name: '题目数量',
+				        type: 'bar',
+				        data: [jsonobj.numOfSingle, jsonobj.numOfMultiple, jsonobj.numOfJudge, jsonobj.numOfBlank, jsonobj.numOfAnswer]
+				    }],
+
+				};
+				// 使用刚指定的配置项和数据显示图表。
+				myChart.setOption(option);
+			}
+			function addeasy(jsonobj){
+				var selected = {};
+				selected['简单'] = jsonobj.e1 > 0;			
+				selected['中等'] = jsonobj.e2 >0;
+				selected['困难'] = jsonobj.e3>0;		
+
+				var myChart = echarts.init(document.getElementById("echart1"));
+				option = {
+				    title : {
+				        text: '试题难度统计',
+				        x:'center',
+				        textStyle:{
+				        	fontSize:20,
+				        },
+				    },
+				    tooltip : {
+				        trigger: 'item',
+				        formatter: "{a} <br/>{b} : {c} ({d}%)"
+				    },
+				    legend: {
+				        orient: 'vertical',
+				        left: 'left',
+				        data: ['简单','中等','困难'],
+				        textStyle:{
+				            fontSize:20
+				        },
+				        selected:selected,
+				    },
+				    series : [
+				        {
+				            name: '访问来源',
+				            type: 'pie',
+				            radius : '55%',
+				            center: ['50%', '60%'],
+				            data:[
+				                {value:jsonobj.e1, name:'简单'},
+				                {value:jsonobj.e2, name:'中等'},
+				                {value:jsonobj.e3, name:'困难'},				
+				            ],
+				            itemStyle: {
+				                emphasis: {
+				                    shadowBlur: 10,
+				                    shadowOffsetX: 0,
+				                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+				                }
+				            },
+				            label:{
+				                textStyle:{
+				                    fontSize:25
+				                }
+				            }
+				        }
+				    ],
+				};
+				myChart.setOption(option);   
+			}
+			
+			$.ajax({
+				type:'post',
+				url:'getEasyNumAjaxControllerDTF',
+				async:false,
+				data:"libnum="+1,
+				success:function(easyjson){
+					addeasy(easyjson);
+				}
+			});
+			//题库号
+			var ids = [];
+			ids[0] = 1
+			$.ajax({
+				type:'post',
+				url:'questionNumberJson',
+				async:false,
+				data:JSON.stringify(ids),
+				dataType:"json",
+				contentType:"application/json",
+				success:function(easyjson){
+					addnum(easyjson);
+				}
+			});		
+		</script>
 		
 	</body>
 	
