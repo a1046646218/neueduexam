@@ -20,22 +20,8 @@ public class testcontroller {
 	@Autowired
 	UserService userservice;
 	
-	@RequestMapping("/test111")
-	public String test111(HttpServletRequest res) {
-		user user = userservice.getuserbyid(1);
-		res.getSession().setAttribute("user", user);
-		return "teacherhasexam";
-	}
-	@RequestMapping("/test222")
-	public String test222(HttpServletRequest res) {
-		user user = userservice.getuserbyid(4);
-		res.getSession().setAttribute("user", user);
-		return "studenthome";
-	}
 	@RequestMapping("/group")
 	public String group(int groupid,HttpServletRequest resq) {
-		user user = userservice.getuserbyid(3);
-		resq.getSession().setAttribute("user", user);
 		resq.setAttribute("groupid", groupid);
 		System.out.println(groupid);
 		return "chatandhomework";

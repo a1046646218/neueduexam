@@ -23,12 +23,14 @@ public class PayRecordServiceImp implements PayRecordService{
 		Criteria cc = e.createCriteria();
 		cc.andBuyeridEqualTo(userid);
 		List<record> list = recordmapper.selectByExample(e);
+		System.out.println(list.size()+"==========卖========");
+		
 		
 		recordExample e1 = new recordExample();
-		Criteria cc1 = e.createCriteria();
+		Criteria cc1 = e1.createCriteria();
 		cc1.andSelleridEqualTo(userid);
 		List<record> list2 = recordmapper.selectByExample(e1);
-		
+		System.out.println(list2.size()+"==========卖========");
 		for(int i=0;i<list2.size();i++) {
 			list.add(list2.get(i));
 		}

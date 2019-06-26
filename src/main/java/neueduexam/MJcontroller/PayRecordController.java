@@ -23,6 +23,7 @@ public class PayRecordController {
 	@RequestMapping("/toPayRecord")
 	public List<record> getPayRecord(HttpServletRequest request,HttpServletResponse response){
 		user u = (user)request.getSession().getAttribute("user");
+		System.out.println(u.getUserid()+"============userid=");
 		List<record> list = payrecordservice.selectByBuyerandSeller(u.getUserid());
 		return list;
 	}

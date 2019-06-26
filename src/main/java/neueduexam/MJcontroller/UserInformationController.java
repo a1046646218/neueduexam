@@ -20,11 +20,7 @@ public class UserInformationController {
 	public String totestcode() {
 		return "testcodemj";
 	}
-	@RequestMapping("/home")
-	public String mojiaohome() {
-		return "mojiaohome";
-	}
-
+	
 	@RequestMapping("/updateByUserId")
 	public String updateByUserId(HttpServletRequest request,HttpServletResponse response,user user) {
 		user u = (user)request.getSession().getAttribute("user");

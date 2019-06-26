@@ -17,10 +17,6 @@ public class connectcontroller {
 	public String towebcam() {
 		return "webcam";
 	}
-	@RequestMapping("/tostudenthome")
-	public String tostudenthome() {
-		return "studenthome";
-	}
 	@RequestMapping("/tostudentalreadyexam")
 	public String tostudentalreadyexam() {
 		return "studentalreadyexamHL";
@@ -37,7 +33,7 @@ public class connectcontroller {
 	public String tosstudentquestionlib() {
 		return "studentquestionlib";
 	}
-	@RequestMapping("toteacherhasexam")
+	@RequestMapping("/toteacherhasexam")
 	public String toteacherhasexam() {
 		return "teacherhasexam";
 	}
@@ -80,5 +76,9 @@ public class connectcontroller {
 	@RequestMapping("/webcamcode")
 	public String webcamcode() {
 		return "webcamcode";
+	}
+	@RequestMapping("/admin1")
+	public String admin1() {
+		return "admin1";
 	}
 }
