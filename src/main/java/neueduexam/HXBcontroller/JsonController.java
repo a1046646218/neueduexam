@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import neueduexam.HXBservice.CreateExamPaperService;
 import neueduexam.HXBservice.ExamLibService;
+import neueduexam.HXBservice.HxbUserService;
 import neueduexam.HXBservice.InvitationService;
 import neueduexam.HXBservice.QuestionLibService;
 import neueduexam.HXBservice.SelectQuestionListService;
@@ -32,6 +33,8 @@ public class JsonController {
 	CreateExamPaperService createExamService;
 	@Autowired
 	SelectQuestionListService selectQuestionListService;
+	@Autowired
+	HxbUserService userService;
 	
 	@RequestMapping("/invitationJson")
 	public String getInvitationJson(String testId) {
@@ -83,6 +86,19 @@ public class JsonController {
 		String json = selectQuestionListService.getQuestionList(1, "0"); 
 		System.out.println(json);
 		return json;
+	}
+	@RequestMapping("/getUserListJson")
+	public String getUserListJson() {
+		//System.out.println("哈哈");
+		String json = userService.getUserList();
+		System.out.println(json);
+		return json;
+	}
+	@RequestMapping("/updateStudentType")
+	public int updateStudentType(Integer userId,String type) {
+		Integer result = userService.updateStudent(userId,type);
+		System.out.println(result);
+		return result;
 	}
 	
 }

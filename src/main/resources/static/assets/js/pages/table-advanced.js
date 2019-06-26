@@ -25,8 +25,10 @@
 						minimumResultsForSearch: -1
 					});
 				}
-
+				
 				var options = $( 'table', settings.nTableWrapper ).data( 'plugin-options' ) || {};
+				
+				$("#s2id_autogen1").attr("style","width:100px");
 
 				// search
 				var $search = $('.dataTables_filter input', settings.nTableWrapper);

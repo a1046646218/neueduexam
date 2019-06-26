@@ -24,5 +24,9 @@ public class RedirectController {
 	public String toCheckQuestionLib() {
 		return "checkQuestionLib";
 	}
+	@RequestMapping("/toGuanLiYuan")
+	public String toGuanLiYuan() {
+		return "1";
+	}
 
 }
