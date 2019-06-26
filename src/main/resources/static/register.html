@@ -98,7 +98,7 @@
 		                                	</div>
 		                                <div class="row" style="padding-top: 40px">
 	                            		<div class="col-sm-5 col-sm-offset-2">
-	                            		<input type='button' class='btn  btn-fill btn-success btn-wd' id="code" value='获取验证码' />
+	                            		<button  class='btn  btn-fill btn-success btn-wd' id="code">获取验证码</button>
 	                            		</div>
 	                            		
 	                            		<div class="col-sm-5">
@@ -168,13 +168,16 @@
 		                                        	</div>
 		                                    	</div>
 		                                	</div>
+		                                  
+		                                	 <div  id="scan7"></div>
+		                                	
 		                                	 <div class="row" style="padding-top: 40px;">
 	                            		<div class="col-sm-5 col-sm-offset-2">
 	                            		<input type='button' class='btn  btn-fill btn-success btn-wd' id="tosecond" value='上一步' />
 	                            		</div>
 	                            		
 	                            		<div class="col-sm-5">
-	                                    <input type='submit' class='btn  btn-fill btn-success btn-wd'  value='注册' />
+	                                    <input type='submit' class='btn  btn-fill btn-success btn-wd' id="register" value='注册' />
 	                                    </div>
 	                                    </div>
 		                            </div>
@@ -204,7 +207,11 @@
 <script>
 	$(function(){
 	var code;
-	var is;
+	var is="false";
+	var InterValObj; //timer变量，控制时间
+	var count = 60; //间隔函数，1秒执行
+	var curCount;
+	var phone1;//当前剩余秒数
      $("#second").click(function(){
     	 if(checknickName()&&checkPassword()&&checkPassword2()&&checkemail())
     		 {
@@ -231,8 +238,10 @@
        
        $("#code").click(function(){
     	var phone=$("#phone").val();
+    	phone1=phone;
     	if(checkphone())
     	{
+    		
     		$.ajax({
 			type:'post',
 			url:'phoneAjax',
@@ -241,20 +250,47 @@
 			dataType:'text',
 			success:function(e){
 				code=e;
+				curCount = count;
+                 //设置button效果，开始计时
+                 $("#code").css("background-color", "LightSkyBlue");
+                 $("#code").attr("disabled", "true");
+                 $("#code").html("获取" + curCount + "秒");
+                 InterValObj = window.setInterval(SetRemainTime, 1000); //启动计时器，1秒执行一次
+                // alert("验证码发送成功，请查收!");
 				}
     	});    		
     	}
       })
+       
+      function SetRemainTime() {
+        if (curCount == 0) {
+            window.clearInterval(InterValObj);//停止计时器
+            $("#code").removeAttr("disabled");//启用按钮
+            $("#code").css("background-color", "");
+            $("#code").html("重发验证码");
+            code = ""; //清除验证码。如果不清除，过时间后，输入收到的验证码依然有效
+        }
+        else {
+            curCount--;
+            $("#code").html("获取" + curCount + "秒");
+        }
+    }
         $("#first").click(function(){
     	var code1=$("#code1").val();
-    	if(code1==code)
+    	var phone=$("#phone").val();
+    	var $msg=$('#scan').html("");
+    	if(phone!=phone1)
+    		{
+    		$msg.html("<font style=\"color: #BD2D29;\">请获取验证码</font>");
+    		}
+    	if(code1==code&&code!=""&&phone==phone1)
     		{
     		$("li:eq(1)").addClass("active");
         	$(".tab-pane:eq(1)").css("display","inline");
         	$(".tab-pane:eq(0)").css("display","none");
     		}
     	else{
-    	$("#scan1").html("验证码不正确");
+    	$("#scan1").html("<font style=\"color: #BD2D29;\">验证码不正确</font>");
     	}
       })
    $("#phone").blur(checkphone);
@@ -281,12 +317,13 @@
    				$msg.html("<font style=\"color: #BD2D29;\">手机号已经注册</font>");
    				return false;
    			}
+   			
    			$msg.html("<font style=\"color:  #01B6AD;\">输入正确</font>");
    			return true;
     }
    var bblur=function()
     {
-	   
+	    var $msg=$('#scan').html("");
 		var phone=$("#phone").val();
 	    var check
 		$.ajax({
@@ -296,19 +333,22 @@
 			async:false,
 			dataType:'text',
 			success:function(e){
-				
-				if(e==1)
+			
+				if(e=="1")
 			    {
 					
 					$msg.html("<font style=\"color: #BD2D29;\">手机号已经注册</font>");
-					check=true
+					check=true;
+					
+					
 				}
 				else{
-					
+				
 					check=false;
 				}
 			}
 		});
+	   
 	    return check;
 	  }
   
@@ -327,10 +367,15 @@
    function checkemail(){
 	  	 var email=$("#email").val();
 				var $msg=$('#scan7').html("");
+				var isEmail = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
 				if(email==''){
 					$msg.html("<font style=\"color: #BD2D29;\">邮箱不能为空</font>");
 					return false;
 				}
+				else if(!(isEmail.test(email))){
+					$msg.html("<font style=\"color: #BD2D29;\">邮箱格式不正确</font>");
+					return false;
+				 }
 				$msg.html("<font style=\"color:  #01B6AD;\">输入正确</font>");
 				return true; 
 	  	 
@@ -365,7 +410,7 @@
    
    var bblur1=function()
    {
-	   
+	    var $msg=$('#scan5').html("");
 		var identityCard=$("#identityCard").val();
 	    var check
 		$.ajax({
@@ -412,9 +457,12 @@
    $("#Identification").click(function(){
    	var identityCard=$("#identityCard").val();
 	var realName=$("#realName").val();
+	var $msg=$('#scan7').html("");
 	if(checkrealName()){
    	if(checkidentityCard())
    	{
+   		alert(checkidentityCard());
+   		alert("11");
    		$.ajax({
 			type:'post',
 			url:'IdentificationAjax',
@@ -424,6 +472,13 @@
 			success:function(e){
 				is=e;
 				alert(e);
+				if(e==true)
+					{
+					$msg.html("<font style=\"color:  #01B6AD;\">身份验证成功</font>");
+					}
+				else{
+					 $msg.html("<font style=\"color: #BD2D29;\">身份验证失败</font>");
+				}
 				}
          	});    		
    	}
@@ -434,11 +489,10 @@
    	$("form").submit(function(){
    		var identityCard=$("#identityCard").val();
    		var realName=$("#realName").val();
-   		if(checkrealName())
+   		if(checkrealName()&&checkidentityCard())
    		{
-   		if(checkidentityCard())
-   	   	{
-   	   		$.ajax({
+   	
+     	   		$.ajax({
    				type:'post',
    				url:'IdentificationAjax',
    				async:false,
@@ -446,15 +500,22 @@
    				dataType:'text',
    				success:function(e){
    					is=e;
-   					alert(e);
+   					
    					}
    	         	}); 
-   	   		return is;
+   		
    	   	}
-   		}
-   		else{
-   			return false;
-   		}
+		if(is=="false")
+	   		{	
+			alert(is);
+	   	    $('#scan6').html("<font style=\"color: #BD2D29;\">身份验证失败</font>");
+	   	    return false;
+	   		}
+		else{
+
+	   		return true;
+	   		}
+   		
    	})
    	function checkrealName(){
 	  	 var realName=$("#realName").val();
@@ -467,6 +528,55 @@
 				return true; 
 	  	 
 	   }
+   
+   //var value = password.value; //获取用户在文本框里面填写的值
+   //获取所有的span标签 返回值是一个数组
+  $("#password").keyup(function(){
+	var $msg=$('#scan3').html("");
+	var Password=$("#password").val();
+    //获取用户输入的密码,然后判断其强度 返回0 或者 1 2 3 4
+    var index = checkPassWord1(Password);
+    if(index==1){//0 代表false 其余代表true
+    	 $msg.html("<font style=\"color: #BD2D29;\">密码强度：弱</font>");
+     }
+    if(index==2){//0 代表false 其余代表true
+   	 $msg.html("<font style=\"color: #FFA500;\">密码强度：中</font>");
+    }
+    if(index==3){//0 代表false 其余代表true
+    	$msg.html("<font style=\"color:  #01B6AD;\">密码强度：强</font>");
+       }
+    
+  }) 
+   
+ //校验密码强度
+   function checkPassWord1(value){
+    // 0： 表示第一个级别 1：表示第二个级别 2：表示第三个级别
+    // 3： 表示第四个级别 
+    var modes = 0;
+    if(value.length < 6){//最初级别
+     return modes;
+    }
+    if(/\d/.test(value)){//如果用户输入的密码 包含了数字
+     modes++;
+    }
+    if(/[a-z]/.test(value)){//如果用户输入的密码 包含了小写的a到z
+     modes++;
+    }
+    if(/[A-Z]/.test(value)){//如果用户输入的密码 包含了大写的A到Z
+     modes++;
+    }
+    switch(modes){
+     case 1 :
+      return 1;
+      break;
+     case 2 :
+      return 2;
+      break;
+     case 3 :
+      return 3;
+      break;
+    }
+   }
 
 });	
 </script>

@@ -55,7 +55,7 @@ public class controller {
 				{
 					
 					req.getSession().setAttribute("user", user);
-					return "11";
+					return "mojiaohome";
 				}
 				 
 			    else 
@@ -117,7 +117,7 @@ public class controller {
 				boolean is=idCodeApi.istrue(realName, identityCard);
 				
 				System.out.println(is);
-				return true;
+				return is;
 			}
 			@RequestMapping("/registercontroller")
 			public String registercontroller(HttpServletRequest req) throws Exception{

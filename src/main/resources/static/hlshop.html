@@ -296,9 +296,9 @@
 							<!--<div class="form-group">-->
 							
 							<div class="input-group">
-						    <input type="text" id="input1-group2" name="input1-group2" class="form-control" placeholder="Serch">		
+						    <input type="text" name="search" id="search" class="form-control" placeholder="Serch">		
 							<span class="input-group-btn">
-							<button type="button" class="btn btn-success">
+							<button type="button" id="sear" class="btn btn-success">
 							<i class="fa fa-search"></i>
 							</button>
 							</span>
@@ -325,7 +325,7 @@
 												</div>
 											</div>
 											<div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
-												<h6 class="bk-fg-danger bk-fg-darken bk-margin-off-bottom"><strong>计算类</strong></h6>
+												<h6 class="bk-fg-danger bk-fg-darken bk-margin-off-bottom"><strong class="type" data-toggle="tab">计算机类</strong></h6>
 												<p>
 													<small>c++，java,软件工程</small>
 												</p>
@@ -341,7 +341,7 @@
 												</div>
 											</div>
 											<div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
-												<h6 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom"><strong>常识类</strong></h6>
+												<h6 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom"><strong class="type" data-toggle="tab">常识类</strong></h6>
 												<p>
 													<small>生活常识</small>
 												</p>
@@ -357,7 +357,7 @@
 												</div>
 											</div>
 											<div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
-												<h6 class="bk-fg-info bk-fg-darken bk-margin-off-bottom"><strong>数学类</strong></h6>
+												<h6 class="bk-fg-info bk-fg-darken bk-margin-off-bottom"><strong class="type" data-toggle="tab">数学类</strong></h6>
 												<p>
 													<small>高等数学、线性代数</small>
 												</p>
@@ -373,9 +373,25 @@
 												</div>
 											</div>
 											<div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
-												<h6 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom"><strong>英语类</strong></h6>
+												<h6 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom"><strong class="type" data-toggle="tab">英语类</strong></h6>
 												<p>
 													<small>大学四六级、托福雅思.</small>
+												</p>
+											</div>
+										</div>
+									</a>
+									<hr class="bk-margin-off">
+									<a class="bk-bg-very-light-gray bk-bg-lighten bk-padding-off-top bk-padding-off-bottom bk-noradius">
+										<div class="row">
+											<div class="col-lg-3 col-md-2 col-sm-2 col-xs-12 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+												<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-1x bk-icon-default bk-bg-primary">
+													<i class="fa fa-cogs fa-1x"></i>
+												</div>
+											</div>
+											<div class="col-lg-8 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
+												<h6 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom"><strong class="type" data-toggle="tab">文学类</strong></h6>
+												<p>
+													<small>历史，语文</small>
 												</p>
 											</div>
 										</div>
@@ -403,966 +419,19 @@
 									</li>
 								</ul>
 								<div class="tab-content">
-									<div id="home1" class="tab-pane active" style="height:700px;">									
-                                        <div class="row" style="padding-top:30px;padding-right: 15px;">
- 										<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:20px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>
-										
-									<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:35px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>	
-										
-									<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:35px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>
-										
-						<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left: 35px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>
-										</div>
-										
-									
-				<div class="row" style="padding-top:30px;padding-right: 15px;">
- 										<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:20px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>
-										
-									<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:35px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>	
-										
-									<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:35px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>
-										
-						<div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left: 35px;">
-											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
-												<div class="panel-body">
-													<div class="text-left bk-bg-white  bk-padding-bottom-10">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
-																<div class="bk-avatar">
-																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
-																	<a style="color:blue;">科普知识题库</a>
-																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
-																</div>
-															</div>
-															<hr class="bk-margin-off">
-														</div>
-													</div>
-													<!--题库信息-->
-													<hr class="bk-margin-off">
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-widget bk-border-off bk-webkit-fix">
-																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																		<div class="row">
-																			<div class="text-left bk-padding-left-10">
-																				<h5 class="bk-margin-off">题库信息:</h5>
-																			</div>
-																		</div>
-																	</div>
-																	<div class="bs-example">
-																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
-																			<div class="carousel-inner">
-																				<div class="item active">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
-																								<i class="fa  fa-user"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
-																						<p>
-																							<small>董铁夫</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
-																								<i class="fa  fa-calendar"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
-																						<p>
-																							<small>2019/06/25</small>
-																						</p>
-																					</a>
-																				</div>
-																				<div class="item">
-																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
-																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
-																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
-																								<i class="fa  fa-qrcode"></i>
-																							</div>
-																						</div>
-																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
-																						<p>
-																							<small>常识类</small>
-																						</p>
-																					</a>
-																				</div>
-
-																			</div>
-																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
-																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
-																			</a>
-																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
-																				<span class="fa fa-angle-right icon-next"></span>
-																			</a>
-																		</div>
-																	</div>
-																</div>
-															</div>
-														</div>
-													</div>
-													<hr class="bk-margin-off">
-													<!--题库简介-->
-													<div class="bk-ltr bk-bg-white">
-														<div class="row">
-															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-																<div class="bk-bg-white text-center  bk-padding-bottom-10">
-																	<div class="row">
-																		<div class="text-left bk-padding-left-10">
-																			<h5 class="bk-margin-off">题库简介：</h5>
-																		</div>
-																	</div>
-																</div>
-																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
-																	<p class="text-left">
-																		<small>题库简称历史，简称史，一般指人类社会历史，它是记载和解释一系列人类活动进程的历史事件的一门学科</small>
-																	</p>
-																</div>
-															</div>
-														</div>
-													</div>
-													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
-														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
-															<i class="fa  fa-money"></i> 销量19
-														</a>
-														<a class="col-xs-5 bk-bg-white bk-fg-danger" style="padding: 0px;">
-															<i class=" glyphicon glyphicon-shopping-cart"></i> 购买题库
-														</a>
-													</div>
-												</div>
-											</div>
-											<div class="featured-ribbon-wrapper">
-												<div class="featured-ribbon" style="background-color:#95D5F4;">15积分</div>
-											</div>
-										</div>
-										</div>					
-									
-				
+									<div id="home1" class="tab-pane active" >											
 									</div>
+						        <div class="row">
+					            <div style="float:right;padding-right:100px;">
+						        <div>
+							   
+							    <button type="button" id="down" class="bk-margin-5 btn btn-default">加载更多</button>
+											<!-- <a class="btn btn-warning" role="button" id="beforepage">上一页</a>
+											<a class="btn btn-warning" role="button" id="pagenum">1</a>
+											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> -->
+						        </div>
+					</div>
+					</div>
 									<!--<div id="profile1" class="tab-pane">
 										<p>Profile</p>
 										<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.</p>
@@ -1541,8 +610,292 @@
 		<!-- end: JavaScript-->
 		<script th:src="@{static/js/template.js}"></script>
 		<script th:src="@{static/layer/layer.js}"></script>
+		<script th:src="@{static/layer/extend/layer.ext.js}"></script>
 		<!-- end: JavaScript-->
+		<script>
+		$(function(){
+			var search="";
+			var page = 0;
+	    	$.ajax({
+	    		type:'post',
+	    		url:'shoplist',
+	    		data:{search:search},
+	    		dataType:'json',
+	    		success:function(e){
+	    			console.log(JSON.stringify(e));
+	    			var num=e.length;
+	    			num=Math.floor(num/4);
+	    		
+	    			for(var i=0;i<num+1&&i<4;i++){
+	    			page=page+1;
+	    			$("#home1").append("<div class=\"row div1\" style=\"padding-top:30px;padding-right: 15px;\"></div>"	);
+	    			for(var time=i*4;time<e.length&&time<4+i*4;time++){
+       					var newContent = template("test",e[time]);
+       					$(".div1:last").append(newContent);		
+	    			}
+  	    			}
+	    		}
+		});	
+	    	$("#sear").click(function(){
+	    	 search=$("#search").val();
+	    	
+	    	 if(search=="")
+	    		 {
+	    		 return ;
+	    		 }
+	    	 page=0;
+	    		$.ajax({
+		    		type:'post',
+		    		url:'shoplist',
+		    		data:{search:search},
+		    		dataType:'json',
+		    		success:function(e){
+		    			console.log(JSON.stringify(e));
+		    			$("#home1").html("");
+		    			var num=e.length;
+		    			num=Math.floor(num/4);	    		
+		    			for(var i=0;i<num+1&&i<4;i++){
+		    			page=page+1;
+		    			$("#home1").append("<div class=\"row div1\" style=\"padding-top:30px;padding-right: 15px;\"></div>"	);
+		    			for(var time=i*4;time<e.length&&time<4+i*4;time++){
+	       					var newContent = template("test",e[time]);
+	       					$(".div1:last").append(newContent);		
+		    			}
+	  	    			}
+		    		}		
+			});	
+	    	})
+	    	
+	    	$("#down").click(function(){
+	    		$.ajax({
+		    		type:'post',
+		    		url:'shoplist',
+		    		data:{search:search},
+		    		dataType:'json',
+		    		success:function(e){
+		    			if(e.length<=page*4)
+		    				{
+		    				layer.msg("没有更多内容");
+		    				return ;
+		    				}
+		    			console.log(JSON.stringify(e));
+		    			var num=e.length;
+		    			num=Math.floor(num/4);	    		
+		    			$("#home1").append("<div class=\"row div1\" style=\"padding-top:30px;padding-right: 15px;\"></div>"	);
+		    			for(var time=page*4;time<e.length&&time<(4+page*4);time++){
+	       					var newContent = template("test",e[time]);
+	       					$(".div1:last").append(newContent);	
+		    			}
+		    			page=page+1;
+	  	    			
+		    		}		
+			});	
+	    	
+	    	})
+	    	
+	    	$(".type").click(function(){
+	    		search = $(this).html();
+	    		
+	    		page=0;
+	    		$.ajax({
+		    		type:'post',
+		    		url:'shoplist',
+		    		data:{search:search},
+		    		dataType:'json',
+		    		success:function(e){
+		    			
+		    			console.log(JSON.stringify(e));
+		    			$("#home1").html("");
+		    			var num=e.length;
+		    			num=Math.floor(num/4);
+		    		    
+		    			for(var i=0;i<num+1&&i<4;i++){
+		    				page=page+1;
+		    			$("#home1").append("<div class=\"row div1\" style=\"padding-top:30px;padding-right: 15px;\"></div>"	);
+		    			for(var time=i*4;time<e.length&&time<4+i*4;time++){
+	       					var newContent = template("test",e[time]);
+	       					$(".div1:last").append(newContent);		
+		    			}
+	  	    			}
+		    		}		
+			});	
+	    	})
+	    	
+	    	
+	    
 
+	    	$("#show").live("click",function(){
+	    		var libid=$(this).attr("name");
+	    		window.location.href="toshowquestionlib?libid="+libid;
+	    	})
+	    	$(".buy").live("click",function(){
+				//alert("111111");
+				var arr = $(this).attr("name");
+				//alert(str);
+				//alert(arr);
+				layer.prompt({title: '请输入您的密码', formType: 1}, 
+						function(pass, index){
+						layer.close(index);
+						$.ajax({
+								type:'post',
+								url:'ispasswordtrue',
+								async:false,
+								data:{"pass":pass},
+								success:function(flag){
+									if(flag==1){
+										$.ajax({
+												type:'post',
+												url:'buy',
+												async:false,
+												data:{libid:arr},
+												success:function(flag){
+													if(flag==2){
+														layer.msg('已经购买，不能重复购买');
+													}if(flag==0){
+														layer.msg('不能购买自己发布的题库');		
+														}
+													if(flag==1)
+														{
+														layer.msg('积分不够，购买失败');
+														}
+													if(flag==3){
+														
+														layer.msg('购买成功');
+														
+													}
+												}
+										});
+										}
+									else{
+										layer.msg("密码错误");
+									}
+								}
+						});
+						
+					});
+			});
+		});
+		</script>
+        <script type="text/html" id="test">	
+         <div class="col-lg-3 col-md-5 col-sm-5" style="padding-right:0px;padding-left:20px;">
+											<div class="panel bk-margin-bottom-5" style="border-left: 1px solid #B6BCBF;">
+												<div class="panel-body">
+													<div class="text-left bk-bg-white  bk-padding-bottom-10">
+														<div class="row">
+															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bk-vcenter text-left">
+																<div class="bk-avatar">
+																	<i class="glyphicon glyphicon-star" style="color: #E2A917;"></i> 题库名:
+																	<a style="color:blue;" name="{{libid}}" id="show">{{libname}}</a>
+																	<!--<img th:src="@{static/assets/img/avatar.jpg}" alt="" class="img-circle bk-img-120 bk-border-light-gray bk-border-3x">-->
+																</div>
+															</div>
+															<hr class="bk-margin-off">
+														</div>
+													</div>
+													<!--题库信息-->
+													<hr class="bk-margin-off">
+													<div class="bk-ltr bk-bg-white">
+														<div class="row">
+															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																<div class="bk-widget bk-border-off bk-webkit-fix">
+																	<div class="bk-bg-white text-center  bk-padding-bottom-10">
+																		<div class="row">
+																			<div class="text-left bk-padding-left-10">
+																				<h5 class="bk-margin-off">题库信息:</h5>
+																			</div>
+																		</div>
+																	</div>
+																	<div class="bs-example">
+																		<div id="carousel-example-generic3" class="carousel bk-carousel-fade slide" data-ride="carousel">
+																			<div class="carousel-inner">
+																				<div class="item active">
+																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
+																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
+																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-primary">
+																								<i class="fa  fa-user"></i>
+																							</div>
+																						</div>
+																						<h5 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">发布人：</h5>
+																						<p>
+																							<small>{{nickname}}</small>
+																						</p>
+																					</a>
+																				</div>
+																				<div class="item">
+																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
+																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
+																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-info">
+																								<i class="fa  fa-calendar"></i>
+																							</div>
+																						</div>
+																						<h5 class="bk-fg-info bk-fg-darken bk-margin-off-bottom">发布时间：</h5>
+																						<p>
+																							<small>{{publishtime}}</small>
+																						</p>
+																					</a>
+																				</div>
+																				<div class="item">
+																					<a class="panel-body bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom">
+																						<div class="pull-left bk-margin-top-10 bk-margin-right-10">
+																							<div class="bk-round bk-bg-darken bk-border-off bk-icon bk-icon-default bk-bg-warning">
+																								<i class="fa  fa-qrcode"></i>
+																							</div>
+																						</div>
+																						<h5 class="bk-fg-warning bk-fg-darken bk-margin-off-bottom">题目类型：</h5>
+																						<p>
+																							<small>{{libtype}}</small>
+																						</p>
+																					</a>
+																				</div>
+
+																			</div>
+																			<a class="left carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="prev">
+																				<span class="fa fa-angle-left icon-prev bk-bg-very-light-gray"></span>
+																			</a>
+																			<a class="right carousel-control bk-carousel-control bk-carousel-control-white bk-carousel-hide-init" href="#carousel-example-generic3" role="button" data-slide="next">
+																				<span class="fa fa-angle-right icon-next"></span>
+																			</a>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<hr class="bk-margin-off">
+													<!--题库简介-->
+													<div class="bk-ltr bk-bg-white">
+														<div class="row">
+															<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+																<div class="bk-bg-white text-center  bk-padding-bottom-10">
+																	<div class="row">
+																		<div class="text-left bk-padding-left-10">
+																			<h5 class="bk-margin-off">题库简介：</h5>
+																		</div>
+																	</div>
+																</div>
+																<div class="bk-bg-white bk-bg-lighten  bk-padding-left-10">
+																	<p class="text-left">
+																		<small>{{libprofile}}</small>
+																	</p>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-left:0px;">
+														<a class="col-xs-6 bk-bg-white bk-fg-primary" style="padding: 0px;">
+															<i class="fa  fa-money"></i> 销量{{numofpurchases}}
+														</a>
+														<a class="col-xs-5 bk-bg-white bk-fg-danger buy" name="{{libid}}" style="padding: 0px;">
+															<i class=" glyphicon glyphicon-shopping-cart" ></i> 购买题库
+														</a>
+													</div>
+												</div>
+											</div>
+											<div class="featured-ribbon-wrapper">
+												<div class="featured-ribbon" style="background-color:#95D5F4;">{{libprice}}积分</div>
+											</div>
+										</div>
+         </script>
 	</body>
 
 </html>

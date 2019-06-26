@@ -94,26 +94,47 @@ public class GZKUserServiceImp implements GZKUserService {
 	 {
 		 questionlibExample e = new questionlibExample();
 		 neueduexam.entity.questionlibExample.Criteria cc = e.createCriteria();
-		cc.andLibpriceGreaterThan(-1);
+		cc.andLibpriceGreaterThan(0);
 		cc.andLibnameLike("%"+search+"%");
-		List<questionlib> list=questionlibmapper.selectByExample(e);	
+		List<questionlib> list=questionlibmapper.selectByExample(e);
+		for(int i=0;i<list.size();i++)
+		{
+			if(list.get(i).getLibprofile().length()>49)
+			{
+			list.get(i).setLibprofile(list.get(i).getLibprofile().substring(0, 50)+"...");
+		
+			}
+		}
 		 return list;
 	 }
 	 public List<questionlib> selectlistbytype(String search)
 	 {
 		 questionlibExample e = new questionlibExample();
 		neueduexam.entity.questionlibExample.Criteria cc = e.createCriteria();
+		cc.andLibpriceGreaterThan(0);
 		cc.andLibtypeLike("%"+search+"%");
-		List<questionlib> list=questionlibmapper.selectByExample(e);	
+		List<questionlib> list=questionlibmapper.selectByExample(e);
+		for(int i=0;i<list.size();i++)
+		{
+			if(list.get(i).getLibprofile().length()>49)
+			{
+			list.get(i).setLibprofile(list.get(i).getLibprofile().substring(0, 50)+"...");
+			}
+		}
+			
 		 return list;
 	 }
 	 public List<questionlib> selectlist(int  id)
 	 {
 		 questionlibExample e = new questionlibExample();
 		 neueduexam.entity.questionlibExample.Criteria cc = e.createCriteria();
-		cc.andLibpriceGreaterThan(-1);
+		cc.andLibpriceGreaterThan(0);
 		cc.andLibidEqualTo(id);
 		List<questionlib> list=questionlibmapper.selectByExample(e);
+		for(int i=0;i<list.size();i++)
+		{
+			list.get(i).setLibprofile(list.get(i).getLibprofile().substring(0, 50)+"...");
+		}
 		 return list;
 	 }
 	 public List<userbuylib> selectByid(int id)
