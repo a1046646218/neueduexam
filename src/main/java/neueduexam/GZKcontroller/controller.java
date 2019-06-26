@@ -27,6 +27,7 @@ public class controller {
 		UserService tuserservice;
 		@RequestMapping("/tologin")
 		public String tologin(){
+			
 			return "login";
 		}
 		@RequestMapping("/toaddexam")
@@ -214,5 +215,12 @@ public class controller {
 				return questionlib;
 				
 			}
+			
+			@RequestMapping("/toadmin11")
+				public String toadmin11(){
+			
+					return "admin11";
+				
+				}
 			
 }

@@ -31,8 +31,7 @@ public class examcontroller {
 	@ResponseBody
 	public List<questionlib> getquestionlibAjax(HttpServletRequest resq){
 		user u = (user)resq.getSession().getAttribute("user");
-		List<questionlib> list = questionlibservice.getquestionlibByid(u.getUserid());
-	
+		List<questionlib> list= userservice.selectlist("");
 		System.out.println("多少题库"+list.size());
 		return list;
 	
