@@ -32,7 +32,7 @@ public class teacherExamAjaxController {
 		user u = (user)resq.getSession().getAttribute("user");
 		List<exampaper> alllist = exampaperservice.getexampaperListbyuserid(u.getUserid());
 		List<exampaper> list = new ArrayList<exampaper>();
-		for(int i=(page-1)*8;i<alllist.size()&&i<(page-1)*8+8;i++) {
+		for(int i=(page-1)*4;i<alllist.size()&&i<(page-1)*4+4;i++) {
 			list.add(alllist.get(i));
 		}
 		System.out.println(list.size());
@@ -44,7 +44,7 @@ public class teacherExamAjaxController {
 		user u = (user)resq.getSession().getAttribute("user");
 		List<testpaper> alllist = testpaperservice.gettestPaperbyID(u.getUserid());
 		List<testpaper> list = new ArrayList<testpaper>();
-		for(int i=(page-1)*6;i<alllist.size()&&i<(page-1)*6+6;i++) {
+		for(int i=(page-1)*4;i<alllist.size()&&i<(page-1)*4+4;i++) {
 			list.add(alllist.get(i));
 		}
 		System.out.println(list.size());

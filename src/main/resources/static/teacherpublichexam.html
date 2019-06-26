@@ -308,7 +308,7 @@
 										<a href="toteacherpayrecord">
 											<i class="fa  fa-shopping-cart" aria-hidden="true"></i><span>消费记录</span>
 										</a>
-									</li>		
+									</li>			
 									
 								</ul>
 							</nav>
@@ -351,20 +351,58 @@
 					</div>
 					<!-- End Page Header -->					
 					<!--/container-->
-					<div class="row" rownum="0"></div>
-					<div class="row" rownum="1"></div>
-					<div class="row">
+					
+					<!--新加-->
+					<div class="panel panel-default bk-widget bk-border-off">
+								<div class="panel-heading">
+									<h6><i class="fa  fa-folder-open"></i>发布的卷纸</h6>
+									<div class="panel-actions">
+										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
+										<a href="#" class="btn-close"><i class="fa fa-times"></i></a>
+									</div>
+								</div>
+								
+								<div class="panel-body">
+									
+									<div id="addallpublishexam" class="bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom bk-noradius">
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									
+									<br>
+									<div class="row">
+										<div class="col-xs-4" id="beforepage">
+											<a href="#" class="bk-fg-textcolor"><small><i class="fa fa-angle-left"></i> 上一页</small></a>
+										</div>
+										<div class="col-xs-4 text-center">
+											<a href="#" class="bk-fg-textcolor"><small>第<span id="pagenum">1</span>页</small></a>
+										</div>
+										<div class="col-xs-4 text-right" id="afterpage">
+											<a href="#" class="bk-fg-textcolor"><small>下一页<i class="fa fa-angle-right"></i></small></a>
+										</div>
+									</div>
+								</div>
+							</div>
+					</div>
+					
+					
+					<!--原本-->
+					<!-- <div class="row">
 					<div style="float:right;padding-right:100px;">
 						<div>
 							<button type="button" id="beforepage" class="bk-margin-5 btn btn-default">上一页</button>
 							<button type="button" class="btn btn-default" id="pagenum" >1</button>
 							<button type="button" id="afterpage" class="bk-margin-5 btn btn-default">下一页</button>
-											<!-- <a class="btn btn-warning" role="button" id="beforepage">上一页</a>
-											<a class="btn btn-warning" role="button" id="pagenum">1</a>
-											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> -->
 						</div>
 					</div>
-					</div>
+					</div> -->
 					</div>
 		<!-- <div class="clearfix"></div>	 -->	
 		
@@ -397,84 +435,88 @@
 			<script th:src="@{static/layer/extend/layer.ext.js}"></script>
 	</body>
 	<script type="text/html" id="contentTemplate">
-			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-				<div class="tabs">
-								<ul class="nav nav-tabs nav-justified">
-									<li class="active">
-										<a href="#{{testid}}_home" data-toggle="tab" class="text-center"><i class="fa fa-home"></i>考卷</a>
-									</li>
-									<li>
-										<a href="#{{testid}}_profile" data-toggle="tab" class="text-center">信息</a>
-									</li>
-								</ul>
-					<div class="tab-content">
-						<div id="{{testid}}_home" class="tab-pane active"  style="height: 240px;">
-									<div class="row" style="height: 160px;">
-											<div  class="col-lg-12 col-md-12 col-sm-12" >
-												<h4 style="padding-top: 10px;">{{testname}}</h4>
-												<div class="row">
-												<h5 style="padding-top: 10px;" class="col-lg-6 col-md-6 col-sm-6">发布时间:{{publishdate}}</h5>	
-												<h5 style="padding-top: 10px;" class="col-lg-6 col-md-6 col-sm-6">截至时间:{{other1}}</h5>	
-												</div>
-												<div class="row">
-													<h5 style="padding-top: 10px;" class="col-lg-6 col-md-6 col-sm-6">弹出次数限制: {{limitchanges}}次</h5>	
-													<h5 style="padding-top: 10px;" class="col-lg-6 col-md-6 col-sm-6">时间限制: {{countdown}}秒</h5>	
-												</div>
-											</div>
-											
-									</div>
-								<div class="row" style="padding-top: 20px;">
-									<center>
-									<!-- <div div  class="col-lg-6 col-md-6 col-sm-6"> -->
-									<div class="bk-margin-5 btn-group">
-										<button type="button" class="btn btn-warning"><i class="fa fa-magic"></i>邀请答题</button>
-										<button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">
-											<span class="caret"></span>
-											<span class="sr-only">Toggle Dropdown</span>
-										</button>
-										<ul class="dropdown-menu" role="menu">
-											<li id="addexcel" name="{{testid}}"><a >批量导入</a></li>
-											<li id="addone" name="{{testid}}"><a >单个导入</a></li>
-										</ul>
-									</div>
-										<button type="button" class="bk-margin-5 btn btn-info"><i class="fa fa-magic"></i>查看试卷</button>
-									<!-- </div> -->
-									<!-- <div div  class="col-lg-6 col-md-6 col-sm-6"> btn-warning-->
-									<button type="button" class="bk-margin-5 btn btn-success"><i class="fa fa-magic"></i>批改试卷</button>
-									<!-- </div> -->
-									</center>
-								</div>
-						</div>
-						<div id="{{testid}}_profile" class="tab-pane"  style="height: 240px;">
-							<div class="panel-body">
-									<div class="table-responsive" style="text-align: center;">
-										<table class="table">
-											  <thead>
-												  <tr>
-													  <th>类型</th>
-													  <th>个数</th>
-													  <th>简单题</th>
-													  <th>中等题</th>  
-													  <th>复杂题</th>
-												  </tr>
-											  </thead>
-											  <tbody>
-											  </tbody>
-										</table>
-									</div>
-							</div>
+			<div class="row bk-padding-bottom-20 bk-padding-top-15">
+					<div class="col-lg-1 col-md-2 col-sm-2 col-xs-12 bk-vcenter bk-padding-top-10 bk-padding-bottom-10">
+						<div class="bk-round bk-border-off bk-bg-darken bk-icon bk-icon-2x bk-icon-default bk-bg-primary">
+							<i class="fa fa-comment fa-2x"></i>
 						</div>
 					</div>
+					<div class="col-lg-7 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
+						<div class="row">
+							<h6 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">
+							<span style="width: auto;border-left: 2px solid #0FB492;">&nbsp;<strong class=" bk-fg-primary bk-padding-right-20" style="font-size: 16px;margin-top: 5px;">{{testname}}</strong></span>
+							<span class="badge bk-bg-info">发布时间：{{publishdate}}</span>
+							<span class="badge bk-bg-danger">截止时间：{{other1}}</span></h6>
+					    </div>
+						
+						<p style="margin-bottom:0px;">
+							<small style="padding-right: 20px;">弹出次数限制：{{limitchanges}}次</small>
+							<small>考试时间限制：{{countdown}}秒</small>
+						</p>
+						<label>题目结构：</label>
+						<div class="row" testid="{{testid}}">
+							
+						</div>
+					</div>
+				<div class="col-lg-4 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
+					<div class="panel-body  bk-bg-white text-center">
+						<div class="row">
+						<div class="col-lg-4">
+			        	<button type="button" class="btn  dropdown-toggle" data-toggle="dropdown" style="border-bottom:0px;padding-top:0px;">
+					      <div class="bk-fg-warning">
+					      	<h6 class="bk-margin-off ">邀请答题</h6>
+					       <i class="fa  fa-users fa-2x bk-padding-top-10"></i> 
+					      </div>
+				       </button>
+				        <ul class="dropdown-menu" role="menu" >
+					     <li id="addexcel" name="{{testid}}"><a >批量导入</a></li>
+					     <li id="addone" name="{{testid}}"><a >单个导入</a></li>
+				       </ul>
+					    </div> 	
+						<a class="col-lg-4 bk-fg-info">
+						<h6 class="bk-margin-off">批改考试</h6>
+			            <i class="fa fa-send fa-2x bk-padding-top-10"></i>
+						</a>	
+								
+					    <a class="col-lg-4 bk-fg-primary">
+						<h6 class="bk-margin-off ">查看试卷</h6>
+			            <i class="fa  fa-file-text fa-2x bk-padding-top-10"></i>
+					    </a> 
+			            </div> 
+					</div>	
 				</div>
-				<!-- End Main Page -->
 			</div>
+			<hr class="bk-margin-off">
     </script>	
+	
+	
+	
 	<script type="text/html" id="numTemplate">
-		<tr><td>单选题</td><td>{{single[0]}}</td><td>{{single[1]}}</td><td>{{single[2]}}</td><td>{{single[3]}}</td></tr>
+		<div class="row text-center col-lg-2">
+		  <small class="bk-fg-inverse bk-fg-darken">单选题</small>
+		  <h5 class="bk-margin-off-bottom">{{single[0]}}道</h5>
+		 </div>
+		 <div class="row text-center col-lg-2">
+		  <small class="bk-fg-inverse bk-fg-darken">多选题</small>
+		  <h5 class="bk-margin-off-bottom">{{mul[0]}}道</h5>
+		 </div>
+		 <div class="row text-center col-lg-2">
+		  <small class="bk-fg-inverse bk-fg-darken">判断题</small>
+		  <h5 class="bk-margin-off-bottom">{{jud[0]}}道</h5>
+		 </div>
+		 <div class="row text-center col-lg-2">
+		  <small class="bk-fg-inverse bk-fg-darken">填空题</small>
+		  <h5 class="bk-margin-off-bottom">{{tian[0]}}道</h5>
+		 </div>
+		 <div class="row text-center col-lg-2">
+		  <small class="bk-fg-inverse bk-fg-darken">简答题</small>
+		  <h5 class="bk-margin-off-bottom">{{jian[0]}}道</h5>
+		 </div>
+		<!-- <tr><td>单选题</td><td>{{single[0]}}</td><td>{{single[1]}}</td><td>{{single[2]}}</td><td>{{single[3]}}</td></tr>
 		<tr><td>多选题</td><td>{{mul[0]}}</td><td>{{mul[1]}}</td><td>{{mul[2]}}</td><td>{{mul[3]}}</td></tr>
 		<tr><td>判断题</td><td>{{jud[0]}}</td><td>{{jud[1]}}</td><td>{{jud[2]}}</td><td>{{jud[3]}}</td></tr>
 		<tr><td>填空题</td><td>{{tian[0]}}</td><td>{{tian[1]}}</td><td>{{tian[2]}}</td><td>{{tian[3]}}</td></tr>
-		<tr><td>综合题</td><td>{{jian[0]}}</td><td>{{jian[1]}}</td><td>{{jian[2]}}</td><td>{{jian[3]}}</td></tr>
+		<tr><td>综合题</td><td>{{jian[0]}}</td><td>{{jian[1]}}</td><td>{{jian[2]}}</td><td>{{jian[3]}}</td></tr> -->
 	</script>
 	<script type="text/javascript">
 		var page = 1;
@@ -492,27 +534,19 @@
 						$('#pagenum').text(page);
 						return;
 					}
-					$("[rownum=\"1\"]").empty();
-					$("[rownum=\"2\"]").empty();
-					$("[rownum=\"0\"]").empty();
-					//alert(JSON.stringify(result));
-					var num = result.length%3;
-					if(num!=0)
-						num=1;
-					for(var i=0;i<result.length/3+num;i++){
-						var j=0;
-						for(var time=i*3;time<result.length&&j<3;j++,time++){
-							var newContentNews = template("contentTemplate",result[time]);
-							$("[rownum=\""+i+"\"]").append(newContentNews);
+					for(var i=0;i<result.length;i++){
+						for(var i=0;i<result.length;i++){
+							var newContentNews = template("contentTemplate",result[i]);
+							$("#addallpublishexam").prepend(newContentNews);
 							$.ajax({
 								type:'post',
 								url:'gettesteasynumAjaxDTF',
 								async:false,
-								data:"testid="+result[time].testid,
+								data:"testid="+result[i].testid,
 								success:function(intjsonarr){
 									console.log(intjsonarr);
 									var numcontent = template("numTemplate",intjsonarr);
-									$("#"+result[time].testid+"_profile").find("tbody").append(numcontent);
+									$("[testid="+result[i].testid+"]").append(numcontent);
 								}
 							});
 						}

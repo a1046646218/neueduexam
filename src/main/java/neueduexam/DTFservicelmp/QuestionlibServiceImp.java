@@ -15,6 +15,7 @@ import neueduexam.dao.questionandlibMapper;
 import neueduexam.dao.questionlibMapper;
 import neueduexam.dao.userhavelibMapper;
 import neueduexam.entity.question;
+import neueduexam.entity.questionExample;
 import neueduexam.entity.questionandlib;
 import neueduexam.entity.questionandlibExample;
 import neueduexam.entity.questionlib;
@@ -117,6 +118,81 @@ public class QuestionlibServiceImp implements QuestionlibService{
 		record.setLibprice(point);
 		int i = questionlibmapper.updateByPrimaryKeySelective(record);
 		return i;
+	}
+
+	@Override
+	public HashMap<String, List<Integer>> questioneasychart() {
+		questionExample e = new questionExample();
+		neueduexam.entity.questionExample.Criteria cc = e.createCriteria();
+		cc.andQuesidIsNotNull();
+		List<question> list = questionmapper.selectByExample(e);
+		HashMap<String,List<Integer>> map = new HashMap<>();
+		ArrayList<Integer> single = new ArrayList();
+		ArrayList<Integer> mul = new ArrayList();
+		ArrayList<Integer> jud = new ArrayList();
+		ArrayList<Integer> tian = new ArrayList();
+		ArrayList<Integer> jian = new ArrayList();
+		for(int i=0;i<4;i++) {
+			single.add(0);
+			mul.add(0);
+			jud.add(0);
+			tian.add(0);
+			jian.add(0);
+		}
+		for(int i=0;i<list.size();i++) {
+			if("0".equals(list.get(i).getQuestype())) {
+				single.set(0, single.get(0)+1);
+				if("简单".equals(list.get(i).getDifficulty())) {
+					single.set(1, single.get(1)+1);
+				}else if("中等".equals(list.get(i).getDifficulty())){
+					single.set(2, single.get(2)+1);
+				}else {
+					single.set(3, single.get(3)+1);
+				}
+			}else if("1".equals(list.get(i).getQuestype())) {
+				mul.set(0, mul.get(0)+1);
+				if("简单".equals(list.get(i).getDifficulty())) {
+					mul.set(1, mul.get(1)+1);
+				}else if("中等".equals(list.get(i).getDifficulty())){
+					mul.set(2, mul.get(2)+1);
+				}else {
+					mul.set(3, mul.get(3)+1);
+				}
+			}else if("2".equals(list.get(i).getQuestype())) {
+				jud.set(0, jud.get(0)+1);
+				if("简单".equals(list.get(i).getDifficulty())) {
+					jud.set(1, jud.get(1)+1);
+				}else if("中等".equals(list.get(i).getDifficulty())){
+					jud.set(2, jud.get(2)+1);
+				}else {
+					jud.set(3, jud.get(3)+1);
+				}
+			}else if("3".equals(list.get(i).getQuestype())) {
+				tian.set(0, tian.get(0)+1);
+				if("简单".equals(list.get(i).getDifficulty())) {
+					tian.set(1, tian.get(1)+1);
+				}else if("中等".equals(list.get(i).getDifficulty())){
+					tian.set(2, tian.get(2)+1);
+				}else {
+					tian.set(3, tian.get(3)+1);
+				}
+			}else if("4".equals(list.get(i).getQuestype())) {
+				jian.set(0, jian.get(0)+1);
+				if("简单".equals(list.get(i).getDifficulty())) {
+					jian.set(1, jian.get(1)+1);
+				}else if("中等".equals(list.get(i).getDifficulty())){
+					jian.set(2, jian.get(2)+1);
+				}else {
+					jian.set(3, jian.get(3)+1);
+				}
+			}
+		}
+		map.put("single", single);
+		map.put("mul", mul);
+		map.put("jud", jud);
+		map.put("tian", tian);
+		map.put("jian", jian);
+		return map;
 	}
 	
 }
