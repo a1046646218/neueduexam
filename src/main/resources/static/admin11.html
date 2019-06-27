@@ -349,7 +349,7 @@
 					<div class="page-header">
 						<div class="pull-left">
 							<ol class="breadcrumb visible-sm visible-md visible-lg">								
-								<li><a href="toteacherhome" class="active"><i class="icon fa fa-home"></i>我的题库</a></li>
+								<li><a  class="active"><i class="icon fa fa-home"></i>所有发布的题库</a></li>
 							</ol>						
 						</div>
 					</div>
@@ -358,19 +358,18 @@
 							<div class="inner-toolbar">
 								<ul>
 									<li>
-										<a href="#" id="addquestionlib" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i>添加题库</a>
+										<a href="#" id="check"><i class="fa fa-pencil"></i>查重</a>
+										<a href="#" id="check1" style="display:none" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></a>
 									</li>
 								</ul>
 							</div>
 					<div style="padding-top:50px;">
-					<div class = "row" rownum="0"></div>
-					<div class = "row" rownum="1"></div>
+					<div id="home1">
+					</div>
 					<div class="row">
-					<div style="float:right;padding-right:100px;">
+					<div style="float:right;padding-right:800px;">
 						<div>
-							<button type="button" id="beforepage" class="bk-margin-5 btn btn-default">上一页</button>
-							<button type="button" class="btn btn-default" id="pagenum" >1</button>
-							<button type="button" id="afterpage" class="bk-margin-5 btn btn-default">下一页</button>
+							<button type="button" id="afterpage" class="bk-margin-5 btn btn-default">继续加载</button>
 											<!-- <a class="btn btn-warning" role="button" id="beforepage">上一页</a>
 											<a class="btn btn-warning" role="button" id="pagenum">1</a>
 											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> -->
@@ -381,7 +380,42 @@
 					</div>	
 				
 						<!-- End Page Header -->
-
+            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-dialog" style="width:1500px;height: 500px;">
+				<div id="innerexcel" >
+	    <div class="container-fluid content">	
+			<div class="row">
+		
+				<!-- Main Page -->
+				<div class="main1 " style="padding-top: 10px;min-height: 500px;">			
+					<div class="row1 mailbox">			
+						<div class="row col-lg-12 col-md-12 col-sm-12 col-xs-12" id="divlib">	
+						</div>
+						<div class="row">
+						            <div class="col-sm-5 col-sm-offset-2"> 
+						            <div class="row">
+					                <div style="float:right;padding-right:48px;">
+						            <div>
+							        <button type="button" id="toquestionlib" data-target="#myModal" data-toggle="modal" class="bk-margin-5 btn btn-default">回到题库</button>
+							       
+							        <button type="button" id="delquestion" class="bk-margin-5 btn btn-default">确认删除</button>
+											<!-- <a class="btn btn-warning" role="button" id="beforepage">上一页</a>
+											<a class="btn btn-warning" role="button" id="pagenum">1</a>
+											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> -->
+						           </div>
+					               </div>
+					               </div>
+						            </div>
+	
+						</div>
+						</div>
+				</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
 				</div>
 					<!-- End Main Page -->
 
@@ -434,17 +468,17 @@
        				$('#pagenum').text(page);
        				return;
        			}
-       			$("[rownum=\"1\"]").empty();
-       			$("[rownum=\"0\"]").empty();
+       		
        			// //alert(JSON.stringify(result));
        			var num = result.length%3;
        			if(num!=0)
        				num=1;
        			for(var i=0;i<result.length/3+num;i++){
        				var j=0;
+       				$("#home1").append("<div class = \"row\" rownum=\"row\"></div>");
        				for(var time=i*3;time<result.length&&j<3;j++,time++){
        					var newContentNews = template("contentTemplate",result[time]);
-       					$("[rownum=\""+i+"\"]").append(newContentNews);
+       					$("[rownum='row']:last").append(newContentNews);
 						// addnum(result[time]);
 						// //alert(result[time].libid);
 						// $.ajax({
@@ -474,7 +508,162 @@
        	}	
        });
        $(document).ready(function(){
+  
        	change(page);
+       	$(".minimize").live("click", function () {
+ 		   $(this).toggle(function () {
+ 			   $(this).parent().parent().next().css("display","block");
+ 			   },function () {
+ 		       $(this).parent().parent().next().css("display","none");
+ 			   });
+ 		   $(this).trigger('click');
+ 		})
+ 	
+ 		$("#delquestion").click(function(){
+ 			var empty=0;
+ 			var libid1=$("div[name='libid']:eq(0)").attr("id");
+ 			var libid2=$("div[name='libid']:eq(1)").attr("id");
+ 			var ID1=[];
+ 			var ID2=[];
+ 		 	$("div[name='libid']:eq(0) input[name='quesid']:checked").each(function(i){
+           	 empty=1;
+           	 ID1[i] = $(this).val(); 
+           	 alert(ID1[i]);
+            });
+ 			$("div[name='libid']:eq(1) input[name='quesid']:checked").each(function(i){
+ 	           	 empty=1;
+ 	           	 ID2[i] = $(this).val(); 
+ 	           	 alert(ID2[i]);
+ 	            });
+ 			$.ajax({
+	    		type:'post',
+	    		url:'delquestionGZK',
+	    		async:false,
+	    		traditional:true,
+	    		data:{libid1:libid1,libid2:libid2,ID1:ID1,ID2:ID2},
+	    		dataType:'json',
+	    		success:function(e){
+	    			$("#toquestionlib").click();
+	    		}
+	    		});
+ 			
+ 		})
+ 		
+       $("#check").click(function(){
+			$("#divlib").html("");
+			 var checkID=[];
+			 var empty=0; 
+             $("input[name='libid']:checked").each(function(i){
+            	 empty=empty+1;
+            	 checkID[i] = $(this).val(); 
+             });
+             if(empty!=2)
+            	 {
+            	 alert("请选择两个题库");
+            	 
+            	 return;
+            	 }
+             
+             $("#check1").click();
+    		$.ajax({
+	    		type:'post',
+	    		url:'getquestionlibidGZK',
+	    		async:false,
+	    		data:{libid1:checkID[0],libid2:checkID[1]},
+	    		dataType:'json',
+	    		success:function(e){
+
+	    			    console.log(JSON.stringify(e));
+	    			    for(var time=0;time<e.length;time++)
+	    			   {
+	    			    var newContent = template("libtemplate",e[time]);
+       					$("#divlib").append(newContent);
+       					$.ajax({
+       						type:"post",
+       						url:"getquestionliblistAjax",
+       						async:false,
+       						dataType:'json',
+       						data:{libid1:checkID[time],libid2:checkID[1-time]},
+       						success: function(result){
+       							/*单选*/
+       							
+       							if(typeof(result.single)=="object"){
+       							
+       								$("[sele=singlecontent1]:last").show ();
+       								for(var i=0;i<result.single.length;i++){
+       									console.log(JSON.stringify(result.single[i]));
+       									var singlecontent = template("singletemplate1",result.single[i]);
+       						     	    $("[sele=singlecontent1]:last").append(singlecontent);
+       								}	
+       							}
+       							else{
+       									$("[sele=singlecontent1]:last").hide();
+       								}
+       							/*多选*/
+       						
+       							if(typeof(result.mul)=="object"){
+       								$("[sele=mulcontent1]:last").show ();
+       								for(var i=0;i<result.mul.length;i++){
+       									console.log(JSON.stringify(result.mul[i]));
+       									var mulcontent = template("multemplate1",result.mul[i]);
+       						     	    $('[sele=mulcontent1]:last').append(mulcontent);
+       							}
+       							}
+       							else{
+       									$("[sele=mulcontent1]:last").hide();
+       								}
+       							/*判断*/
+       							if(typeof(result.mul)=="object"&&typeof(result.single)=="object")
+       								{
+       								$("[sele=single1]:last").show();
+       								}
+       							else{
+       								$("[sele=single1]:last").hide();
+       							}
+       							    							
+       							 
+       							if(typeof(result.jud)=="object"){
+       								$("[sele=judge1]:last").show ();
+       								for(var i=0;i<result.jud.length;i++){
+       									var judcontent = template("judtemplate1",result.jud[i]);
+       						     	    $('[sele=judcontent1]:last').append(judcontent);
+       							}
+       								}else{
+       									$("[sele=judge1]:last").hide();
+       								}
+       							/*填空*/
+       							typeof(result.tian)=="object"
+       							if(typeof(result.tian)=="object"){
+       								$("[sele=blank1]:last").show ();
+       								for(var i=0;i<result.tian.length;i++){
+       									var tiancontent = template("tiantemplate1",result.tian[i]);
+       						     	    $('[sele=tiancontent1]:last').append(tiancontent);
+       							}
+       								}else{
+       									$("[sele=blank1]:last").hide();
+       								}
+       							/*简答*/
+       							if(typeof(result.jian)=="object"){
+       								$("[sele=answer1]:last").show ();
+       								for(var i=0;i<result.jian.length;i++){
+       									var jiancontent = template("jiantemplate1",result.jian[i]);
+       						     	    $('[sele=jiancontent1]:last').append(jiancontent);
+       						     	
+       							}
+       								}else{
+       									$("[sele=answer1]:last").hide();
+       							
+       								}
+       							/* */
+       						
+       							
+       							}	
+       						});
+	    			        }
+	    		}       
+    		});
+       					
+	    			})
        });
        
     </script>
@@ -505,23 +694,10 @@
 											</div>
 											<div class="row" style="padding-top: 10px;">
 												<div  class="col-lg-4 col-md-4 col-sm-4" id="removelib">
-													<button type="button" class="bk-margin-5 btn btn-danger">删除题库</button>
-												</div>
-												<div class="col-lg-4 col-md-4 col-sm-4" id="salelib">
-													<button type="button" class="bk-margin-5 btn btn-warning">出售题库</button>
-												</div>
-												<div  class="col-lg-4 col-md-4 col-sm-4">
-													<!-- <button type="button" class="bk-margin-5 btn btn-success">添加习题</button> -->
-													<div class="bk-margin-5 btn-group">
-														<button type="button" class="btn btn-success">添加</button>
-														<button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown">
-															<span class="caret"></span>
-															<span class="sr-only">Toggle Dropdown</span>
-														</button>
-													<ul class="dropdown-menu" role="menu">
-													<li><a href="ui-buttons.html#">单个添加习题</a></li>
-													<li><a id="addquesecxcel" name="{{libid}}">批量导入习题</a></li>
-													</ul>
+                                                <div class="checkbox-custom checkbox-primary">
+                                                <input type="checkbox" name="libid" id="{{libid}}" value="{{libid}}"/>
+                                                <label for="{{libid}}">选择该题库</label>
+                                                </div>
 												</div>
 												</div>
 											</div>
@@ -537,5 +713,262 @@
 						</div>
 					</div>
 		</script>
+			<!--题库-->
+		<script type="text/html" id="libtemplate">
+				                <div class="panel col-lg-6 col-md-6 col-sm-6 col-xs-12" name="libid" id={{libid}}>
+								<div class="panel-heading bk-bg-white mailbox-btn-action">
+									<span class="panel-actions text-right">
+										<a href="#" class="minimize"><i class="fa fa-caret-up"></i></a>
+								
+									</span>
+									
+										<h3 class=" bk-fg-primary">
+										{{libname}}
+										</h3>
+																	
+								</div>
+								<div class="panel-body message"  >	
+                                <div class="panel" sele="single1">
+								<div class="panel-heading bk-bg-white mailbox-btn-action">
+									<span class="panel-actions text-right">
+										<a href="#" class="minimize"><i class="fa fa-caret-up"></i></a>S
+									</span>
+									<span class="item-action-group text-left">
+										<h3 class=" bk-fg-primary">
+										选择题部分：
+										</h3>
+									</span>												
+								</div>	
+								<div class="panel-body message" sele="singlecontent1">	
+								</div>
+								<div class="panel-body message" sele="mulcontent1">										
+								</div>
+							    </div>
+
+                                <div class="panel" sele="judge1">
+								<div class="panel-heading bk-bg-white mailbox-btn-action">
+									<span class="panel-actions text-right">
+										<a href="#" class="minimize"><i class="fa fa-caret-up"></i></a>
+									</span>
+									<span class="item-action-group text-left">
+										<h3 class=" bk-fg-primary">
+										判断题部分：
+										</h3>
+									</span>												
+								</div>
+								<div class="panel-body message" sele="judcontent1">	
+								</div>
+							</div>
+                               
+                            <div class="panel" sele="blank1">
+								<div class="panel-heading bk-bg-white mailbox-btn-action">
+									<span class="panel-actions text-right">
+										<a href="#" class="minimize"><i class="fa fa-caret-up"></i></a>
+									</span>
+									<span class="item-action-group text-left">
+										<h3 class=" bk-fg-primary">
+										填空题部分：
+										</h3>
+									</span>												
+								</div>
+								<div class="panel-body message" sele="tiancontent1">	
+								</div>
+							    </div>
+
+                                <div class="panel" sele="answer1">
+								<div class="panel-heading bk-bg-white mailbox-btn-action">
+									<span class="panel-actions text-right">
+										<a href="#" class="minimize"><i class="fa fa-caret-up"></i></a>
+									</span>
+									<span class="item-action-group text-left">
+										<h3 class=" bk-fg-primary">
+										简答题部分：
+										</h3>
+									</span>												
+								</div>
+								<div class="panel-body message" sele="jiancontent1">	
+								</div>
+							    </div>
+
+								</div>
+							    </div>
+	</script>
+			<!--选择题-->
+	<!--单选题-->
+	<script type="text/html" id="singletemplate1">
+		<div class=" col-md-12 panel panel-info">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-5 text-left bk-vcenter">
+											<h6 class="bk-margin-off">单选题 &nbsp;&nbsp;标签：{{tag}} &nbsp;&nbsp;难度：{{difficulty}}</h6>
+										</div>
+										
+										<!--<ul class="col-xs-8 list-inline bk-margin-off-bottom text-right">
+															<li>
+																<span>满分：5分</span>
+																<span>得分：？分</span>
+																<span>结果：</span>
+									                           <span class="glyphicon glyphicon-remove"></span>
+																
+															</li>
+                                                 			<li class="bk-padding-off-right">
+																<span>编辑:</span>
+																<span class="glyphicon glyphicon-pencil"></span>
+															</li>
+															
+														</ul>-->
+									</div>
+								</div>
+							<div class="panel-body">                       
+                            </div><div class="checkbox-custom checkbox-primary">
+                            <input type="checkbox" name="quesid" id="{{quesid}}" value="{{quesid}}"/>
+                            <label for="{{quesid}}">题目：{{quescontext}}</label>
+                            </div>
+								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
+									<div class="panel-body" style="padding-top: 10px;">
+										<span>选项：</span>
+										<div class="form-group">
+											<div class="col-md-6">
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{a}}</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{b}}</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{c}}</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{d}}</label>
+												</div>
+											</div>
+										</div>
+								   </div>																										
+								</div>
+							</div>			
+	</script>
+		
+    <!--多选题-->
+    
+    <script type="text/html" id="multemplate1">
+		<div class=" col-md-12 panel panel-info">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-5 text-left bk-vcenter">
+											<h6 class="bk-margin-off">多选题 &nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+										</div>
+									</div>
+								</div>
+                            <div class="panel-body">
+                            </div><div class="checkbox-custom checkbox-primary">
+                            <input type="checkbox" name="quesid" id="{{quesid}}" value="{{quesid}}"/>
+                            <label for="{{quesid}}">题目：{{quescontext}}</label>
+                            </div>
+								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
+									<div class="panel-body" style="padding-top: 10px;">
+										<span>选项：</span>
+										<div class="form-group">
+											<div class="col-md-6">
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{a}}</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{b}}</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{c}}</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">{{d}}</label>
+												</div>
+											</div>
+										</div>
+								   </div>																										
+								</div>
+							</div>			
+	</script>
+    
+	<!--判断题	-->
+	<script type="text/html" id="judtemplate1">
+		<div class=" col-md-12 panel panel-info">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-5 text-left bk-vcenter">
+											<h6 class="bk-margin-off">判断题 &nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+										</div>
+									</div>
+								</div>
+                             <div class="panel-body">
+                            </div><div class="checkbox-custom checkbox-primary">
+                            <input type="checkbox" name="quesid" id="{{quesid}}" value="{{quesid}}"/>
+                            <label for="{{quesid}}">题目：{{quescontext}}</label>
+                            </div>
+								<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
+									<div class="panel-body" style="padding-top: 10px;">
+										<!--<span>选项：</span>-->
+										<div class="form-group">
+											<div class="col-md-6">
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">对</label>
+												</div>
+												<div class="input-group" style="margin-top: 10px;">
+													<span class="input-group-addon"><i class="fa fa-circle-o"></i></span>
+													<label class="form-control">错</label>
+												</div>
+											</div>
+										</div>
+								   </div>																										
+								</div>
+							</div>		
+
+	</script>
+	
+	<!--填空题-->
+	<script type="text/html" id="tiantemplate1">
+	<div class=" col-md-12 panel panel-info">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-5 text-left bk-vcenter">
+											<h6 class="bk-margin-off">填空题 &nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+										</div>
+									</div>
+								</div>
+                           <div class="panel-body"> 
+                           </div><div class="checkbox-custom checkbox-primary">
+                            <input type="checkbox" name="quesid" id="{{quesid}}" value="{{quesid}}"/>
+                            <label for="{{quesid}}">题目：{{quescontext}}</label>
+                            </div>
+							<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
+						</div>		
+		
+	</script>
+	
+	<!--简答题-->
+	<script type="text/html" id="jiantemplate1">
+		<div class=" col-md-12 panel panel-info">
+								<div class="panel-heading">
+									<div class="row">
+										<div class="col-xs-5 text-left bk-vcenter">
+											<h6 class="bk-margin-off">简答题 &nbsp;&nbsp;标签：{{tag}}&nbsp;&nbsp;难度：{{difficulty}}</h6>
+										</div>
+									</div>
+								</div>
+                            <div class="panel-body">
+                            </div><div class="checkbox-custom checkbox-primary">
+                            <input type="checkbox" name="quesid" id="{{quesid}}" value="{{quesid}}"/>
+                            <label for="{{quesid}}">题目：{{quescontext}}</label>
+                            </div>							
+							<div class="header" style="margin-top: 5px; margin-bottom:10px;">	
+						</div>	
+	</script>
 	</body>
 </html>

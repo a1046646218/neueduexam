@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import neueduexam.DTFservice.QuestionlibService;
 import neueduexam.GZKservice.GZKUserService;
+import neueduexam.HLservice.QuestionService;
 import neueduexam.api.SHAjiamiApi;
 import neueduexam.dao.examandquestionMapper;
 import neueduexam.dao.exampaperMapper;
@@ -51,6 +53,10 @@ public class GZKUserServiceImp implements GZKUserService {
 	exampaperMapper exampapermapper;
 	@Autowired
 	examandquestionMapper examandquestionmapper;
+	@Autowired
+	QuestionService questionService;
+	@Autowired
+	QuestionlibService questionlibService;
 	public List<user> login(String phone)
 	{
 		
@@ -124,6 +130,16 @@ public class GZKUserServiceImp implements GZKUserService {
 			
 		 return list;
 	 }
+	 
+	 public List<questionlib> selectlist1(int  id)
+	 {
+		 questionlibExample e = new questionlibExample();
+		 neueduexam.entity.questionlibExample.Criteria cc = e.createCriteria();
+		 cc.andUseridEqualTo(id);
+		 List<questionlib> list=questionlibmapper.selectByExample(e);
+		 return list;
+	 }
+	
 	 public List<questionlib> selectlist(int  id)
 	 {
 		 questionlibExample e = new questionlibExample();
@@ -133,7 +149,10 @@ public class GZKUserServiceImp implements GZKUserService {
 		List<questionlib> list=questionlibmapper.selectByExample(e);
 		for(int i=0;i<list.size();i++)
 		{
+			if(list.get(i).getLibprofile().length()>50)
+			{
 			list.get(i).setLibprofile(list.get(i).getLibprofile().substring(0, 50)+"...");
+			}
 		}
 		 return list;
 	 }
@@ -147,6 +166,7 @@ public class GZKUserServiceImp implements GZKUserService {
 	 }
 	 public int buy(user user,questionlib questionlib)
 	 {
+		 List<question> list=getquestionlistbylibid(questionlib.getLibid());
 		 user.setPoints(user.getPoints()-questionlib.getLibprice());
 		 usermapper.updateByPrimaryKeySelective(user);
 		 userbuylib userbuylib=new userbuylib();
@@ -155,10 +175,20 @@ public class GZKUserServiceImp implements GZKUserService {
 		 userbuylibmapper.insert(userbuylib);
 		 questionlib.setNumofpurchases(questionlib.getNumofpurchases()+1);
 		 questionlibmapper.updateByPrimaryKey(questionlib);
-		 userhavelib userhavelib=new userhavelib();
-		 userhavelib.setLibid(questionlib.getLibid());
-		 userhavelib.setUserid(user.getUserid());
-		 return userhavelibmapper.insertSelective(userhavelib);
+		 int id=questionlibService.createQL(questionlib, user);
+		 for(int i=0;i<list.size();i++)
+		 {
+	     question q=new question();
+	     q=list.get(i);
+	     q.setQuesid(null);
+		 questionService.addquestion(q);
+		 questionandlib questionandlib=new questionandlib();
+		 questionandlib.setLibid(id);
+		 questionandlib.setQuesid(q.getQuesid());
+		 questionandlibmapper.insertSelective(questionandlib);
+		 }
+		 return 1;
+		 
 	 }
 	 
 	 public List<question> getquestionlistbylibid(Integer libid)
@@ -226,6 +256,20 @@ public class GZKUserServiceImp implements GZKUserService {
 			 examandquestionmapper.insertSelective(examandquestion);
 		 }
 		 return 1;
+	 }
+	 
+	 public int delquestion(String ID[],int libid) 
+	 {
+		 int a=0;
+		 for(int i=0;i<ID.length;i++)
+		 { 
+			 questionandlibExample  e=new questionandlibExample();
+			 neueduexam.entity.questionandlibExample.Criteria cc = e.createCriteria();
+			 cc.andLibidEqualTo(libid);
+			 cc.andQuesidEqualTo(Integer.parseInt(ID[i]));
+			 a=questionandlibmapper.deleteByExample(e);
+		 }
+		 return a;
 	 }
 	
 	

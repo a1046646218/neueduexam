@@ -1,6 +1,10 @@
 package neueduexam.api;
 
 public class StringsameApi {
+	
+	
+	
+	         
 	 public float string_same(String str1, String str2){
 		    //计算两个字符串的长度。  
 		    int len1 = str1.length();
@@ -27,9 +31,10 @@ public class StringsameApi {
 		            dif[i][j] = Math.min(Math.min(dif[i - 1][j - 1] + temp,dif[i][j - 1] + 1),dif[i - 1][j] + 1);
 		        }
 		    }
-		    //console.log("差异步骤：" + dif[len1][len2]);
+		    //System.out.println("差异步骤：" + dif[len1][len2]);
 		    //计算相似度
-		    //var similarity = 1 - dif[len1][len2] / Math.max(str1.length, str2.length);
-		    return 1 - dif[len1][len2] / Math.max(len1, len2);
+		   // System.out.println(Math.max(len1, len2));
+		    //System.out.println(1 - (float)(dif[len1][len2]) /(float)(Math.max(len1, len2)));
+		    return 1 - (float)(dif[len1][len2]) /(float)(Math.max(len1, len2));
 		}
 }

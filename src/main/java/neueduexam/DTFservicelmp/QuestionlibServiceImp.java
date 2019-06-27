@@ -194,5 +194,23 @@ public class QuestionlibServiceImp implements QuestionlibService{
 		map.put("jian", jian);
 		return map;
 	}
+
+	@Override
+	public int createQL(questionlib ql,user u) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
+		ql.setUserid(u.getUserid());
+		ql.setNickname(u.getNickname());
+		ql.setLibprice(-1);
+		ql.setNumofpurchases(0);
+		ql.setLibid(null);
+		int key = questionlibmapper.insertandgetlkey(ql);
+		System.out.println(key+"======主键是");
+		userhavelib record = new userhavelib();
+		record.setLibid(ql.getLibid());
+		record.setUserid(u.getUserid());
+		userhavelibmapper.insert(record);
+		
+		return ql.getLibid();
+	}
 	
 }

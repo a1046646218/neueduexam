@@ -12,5 +12,6 @@ public interface QuestionlibService {
 	public int createQuestionlib(String clibname,String clibtype,String clibpro,user u);
 	public int removeQuestionlib(user u,int libid);
 	public int changesalelib(int libid,int point);
-	public HashMap<String,List<Integer>> questioneasychart();
+	public HashMap<String, List<Integer>> questioneasychart();
+	public int createQL(questionlib ql,user u);
 }

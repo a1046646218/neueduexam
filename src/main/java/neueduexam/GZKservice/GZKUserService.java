@@ -27,5 +27,7 @@ public List<question> getquestionlistbyquesid(String[] s);
 public int insertexampaper(user user,int single,
 		int mul,int jud,int tian,int jian,String examname,
 		String examprotype,String examprofile);
-public int insertexamquestion(String[] ID,String[] fen,int max);
+public int insertexamquestion(String[] ID,String[] fen,int max); 
+public int delquestion(String ID[],int libid);
+public List<questionlib> selectlist1(int  id);
 }

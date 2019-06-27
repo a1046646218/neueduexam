@@ -31,26 +31,22 @@ public class admincontroller {
 		List<question> list1= userservice.getquestionlistbylibid(libid1);
 		List<question> list2= userservice.getquestionlistbylibid(libid2);
 		HashMap<String,List<question>> map = new HashMap<>();
-		List<question> single1 =new ArrayList<>();
-		List<question> mul1 = new ArrayList<>();
-		List<question> jud1 = new ArrayList<>();
-		List<question> tian1 = new ArrayList<>();
-		List<question> jian1 = new ArrayList<>();
-		List<question> single2 =new ArrayList<>();
-		List<question> mul2 = new ArrayList<>();
-		List<question> jud2 = new ArrayList<>();
-		List<question> tian2 = new ArrayList<>();
-		List<question> jian2 = new ArrayList<>();
+		List<question> single =new ArrayList<>();
+		List<question> mul = new ArrayList<>();
+		List<question> jud = new ArrayList<>();
+		List<question> tian = new ArrayList<>();
+		List<question> jian = new ArrayList<>();
 		List<question> list11=new ArrayList<>();
-		List<question> list22=new ArrayList<>();
 		for(int i=0;i<list1.size();i++)
 		{
 			for(int j =0;j<list2.size();j++)
 			{
-				if(StringsameApi.string_same(list1.get(i).getQuescontext(),list2.get(j).getQuescontext())>0.5)
+				if(StringsameApi.string_same(list1.get(i).getQuescontext(),list2.get(j).getQuescontext())>0.6)
 				{
+		
+
 					list11.add(list1.get(i));
-					list22.add(list2.get(j));
+					break;
 				}
 			}
 		}
@@ -59,65 +55,37 @@ public class admincontroller {
 			for(int i=0;i<list11.size();i++) {
 				if("0".equals(list11.get(i).getQuestype())) {
 					System.out.println("加入选择题");
-					single1.add(list11.get(i));
-					System.out.println(single1.size());
-					System.out.println(single1.get(i).getQuescontext());
+					single.add(list11.get(i));
+					System.out.println(single.size());
+					System.out.println(single.get(i).getQuescontext());
 					
 				}else if("1".equals(list11.get(i).getQuestype())) {
-					mul1.add(list11.get(i));
+					mul.add(list11.get(i));
 					
 				}else if("2".equals(list11.get(i).getQuestype())) {
-					jud1.add(list11.get(i));
+					jud.add(list11.get(i));
 					
 				}else if("3".equals(list11.get(i).getQuestype())) {
-					tian1.add(list11.get(i));
+					tian.add(list11.get(i));
 					
 				}else if("4".equals(list11.get(i).getQuestype())) {
-					jian1.add(list11.get(i));
+					jian.add(list11.get(i));
 					
 				}
 			}
-			map.put("single1", single1);
-			map.put("mul1", mul1);
-			map.put("jud1", jud1);
-			map.put("tian1", tian1);
-			map.put("jian1", jian1);
+			map.put("single", single);
+			map.put("mul", mul);
+			map.put("jud", jud);
+			map.put("tian", tian);
+			map.put("jian", jian);
 		}
-		if(list22.size()>0) {
-			System.out.println(list22.get(0).getQuescontext());
-			for(int i=0;i<list22.size();i++) {
-				if("0".equals(list22.get(i).getQuestype())) {
-					System.out.println("加入选择题");
-					single2.add(list22.get(i));
-					System.out.println(single2.size());
-					System.out.println(single2.get(i).getQuescontext());
-					
-				}else if("1".equals(list22.get(i).getQuestype())) {
-					mul2.add(list22.get(i));
-					
-				}else if("2".equals(list22.get(i).getQuestype())) {
-					jud2.add(list22.get(i));
-					
-				}else if("3".equals(list22.get(i).getQuestype())) {
-					tian2.add(list22.get(i));
-					
-				}else if("4".equals(list22.get(i).getQuestype())) {
-					jian2.add(list22.get(i));
-					
-				}
-			}
-			map.put("single2", single2);
-			map.put("mul2", mul2);
-			map.put("jud2", jud2);
-			map.put("tian2", tian2);
-			map.put("jian2", jian2);
-		}
+		
 		return map;
 	
 	}
     @RequestMapping("/getquestionlibGZK")
 	@ResponseBody
-	public List<questionlib> getquestionlibAjax(int page,HttpServletRequest resq){
+	public List<questionlib> getquestionlibGZK(int page,HttpServletRequest resq){
 		
 		
 		List<questionlib> alllist= userservice.selectlist("");
@@ -129,4 +97,32 @@ public class admincontroller {
 		return list;
 	
 	}
+	
+	    @RequestMapping("/getquestionlibidGZK")
+		@ResponseBody
+		public List<questionlib> getquestionlibidGZK(HttpServletRequest resq){
+			
+			int libid1=Integer.parseInt(resq.getParameter("libid1"));
+			int libid2=Integer.parseInt(resq.getParameter("libid2"));
+			List<questionlib> list= userservice.selectlist(libid1);
+			List<questionlib> list2= userservice.selectlist(libid2);
+			list.add(list2.get(0));
+			return list;
+		
+		}
+		
+		@RequestMapping("/delquestionGZK")
+		@ResponseBody
+		public void delquestionGZK(HttpServletRequest req,String[] ID1,String[] ID2,int libid1,int libid2){
+			if(ID1!=null)
+			{
+			userservice.delquestion(ID1, libid1);
+			}
+			if(ID2!=null)
+			{
+			userservice.delquestion(ID2, libid2);
+			}
+		 	
+		}
+		
 }
