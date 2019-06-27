@@ -28,5 +28,9 @@ public class RedirectController {
 	public String toGuanLiYuan() {
 		return "1";
 	}
+	@RequestMapping("/toCheckIllegalQuestion")
+	public String toCheckIllegalQuestion() {
+		return "minganci";
+	}
 
 }

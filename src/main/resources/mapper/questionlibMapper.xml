@@ -535,4 +535,29 @@
       #{numofblank,jdbcType=INTEGER}, #{numofanswer,jdbcType=INTEGER}, #{publishtime,jdbcType=VARCHAR}, 
       #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
   </insert>
+  <update id="deleteSingleNumberBylibId">
+  update questionlib
+  set quesAmount = quesAmount -1,numOfSingle = numOfSingle - 1
+  where libId = #{libId}
+  </update>
+  <update id="deleteMultipleNumberBylibId">
+  update questionlib
+  set quesAmount = quesAmount -1,numOfMultiple = numOfMultiple - 1
+  where libId = #{libId}
+  </update>
+   <update id="deleteJudgeNumberBylibId">
+  update questionlib
+  set quesAmount = quesAmount -1,numOfJudge = numOfJudge - 1
+  where libId = #{libId}
+  </update>
+   <update id="deleteBlankNumberBylibId">
+  update questionlib
+  set quesAmount = quesAmount -1,numOfBlank = numOfBlank - 1
+  where libId = #{libId}
+  </update>
+   <update id="deleteAnswerNumberBylibId">
+  update questionlib
+  set quesAmount = quesAmount -1,numOfAnswer = numOfAnswer - 1
+  where libId = #{libId}
+  </update>
 </mapper>

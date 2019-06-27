@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import neueduexam.HXBservice.CreateExamPaperService;
+import neueduexam.HXBservice.DeleteQuestionService;
 import neueduexam.HXBservice.ExamLibService;
 import neueduexam.HXBservice.HxbUserService;
 import neueduexam.HXBservice.InvitationService;
@@ -35,6 +36,8 @@ public class JsonController {
 	SelectQuestionListService selectQuestionListService;
 	@Autowired
 	HxbUserService userService;
+	@Autowired
+	DeleteQuestionService deleteQuestionService;
 	
 	@RequestMapping("/invitationJson")
 	public String getInvitationJson(String testId) {
@@ -100,5 +103,15 @@ public class JsonController {
 		System.out.println(result);
 		return result;
 	}
-	
+	@RequestMapping("/getIllegalQuestionListJson")
+	public String getIllegalQuestionListJson() {
+		String jsonString = selectQuestionListService.selectIllegalQuestionList();
+		System.out.println(jsonString);
+		return jsonString;
+	}
+	@RequestMapping("/deleteQuestion")
+	public int deleteQuestion(int quesId) {
+		int result = deleteQuestionService.deleteQuestionById(quesId);
+		return result;
+	}
 }

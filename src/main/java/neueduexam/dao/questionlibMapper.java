@@ -37,4 +37,14 @@ public interface questionlibMapper {
 	SimpleQuestionLib selectSimpleQuestionLibByPrimaryKey(Integer libid);
 
 	int insertExceptId(questionlib q);
+
+	int deleteSingleNumberBylibId(Integer libId);
+
+	int deleteMultipleNumberBylibId(Integer libId);
+
+	int deleteBlankNumberBylibId(Integer libId);
+
+	int deleteJudgeNumberBylibId(Integer libId);
+
+	int deleteAnswerNumberBylibId(Integer libId);
 }

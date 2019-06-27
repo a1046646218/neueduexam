@@ -37,7 +37,7 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 	public String createExamPaper(ExamData examData) {
 		
 		//生成题库记录,返回新生成的题库id
-		int libid = insertQuestionLib(examData.getQuesNums(),examData.getUserId());
+		int libid = insertQuestionLib(examData);
 		//生成用户拥有题库记录
 		insertUserHaveLib(libid,examData.getUserId());
 
@@ -128,25 +128,26 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 	}
 	
 	
-	private int insertQuestionLib(List<Integer> quesNums, int userId) {
+	private int insertQuestionLib(ExamData examData) {
+		List<Integer> quesNums = examData.getQuesNums();
 		//生成题库记录
 		questionlib q = new questionlib();
-		q.setLibname("智能生成的题库");
-		String nickName = userMapper.selectByPrimaryKey(userId).getNickname();
+		q.setLibname(examData.getTestName());
+		String nickName = userMapper.selectByPrimaryKey(examData.getUserId()).getNickname();
 		q.setNickname(nickName);
 		q.setQuesamount(quesNums.get(0)+quesNums.get(1)+quesNums.get(2)+quesNums.get(3)+quesNums.get(4));
-		q.setLibtype("智能生成的类");
-		q.setLibprofile("智能生成的题库");
+		q.setLibtype(examData.getTestType());
+		q.setLibprofile(examData.getTestProfile());
 		q.setLibprice(-1);
 		q.setNumofsingle(quesNums.get(0));
 		q.setNumofmultiple(quesNums.get(1));
 		q.setNumofjudge(quesNums.get(2));
 		q.setNumofblank(quesNums.get(3));
 		q.setNumofanswer(quesNums.get(4));
-		q.setUserid(userId);
+		q.setUserid(examData.getUserId());
 		q.setOther1(null);
 		q.setOther2(null);
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
 		q.setPublishtime(df.format(new Date()));
 		questionlibMapper.insertExceptId(q);
 		return q.getLibid();
