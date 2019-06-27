@@ -88,7 +88,7 @@ public class QuestionlibServiceImp implements QuestionlibService{
 		li.setNumofmultiple(0);
 		li.setNumofpurchases(0);
 		li.setNumofsingle(0);
-		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//设置日期格式
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");//设置日期格式
 		li.setPublishtime(df.format(new Date()));
 		li.setQuesamount(0);
 		li.setUserid(u.getUserid());

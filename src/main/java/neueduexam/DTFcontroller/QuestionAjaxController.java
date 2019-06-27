@@ -27,7 +27,7 @@ public class QuestionAjaxController {
 		user u = (user)resq.getSession().getAttribute("user");
 		List<questionlib> alllist = questionlibservice.getquestionlibByid(u.getUserid());
 		List<questionlib> list = new ArrayList<questionlib>();
-		for(int i=(page-1)*6;i<alllist.size()&&i<(page-1)*6+6;i++) {
+		for(int i=(page-1)*8;i<alllist.size()&&i<(page-1)*8+8;i++) {
 			list.add(alllist.get(i));
 		}
 		System.out.println("多少题库"+list.size());
