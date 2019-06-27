@@ -2,6 +2,7 @@ package neueduexam.connectcontroller;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpRange;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -74,7 +75,8 @@ public class connectcontroller {
 		return "grouphome";
 	}
 	@RequestMapping("/webcamcode")
-	public String webcamcode() {
+	public String webcamcode(int testid,HttpServletRequest res) {
+		res.setAttribute("testid", testid);
 		return "webcamcode";
 	}
 	@RequestMapping("/admin1")

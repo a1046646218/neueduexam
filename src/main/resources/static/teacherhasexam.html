@@ -91,11 +91,11 @@
 					<div class="userbox">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 							<figure class="profile-picture hidden-xs">
-								<img th:src="@{static/assets/img/avatar.jpg}" class="img-circle" alt="" />
+								<img th:src="${session.user.headphoto}" class="img-circle" alt="" />
 							</figure>
 							<div class="profile-info">
-								<span class="name">用户名：</span>
-								<span class="role"><i class="fa fa-circle bk-fg-success"></i> 用户类型</span>
+								<span class="name">用户名：<span th:text="${session.user.nickname}"></span></span>
+								<span class="role"><i class="fa fa-circle bk-fg-success"></i> 用户类型:<span th:text="${session.user.type}"></span></span>
 							</div>			
 							<i class="fa custom-caret"></i>
 						</a>

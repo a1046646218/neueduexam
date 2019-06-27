@@ -22,10 +22,13 @@ public class InvitationCodeServiceImp implements InvitationCodeService{
 		Criteria cc = e.createCriteria();
 		cc.andInvitecodeEqualTo(invitecode);
 		cc.andStudentidEqualTo(studentid);
+		cc.andStateEqualTo("0");
 		List<invitation> list = invatationmapper.selectByExample(e);
 		if(list.size()==0)//zhe daima taihao le bukui shiwo
 		return 0;
-		return 1;
+		else {
+			return list.get(0).getTestid();
+		}
 	}
 	
 }
