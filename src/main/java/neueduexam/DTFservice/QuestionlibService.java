@@ -14,4 +14,5 @@ public interface QuestionlibService {
 	public int changesalelib(int libid,int point);
 	public HashMap<String, List<Integer>> questioneasychart();
 	public int createQL(questionlib ql,user u);
+	public List<Integer> geterror();
 }

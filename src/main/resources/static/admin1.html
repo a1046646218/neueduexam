@@ -366,12 +366,19 @@
 					<div class="row">
 						<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 							<div class="panel panel-default bk-bg-white" style="height:350px;" id="questioneasychart">
-					
+
 							</div>
 						</div>
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-							<div class="panel panel-default bk-bg-white" style="height:350px;" id="echart2">
-					
+							<div class="panel panel-default bk-bg-white" style="height:350px;" id="errorcharts">
+
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<div class="panel panel-default bk-bg-white" style="height:400px;" id="nowcost">
+
 							</div>
 						</div>
 					</div>
@@ -411,6 +418,62 @@
 
 	</body>
 	<script type="application/javascript">
+		function adderrorexam(result) {
+			var myChart = echarts.init(document.getElementById("errorcharts"));
+			option = {
+				angleAxis: {
+					type: 'category',
+					data: ['单选题', '多选题', '判断题', '填空题', '简答题'],
+					z: 10
+				},
+				radiusAxis: {},
+				polar: {},
+				toolbox: {
+					show: true,
+					feature: {
+						mark: {
+							show: true
+						},
+						dataView: {
+							show: true,
+							readOnly: false
+						},
+						magicType: {
+							show: true,
+							type: ['pie', 'funnel']
+						},
+						restore: {
+							show: true
+						},
+						saveAsImage: {
+							show: true
+						}
+					}
+				},
+				series: [{
+					type: 'bar',
+					data: [result[5], result[6], result[7], result[8], result[9]],
+					coordinateSystem: 'polar',
+					name: '对',
+					stack: 'a'
+				}, {
+					type: 'bar',
+					data: [result[0] - result[5], result[1] - result[6], result[2] - result[7], result[3] - result[8], result[4] -
+						result[9]
+					],
+					coordinateSystem: 'polar',
+					name: '全',
+					stack: 'a'
+				}],
+				legend: {
+					show: true,
+					data: ['对', '全']
+				}
+			};
+			myChart.setOption(option);
+		}
+
+
 		function adddatachart(result) {
 			var myChart = echarts.init(document.getElementById("echart2"));
 			option = {
@@ -673,7 +736,7 @@
 					addcheckinchart(result);
 				}
 			});
-			
+
 			$.ajax({
 				type: 'post',
 				url: 'getquestioneasy',
@@ -683,6 +746,96 @@
 					addeasy(result);
 				}
 			});
+			$.ajax({
+				type: 'post',
+				url: 'geterror',
+				async: false,
+				success: function(result) {
+					adderrorexam(result);
+				}
+			});
 		});
+	</script>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('nowcost'));
+		myChart.setOption({
+			title: {
+				text: '动态获取收益'
+			},
+			tooltip: {},
+			legend: {
+				data: ['销量']
+			},
+			toolbox: {
+				show: true,
+				feature: {
+					dataView: {
+						readOnly: false
+					},
+					restore: {},
+					saveAsImage: {}
+				}
+			},
+			xAxis: {
+				data: []
+			},
+			yAxis: {},
+			series: [{
+				name: '销量',
+				type: 'bar',
+				data: []
+			}]
+		});
+
+		myChart.showLoading(); //数据加载完之前先显示一段简单的loading动画
+
+		var names = []; //类别数组（实际用来盛放X轴坐标值）
+		var nums = []; //销量数组（实际用来盛放Y坐标值）
+		var id = 0;
+
+		setInterval(function() {
+			$.ajax({
+				type: "post",
+				async: true, //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
+				url: "costServlet", //请求发送到TestServlet处
+				data: {
+					id: id
+				},
+				dataType: "json", //返回数据形式为json
+				success: function(result) {
+					//请求成功时执行该函数内容，result即为服务器返回的json对象
+					console.log(result);
+					
+						for (var i = 0; i < result.length; i++) {
+							if (result[i].recordid > id) {
+								id = result[i].recordid;
+							}
+							names.push(result[i].date); //挨个取出类别并填入类别数组
+						}
+						for (var i = 0; i < result.length; i++) {
+							nums.push(result[i].cost); //挨个取出销量并填入销量数组
+						}
+						myChart.hideLoading(); //隐藏加载动画
+						myChart.setOption({ //加载数据图表
+							xAxis: {
+								data: names
+							},
+							series: [{
+								// 根据名字对应到相应的系列
+								name: '销量',
+								data: nums
+							}]
+						});
+			
+					
+			
+				},
+				error: function(errorMsg) {
+					//请求失败时执行该函数
+					alert("图表请求数据失败!");
+					myChart.hideLoading();
+				}
+			})
+		}, 3000);
 	</script>
 </html>

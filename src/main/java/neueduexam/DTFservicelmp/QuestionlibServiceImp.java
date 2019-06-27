@@ -10,10 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import neueduexam.DTFservice.QuestionlibService;
+import neueduexam.dao.personexampaperMapper;
+import neueduexam.dao.personquestionMapper;
 import neueduexam.dao.questionMapper;
 import neueduexam.dao.questionandlibMapper;
 import neueduexam.dao.questionlibMapper;
 import neueduexam.dao.userhavelibMapper;
+import neueduexam.entity.personexampaper;
+import neueduexam.entity.personexampaperExample;
+import neueduexam.entity.personquestion;
+import neueduexam.entity.personquestionExample;
 import neueduexam.entity.question;
 import neueduexam.entity.questionExample;
 import neueduexam.entity.questionandlib;
@@ -36,6 +42,10 @@ public class QuestionlibServiceImp implements QuestionlibService{
 	questionMapper questionmapper; 
 	@Autowired
 	userhavelibMapper userhavelibmapper; 
+	@Autowired
+	personexampaperMapper personexampapermapper;
+	@Autowired
+	personquestionMapper personquestionmapper;
 	
 	
 	@Override
@@ -211,6 +221,65 @@ public class QuestionlibServiceImp implements QuestionlibService{
 		userhavelibmapper.insert(record);
 		
 		return ql.getLibid();
+	}
+
+	@Override
+	public List<Integer> geterror() {
+		int a1 = 0;
+		int a2 = 0;
+		int b1 = 0;
+		int b2 = 0; 
+		int c1 = 0;
+		int c2 = 0; 
+		int d1 = 0;
+		int d2 = 0; 
+		int e1 = 0;
+		int e2 = 0; 
+		personquestionExample e = new personquestionExample();
+		neueduexam.entity.personquestionExample.Criteria cc = e.createCriteria();
+		cc.andQuesidIsNotNull();
+		List<personquestion> list = personquestionmapper.selectByExample(e);
+		for(int i=0;i<list.size();i++) {
+			question q = questionmapper.selectByPrimaryKey(list.get(i).getQuesid());
+			if("0".equals(q.getQuestype())) {
+				a1++;
+				if("错".equals(list.get(i).getPerquesstate())) {
+					a2++;
+				}
+			}else if("1".equals(q.getQuestype())) {
+				b1++;
+				if("错".equals(list.get(i).getPerquesstate())) {
+					b2++;
+				}
+			}else if("2".equals(q.getQuestype())) {
+				c1++;
+				if("错".equals(list.get(i).getPerquesstate())) {
+					c2++;
+				}
+			}else if("3".equals(q.getQuestype())) {
+				d1++;
+				if("错".equals(list.get(i).getPerquesstate())) {
+					d2++;
+				}
+			}else if("4".equals(q.getQuestype())) {
+				e1++;
+				if("错".equals(list.get(i).getPerquesstate())) {
+					e2++;
+				}
+			}
+		}
+		List<Integer> li = new ArrayList<>();
+		li.add(a1);
+		li.add(b1);
+		li.add(c1);
+		li.add(d1);
+		li.add(e1);
+		li.add(a2);
+		li.add(b2);
+		li.add(c2);
+		li.add(d2);
+		li.add(e2);
+		return li;
 	}
 	
 }

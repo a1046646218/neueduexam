@@ -12,6 +12,7 @@ import neueduexam.DTFservice.QuestionlibService;
 import neueduexam.DTFservice.UserService;
 import neueduexam.DTFservice.inviteServcie;
 import neueduexam.entity.invitation;
+import neueduexam.entity.record;
 
 @RestController
 public class adminDataDTFController {
@@ -23,6 +24,17 @@ public class adminDataDTFController {
 	UserService userservice; 
 	@Autowired
 	QuestionlibService questionlibservice;
+	
+	
+	@RequestMapping("/costServlet")
+	public List<record> costServlet(int id){
+		return userservice.getNowRecord(id);
+	}
+	
+	@RequestMapping("/geterror")
+	public List<Integer> geterror(){
+		return questionlibservice.geterror();
+	}
 	
 	@RequestMapping("/getquestioneasy")
 	public HashMap<String,List<Integer>> getquestioneasy(){

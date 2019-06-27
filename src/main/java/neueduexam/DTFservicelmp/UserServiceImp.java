@@ -77,4 +77,13 @@ public class UserServiceImp implements UserService{
 		date=calendar.getTime(); //这个时间就是日期往后推一天的结果 
 		return date;
 	}
+
+	@Override
+	public List<record> getNowRecord(int i) {
+		recordExample e = new recordExample();
+		neueduexam.entity.recordExample.Criteria cc = e.createCriteria();
+		cc.andRecordidGreaterThan(i);
+		List<record> li = recordmapper.selectByExample(e);
+		return li;
+	}
 }
