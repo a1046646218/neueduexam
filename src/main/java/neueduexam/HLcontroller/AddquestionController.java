@@ -18,6 +18,7 @@ import neueduexam.HLservice.QuestionlibService;
 import neueduexam.entity.question;
 import neueduexam.entity.questionandlib;
 import neueduexam.entity.questionlib;
+import neueduexam.entity.user;
 
 @Controller
 public class AddquestionController {
@@ -32,10 +33,12 @@ public class AddquestionController {
 	QuestionandlibService questionandlibservice;
 	
 	@RequestMapping("/addquestion")
-	public void addquestion(HttpServletRequest req,HttpServletResponse resp) throws Exception{
+	public String addquestion(HttpServletRequest req,HttpServletResponse resp) throws Exception{
 		System.out.println("进入");
 		question question=new question();
-		Integer libid=2;
+		
+		int libid = Integer.parseInt(req.getParameter("libid"));
+		
 		questionlib questionlib=questionlibservice.selectByPrimaryKey(libid);//前端获得题库id
 		questionandlib questionandlib=new questionandlib();
 		questionandlib.setLibid(libid);
@@ -140,13 +143,17 @@ public class AddquestionController {
 			
 			
 			if(k>0&&j>0&&i>0) {
-			resp.getWriter().println("success");
-				
+//			resp.getWriter().println("success");
+				user u = (user)req.getSession().getAttribute("user");
+				if("学生".equals(u.getType())) {
+					return "studentquestionlib";
+				}else {
+					return "teacherquestionlib";
+				}
 			}
 			 else {
 					resp.getWriter().println("error");
-					System.out.println("error");
-				
+					return "home";
 				}
 			
 		
