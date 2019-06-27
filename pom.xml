@@ -149,7 +149,7 @@
             <artifactId>com.mgc.util</artifactId>
             <version>1.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/alex-word-filter-2.0.jar</systemPath>
+            <systemPath>${basedir}/lib/alex-word-filter-2.0.jar</systemPath>
 		</dependency>
 		
 	</dependencies>
@@ -157,7 +157,7 @@
 	<build>
 		<finalName>wartest2</finalName><!-- 最终要部署到tomcat的项目名 -->
 	   <!--引入本地资源--> 
-        <resources>
+        <!--<resources>
             <resource>
                 <directory>lib</directory>
                 <targetPath>BOOT-INF/lib/</targetPath>
@@ -165,7 +165,7 @@
                     <include>**/*.jar</include>
                 </includes>
             </resource>
-        </resources>
+        </resources>-->
 	
 		<plugins>
 			<plugin>
@@ -178,7 +178,7 @@
                     <configuration>
                     <webResources>
                         <resource>
-                            <directory>${project.basedir}/lib</directory>
+                            <directory>${basedir}/lib</directory>
                             <targetPath>WEB-INF/lib</targetPath>
                             <filtering>false</filtering>
                             <includes>
