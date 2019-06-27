@@ -137,7 +137,7 @@
 								<ul class="nav nav-sidebar">
 									<div class="panel-body text-center">
 										<div class="flag">
-											<button type="button" class="bk-margin-10 btn btn-primary btn-lg"><i class="fa fa-pencil-square-o"></i>参加考试</button>
+											<button type="button" data-toggle="modal" data-target="#createexammodel" class="bk-margin-10 btn btn-primary btn-lg"><i class="fa fa-pencil-square-o"></i>创建试卷</button>
 											<!-- <img th:src="@{static/assets/img/flags/USA.png}" class="img-flags" alt="" /> -->
 										</div>
 									</div>
@@ -393,6 +393,7 @@
 	
 	
 	$(document).ready(function(){
+		
 		$("#createlib").click(function(){
 			var clibname = $("#clibname").val().trim().replace(/\s/g,"");
 			var clibtype = $("#clibtype").val().trim().replace(/\s/g,"");
@@ -492,5 +493,47 @@
 						</div><!-- /.modal-content -->
 					</div><!-- /.modal-dialog -->
 	</div>
-
+<div class="modal fade" id="createexammodel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+			<div class="modal-dialog" style="width:480px;height: 280px;">
+				<div class="modal-content bk-padding-15" style="width:450px;height: 250px;">
+					<div class="col-lg-1">
+					</div>
+				<div class="col-lg-4 bk-padding-15" >
+					<div class="panel bk-widget bk-border-off">
+									<a class="panel-body bk-fg-primary bk-bg-white bk-ltr">
+									<div class="text-left bk-vcenter bk-padding-off">
+									<span class="bk-round bk-border-white bk-icon bk-icon-3x bk-bg-primary">
+									<i class="fa  fa-desktop fa-3x"></i>
+									</span>
+									</div>
+									<div class=" bk-vcenter ">
+									<h4 class=" texbk-margin-off">智能创卷</h3>
+									<h6 class="bk-fg-gray">可以根据用户所填试卷信息自动生成试卷</h6>
+									
+									</div>
+									</a>
+					</div>
+				</div>
+				<div class="col-lg-2"></div>
+				<div class="col-lg-4 bk-padding-15">
+					<div class="panel bk-widget bk-border-off">
+										<a class="panel-body bk-fg-primary bk-bg-white bk-ltr">
+										<div class="text-left bk-vcenter bk-padding-off">
+										<span class="bk-round bk-border-white bk-icon bk-icon-3x bk-bg-primary">
+										<i class="fa fa-user fa-3x"></i>
+										</span>
+										<div class=" bk-vcenter ">
+										<h4 class=" texbk-margin-off">手动创卷</h3>
+										<h6 class="bk-fg-gray">用户手动选择要加入的题库</h6>
+										
+										</div>
+										</a>
+					</div>
+				</div>	
+				
+				
+				
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+	</div>
 </html>
