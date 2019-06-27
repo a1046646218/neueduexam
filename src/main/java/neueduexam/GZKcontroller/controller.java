@@ -32,8 +32,6 @@ public class controller {
 		}
 		@RequestMapping("/toaddexam")
 		public String toaddexam(HttpServletRequest req){
-			user user = tuserservice.getuserbyid(1);
-			req.getSession().setAttribute("user", user);
 			return "addexam";
 		}
 		@RequestMapping("/logincontroller")
@@ -141,8 +139,6 @@ public class controller {
 			}
 			@RequestMapping("/toshop")
 			public String shop(HttpServletRequest req){
-				user user = tuserservice.getuserbyid(2);
-				req.getSession().setAttribute("user", user);
 				return "shop";
 			}
 			@RequestMapping("/shoplist")
