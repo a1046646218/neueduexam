@@ -3,7 +3,7 @@ package neueduexam.HXBcontroller;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,6 +19,7 @@ import neueduexam.HXBservice.InvitationService;
 import neueduexam.HXBservice.QuestionLibService;
 import neueduexam.HXBservice.SelectQuestionListService;
 import neueduexam.HXBservice.TestSituationService;
+import neueduexam.entity.user;
 @RestController
 public class JsonController {
 	
@@ -42,14 +43,14 @@ public class JsonController {
 	@RequestMapping("/invitationJson")
 	public String getInvitationJson(String testId) {
 		//测试
-		String json = invitationService.selectInvitationByTestId("1");
+		String json = invitationService.selectInvitationByTestId(testId);
 		return json;
 	}
 	
 	@RequestMapping("/testSituationJson")
 	public String getTestSituationJson(String testId) {
 		//测试
-		String json = testSituationService.selectTestSituationByTestId("1");
+		String json = testSituationService.selectTestSituationByTestId(testId);
 		return json;
 	}
 	@RequestMapping("/examLibNameJson")
@@ -69,11 +70,11 @@ public class JsonController {
 	}
 	
 	@RequestMapping("/createTestPaperJson")
-	public String createTestPaperJson(@RequestBody ExamData examData) {
-		
+	public String createTestPaperJson(@RequestBody ExamData examData,HttpServletRequest req) {
+		user u = (user)req.getSession().getAttribute("user");
 		System.out.println(examData.toString());
 		//test
-		int userId = 1;
+		int userId =u.getUserid();
 		examData.setUserId(userId);
 		 createExamService.createExamPaper(examData);
 		return "ok";

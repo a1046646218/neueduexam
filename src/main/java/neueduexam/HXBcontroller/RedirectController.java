@@ -1,5 +1,7 @@
 package neueduexam.HXBcontroller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -7,12 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RedirectController {
 	
 	@RequestMapping("/toinvitation")
-	public String toIntivation() {
+	public String toIntivation(int testid,HttpServletRequest res) {
+		res.setAttribute("testid", testid);
 		return "invitation";
 	}
 	
 	@RequestMapping("/totestsituation")
-	public String toIntivation2() {
+	public String toIntivation2(int testid,HttpServletRequest res) {
+		res.setAttribute("testid", testid);
 		return "testSituation";
 	}
 	
@@ -20,10 +24,19 @@ public class RedirectController {
 	public String toAutoCreateExamLib() {
 		return "autoCreateExamLib";
 	}
-	@RequestMapping("/toCheckQuestionLib")
-	public String toCheckQuestionLib() {
-		return "checkQuestionLib";
+	@RequestMapping("/toStuCheckQuestionLib")
+	public String toCheckQuestionLib(int libid,HttpServletRequest res) {
+		res.setAttribute("libid", libid);
+		return "StucheckQuestionLib";
 	}
+	
+	@RequestMapping("/toTeaCheckQuestionLib")
+	public String toTeaCheckQuestionLib(int libid,HttpServletRequest res) {
+		res.setAttribute("libid", libid);
+		return "TeaCheckQuestionLib";
+	}
+	
+	
 	@RequestMapping("/toGuanLiYuan")
 	public String toGuanLiYuan() {
 		return "1";

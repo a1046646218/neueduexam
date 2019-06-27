@@ -25,12 +25,14 @@ public class QuestionLibServiceImpl implements QuestionLibService{
 		QuestionNumber q2  = new QuestionNumber();
 		for(int i :libList) {
 			questionlib q = questionlibMapper.selectByPrimaryKey(i);
+			System.out.println("answer--"+q.getNumofanswer());
 			q2.addNumOfSingle(q.getNumofsingle());
 			q2.addNumOfMultiple(q.getNumofmultiple());
 			q2.addNumOfJudge(q.getNumofjudge());
 			q2.addNumOfBlank(q.getNumofblank());
 			q2.addNumOfAnswer(q.getNumofanswer());
 		}
+		System.out.println(q2);
 		String jsonString = JSON.toJSONString(q2);
 		return jsonString;
 	}

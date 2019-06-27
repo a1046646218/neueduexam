@@ -288,9 +288,11 @@
 											<div class="point point-green point-lg"></div>{{publishtime}}发布
 										
 									</div>
+									<a href="toStuCheckQuestionLib?libid={{libid}}">
 									<div class="col-xs-3 bk-vcenter text-right">
 										<i class="fa fa-folder-open fa-2x"></i>
 									</div>
+									</a>
 								</div>
 							</div>
 							
@@ -349,12 +351,12 @@
        			$("[rownum=\"1\"]").empty();
        			$("[rownum=\"0\"]").empty();
        			// //alert(JSON.stringify(result));
-       			var num = result.length%3;
+       			var num = result.length%4;
        			if(num!=0)
        				num=1;
-       			for(var i=0;i<result.length/3+num;i++){
+       			for(var i=0;i<result.length/4+num;i++){
        				var j=0;
-       				for(var time=i*3;time<result.length&&j<3;j++,time++){
+       				for(var time=i*4;time<result.length&&j<4;j++,time++){
        					var newContentNews = template("contentTemplate",result[time]);
        					$("[rownum=\""+i+"\"]").append(newContentNews);
 						// addnum(result[time]);

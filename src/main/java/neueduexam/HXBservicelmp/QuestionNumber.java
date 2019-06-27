@@ -57,4 +57,9 @@ public class QuestionNumber {
 		this.numOfAnswer += numofanswer2;
 		
 	}
+	@Override
+	public String toString() {
+		return "QuestionNumber [numOfSingle=" + numOfSingle + ", numOfMultiple=" + numOfMultiple + ", numOfJudge="
+				+ numOfJudge + ", numOfBlank=" + numOfBlank + ", numOfAnswer=" + numOfAnswer + "]";
+	}
 }

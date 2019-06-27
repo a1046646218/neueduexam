@@ -319,7 +319,9 @@
 					<div class="col-lg-7 col-md-10 col-sm-10 col-xs-12 bk-vcenter">
 						<div class="row">
 							<h6 class="bk-fg-primary bk-fg-darken bk-margin-off-bottom">
+							<a href="totestsituation?testid={{testid}}">
 							<span style="width: auto;border-left: 2px solid #0FB492;">&nbsp;<strong class=" bk-fg-primary bk-padding-right-20" style="font-size: 16px;margin-top: 5px;">{{testname}}</strong></span>
+							</a>
 							<span class="badge bk-bg-info">发布时间：{{publishdate}}</span>
 							<span class="badge bk-bg-danger">截止时间：{{other1}}</span></h6>
 					    </div>
@@ -346,6 +348,8 @@
 				        <ul class="dropdown-menu" role="menu" >
 					     <li id="addexcel" name="{{testid}}"><a >批量导入</a></li>
 					     <li id="addone" name="{{testid}}"><a >单个导入</a></li>
+						 <li id="addone" name="{{testid}}"><a href="toinvitation?testid={{testid}}">查看邀请</a></li>
+						 <li> <a href="totestsituation?testid={{testid}}">答题详情</a></li>
 				       </ul>
 					    </div> 	
 						<a class="col-lg-4 bk-fg-info">
@@ -550,11 +554,11 @@
 									<i class="fa  fa-desktop fa-3x"></i>
 									</span>
 									</div>
-									<div class=" bk-vcenter ">
+									<a href="toautocreateExamLib" class="bk-fg-primary"><div class=" bk-vcenter ">
 									<h4 class=" texbk-margin-off">智能创卷</h3>
 									<h6 class="bk-fg-gray">可以根据用户所填试卷信息自动生成试卷</h6>
 									
-									</div>
+									</div></a>
 									</a>
 					</div>
 				</div>
