@@ -116,9 +116,27 @@ public class GZKUserServiceImp implements GZKUserService {
 		}
 		 return list;
 	 }
-	 public List<questionlib> selectlistbytype(String search)
+	 
+	 public List<questionlib> selectlistbypro(String search)
 	 {
 		 questionlibExample e = new questionlibExample();
+		 neueduexam.entity.questionlibExample.Criteria cc = e.createCriteria();
+		cc.andLibpriceGreaterThan(0);
+		cc.andLibprofileLike("%"+search+"%");
+		List<questionlib> list=questionlibmapper.selectByExample(e);
+		for(int i=0;i<list.size();i++)
+		{
+			if(list.get(i).getLibprofile().length()>49)
+			{
+			list.get(i).setLibprofile(list.get(i).getLibprofile().substring(0, 50)+"...");
+		
+			}
+		}
+		 return list;
+	 }
+	 public List<questionlib> selectlistbytype(String search)
+	 {
+		questionlibExample e = new questionlibExample();
 		neueduexam.entity.questionlibExample.Criteria cc = e.createCriteria();
 		cc.andLibpriceGreaterThan(0);
 		cc.andLibtypeLike("%"+search+"%");
@@ -172,6 +190,9 @@ public class GZKUserServiceImp implements GZKUserService {
 		 List<question> list=getquestionlistbylibid(questionlib.getLibid());
 		 user.setPoints(user.getPoints()-questionlib.getLibprice());
 		 usermapper.updateByPrimaryKeySelective(user);
+		 user u=usermapper.selectByPrimaryKey(questionlib.getUserid());
+		 u.setPoints(u.getPoints()+questionlib.getLibprice());
+		 usermapper.updateByPrimaryKeySelective(u);
 		 userbuylib userbuylib=new userbuylib();
 		 userbuylib.setLibid(questionlib.getLibid());
 		 userbuylib.setUserid(user.getUserid());

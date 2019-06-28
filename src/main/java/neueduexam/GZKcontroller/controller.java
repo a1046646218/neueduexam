@@ -147,6 +147,7 @@ public class controller {
 				String search=req.getParameter("search");
 				List<questionlib> list= userservice.selectlist(search);
 				List<questionlib> list1= userservice.selectlistbytype(search);
+				List<questionlib> list2= userservice.selectlistbypro(search);
 				HashMap<Integer, String> hash=new HashMap<Integer, String>();
 				for(int i=0;i<list.size();i++)
 				{
@@ -160,8 +161,20 @@ public class controller {
 			        if(hash.get(list1.get(i).getLibid())==null)
 			        {
 			    	list.add(list1.get(i));
-			    	hash.put(list.get(i).getLibid(), "id");
+			    	hash.put(list1.get(i).getLibid(), "id");
 			        }
+			    }
+				
+				for(int i=0;i<list2.size();i++)
+			    {
+				
+			        if(hash.get(list2.get(i).getLibid())==null)
+			        {
+			    	list.add(list2.get(i));
+			    	hash.put(list2.get(i).getLibid(), "id");
+			    	System.out.println(list2.get(i).getLibid());
+			        }
+			        System.out.println(list2.get(i).getLibid());
 			    }
 				
 			    return list;

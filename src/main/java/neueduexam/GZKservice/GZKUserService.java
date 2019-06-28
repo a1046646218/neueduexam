@@ -30,4 +30,5 @@ public int insertexampaper(user user,int single,
 public int insertexamquestion(String[] ID,String[] fen,int max); 
 public int delquestion(String ID[],int libid);
 public List<questionlib> selectlist1(int  id);
+public List<questionlib> selectlistbypro(String search);
 }
