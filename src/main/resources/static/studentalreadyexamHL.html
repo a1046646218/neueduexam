@@ -331,6 +331,7 @@
 				async:false,
 				data:"page="+page,
 				success:function(result){
+					console.log(result);
 					if($.isEmptyObject(result)){
 						layer.msg("没有更多内容");
 						page = page-1;

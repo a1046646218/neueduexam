@@ -28,8 +28,6 @@ public class testcontroller {
 	}
 	@RequestMapping("/testhome")
 	public String testhome(int testid,HttpServletRequest res) {
-		user user = userservice.getuserbyid(3);
-		res.getSession().setAttribute("user", user);
 		res.setAttribute("testid", testid);
 		return "testhomeHL";
 	}
