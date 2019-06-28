@@ -115,4 +115,16 @@ public class JsonController {
 		int result = deleteQuestionService.deleteQuestionById(quesId);
 		return result;
 	}
+	@RequestMapping("/getNumOfTestStateJson")
+	public String getNumOfTestStateJson(Integer testId) {
+		String jsonString = testSituationService.selectNumOfTestStateByTestId(testId);
+		System.out.println(jsonString);
+		return jsonString;
+	}
+	@RequestMapping("/getNumOfScoreJson")
+	public String getNumOfScoreJson(int testId) {
+		String jsonString = testSituationService.selectNumOfScoreByTestId(testId);
+		System.out.println(jsonString);
+		return jsonString;
+	}
 }

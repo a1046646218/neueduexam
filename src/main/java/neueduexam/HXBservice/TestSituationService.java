@@ -10,4 +10,8 @@ public interface TestSituationService {
 	
 	List<TestSituationEntity> MakeTestSituationExcelByTestId(String testId);
 
+	String selectNumOfTestStateByTestId(int testId);
+
+	String selectNumOfScoreByTestId(int testId);
+
 }
