@@ -29,4 +29,6 @@ public interface exampaperMapper {
     int updateByPrimaryKeySelective(exampaper record);
 
     int updateByPrimaryKey(exampaper record);
+
+	int insertExceptId(exampaper e);
 }

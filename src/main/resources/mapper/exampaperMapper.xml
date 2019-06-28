@@ -350,4 +350,16 @@
       other2 = #{other2,jdbcType=VARCHAR}
     where examId = #{examid,jdbcType=INTEGER}
   </update>
+    <insert id="insertExceptId" parameterType="neueduexam.entity.exampaper" useGeneratedKeys="true" keyProperty="examid">
+    insert into exampaper ( examName, examType, 
+      examProfile, eUserId, eNickName, 
+      numOfQuestions, numOfSingle, numOfMultiple, 
+      numOfJudge, numOfBlank, numOfAnswer, 
+      other1, other2)
+    values  (#{examname,jdbcType=VARCHAR}, #{examtype,jdbcType=VARCHAR}, 
+      #{examprofile,jdbcType=VARCHAR}, #{euserid,jdbcType=INTEGER}, #{enickname,jdbcType=VARCHAR}, 
+      #{numofquestions,jdbcType=INTEGER}, #{numofsingle,jdbcType=INTEGER}, #{numofmultiple,jdbcType=INTEGER}, 
+      #{numofjudge,jdbcType=INTEGER}, #{numofblank,jdbcType=INTEGER}, #{numofanswer,jdbcType=INTEGER}, 
+      #{other1,jdbcType=VARCHAR}, #{other2,jdbcType=VARCHAR})
+  </insert>
 </mapper>

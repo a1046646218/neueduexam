@@ -1,9 +1,8 @@
 package neueduexam.HXBservicelmp;
 
 
-import java.text.SimpleDateFormat;
+
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +12,10 @@ import org.springframework.transaction.annotation.Transactional;
 import neueduexam.HXBcontroller.ExamData;
 import neueduexam.HXBservice.CreateExamPaperService;
 import neueduexam.dao.*;
+import neueduexam.entity.examandquestion;
+import neueduexam.entity.exampaper;
+import neueduexam.entity.user;
 
-import neueduexam.entity.questionandlib;
-import neueduexam.entity.questionlib;
-import neueduexam.entity.userhavelib;
 
 @Service
 public class CreateExamPaperServiceImpl implements CreateExamPaperService {
@@ -26,22 +25,19 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 	@Autowired
 	questionMapper questionMapper;
 	@Autowired
-	questionlibMapper questionlibMapper ;
-	@Autowired
 	userMapper userMapper;
 	@Autowired
-	userhavelibMapper userhavelibMapper;
+	exampaperMapper exampaperMapper;
+	@Autowired
+	examandquestionMapper examandquestionMapper;
 	
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public String createExamPaper(ExamData examData) {
 		
-		//生成题库记录,返回新生成的题库id
-		int libid = insertQuestionLib(examData);
-		//生成用户拥有题库记录
-		insertUserHaveLib(libid,examData.getUserId());
+		//生成试卷记录,返回新生成的试卷id
+		int examid = insertQuestionLib(examData);
 
-		
 		//根据libId，找出所有的quesId
 		List<Integer> quesIdList = selectQuesIdByLibIds(examData.getLibIds());
 
@@ -94,12 +90,13 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 				int AllNums = list.size();
 				int index = (int)(Math.random()* AllNums);
 				for(int j=0;j<ReqQuesNum;j++) {
-					questionandlib record = new questionandlib();
-					record.setLibid(libid);
+					examandquestion  eandq = new examandquestion();
+					eandq.setExamid(examid);
+					eandq.setQuesscore(score);
 					int quesId = list.get(index);
+					eandq.setQuesid(quesId);
+					examandquestionMapper.insert(eandq);
 					index = (index +1) % AllNums; 
-					record.setQuesid(quesId);
-					questionandlibMapper.insert(record);
 				}
 			}
 		}
@@ -120,37 +117,26 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 		return quesIdList;
 	}
 
-	private void insertUserHaveLib(int libid, int userId) {
-		userhavelib u = new userhavelib();
-		u.setLibid(libid);
-		u.setUserid(userId);
-		userhavelibMapper.insert(u);
-	}
 	
 	
 	private int insertQuestionLib(ExamData examData) {
+		//生成exampaper记录
+		exampaper e = new exampaper();
+		e.setExamname(examData.getTestName());
+		e.setExamtype(examData.getTestType());
+		e.setExamprofile(examData.getTestProfile());
+		e.setEuserid(examData.getUserId());
+		user user = userMapper.selectByPrimaryKey(examData.getUserId());
+		e.setEnickname(user.getNickname());
 		List<Integer> quesNums = examData.getQuesNums();
-		//生成题库记录
-		questionlib q = new questionlib();
-		q.setLibname(examData.getTestName());
-		String nickName = userMapper.selectByPrimaryKey(examData.getUserId()).getNickname();
-		q.setNickname(nickName);
-		q.setQuesamount(quesNums.get(0)+quesNums.get(1)+quesNums.get(2)+quesNums.get(3)+quesNums.get(4));
-		q.setLibtype(examData.getTestType());
-		q.setLibprofile(examData.getTestProfile());
-		q.setLibprice(-1);
-		q.setNumofsingle(quesNums.get(0));
-		q.setNumofmultiple(quesNums.get(1));
-		q.setNumofjudge(quesNums.get(2));
-		q.setNumofblank(quesNums.get(3));
-		q.setNumofanswer(quesNums.get(4));
-		q.setUserid(examData.getUserId());
-		q.setOther1(null);
-		q.setOther2(null);
-		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
-		q.setPublishtime(df.format(new Date()));
-		questionlibMapper.insertExceptId(q);
-		return q.getLibid();
+		e.setNumofquestions(quesNums.get(0)+quesNums.get(1)+quesNums.get(2)+quesNums.get(3)+quesNums.get(4));
+		e.setNumofsingle(quesNums.get(0));
+		e.setNumofmultiple(quesNums.get(1));
+		e.setNumofjudge(quesNums.get(2));
+		e.setNumofblank(quesNums.get(3));
+		e.setNumofanswer(quesNums.get(4));
+		exampaperMapper.insertExceptId(e);
+		return e.getExamid();
 	}
 
 	
