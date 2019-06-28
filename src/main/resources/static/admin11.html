@@ -26,7 +26,12 @@
 		<link rel="apple-touch-icon" sizes="152x152" th:href="@{static/assets/ico/apple-touch-icon-152x152.png}" />
 
 		<!-- start: CSS file-->
-
+		<style>
+       .main2 {
+        background: #ecedf0;
+        padding: 50px 8px 10px 250px;
+          }
+          </style>
 		<!-- Vendor CSS-->
 		<link th:href="@{static/assets/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
 		<link th:href="@{static/assets/vendor/skycons/css/skycons.css}" rel="stylesheet" />
@@ -342,41 +347,53 @@
 				<!-- End Sidebar -->
 
 				<!-- Main Page -->
-				<div class="main ">
+				<div class="main2 ">
 					<!-- Page Header -->
               
 					<!-- Page Header -->
-					<div class="page-header">
-						<div class="pull-left">
-							<ol class="breadcrumb visible-sm visible-md visible-lg">								
-								<li><a  class="active"><i class="icon fa fa-home"></i>所有发布的题库</a></li>
-							</ol>						
+					<!-- End Page Header -->		
+					
+					
+					<div class="row mailbox">					
+										
+						<div class="col-lg-12 col-md-8 col-sm-8 col-xs-12 bk-padding-15">											
+							<div class="panel bk-bg-white">
+								<div class="panel-body">
+									<div class="col-md-12" style="border-bottom: 2px solid #C4C4C4;">
+										<div class="btn-group bk-margin-bottom-10 bk-margin-top-10 pull-left">
+											<button class="btn btn-sm btn-warning" id="check">
+												<i class="fa fa-crosshairs"></i> 题库查重</button>
+											<a href="#" id="check1" style="display:none" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></a>
+										</div>
+									</div>
+								</div>
+								
+								<div class="panel-body">
+									<div class="col-md-12" >
+										<ul class="messages-list" id="home1">											
+										</ul>
+										<div class="btn-group bk-margin-bottom-10 bk-margin-top-10 pull-right">
+											<button class="btn btn-sm btn-info" id="afterpage">
+											继续加载 <i class="fa fa-chevron-down"></i></button>
+											
+										</div>
+									</div>
+								</div>					
+							</div>
 						</div>
 					</div>
-					<!-- End Page Header -->		
-					<div>
-							<div class="inner-toolbar">
-								<ul>
-									<li>
-										<a href="#" id="check"><i class="fa fa-pencil"></i>查重</a>
-										<a href="#" id="check1" style="display:none" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil"></i></a>
-									</li>
-								</ul>
-							</div>
-					<div style="padding-top:50px;">
-					<div id="home1">
-					</div>
-					<div class="row">
+						
+					<!-- div class="row">
 					<div style="float:right;padding-right:800px;">
 						<div>
 							<button type="button" id="afterpage" class="bk-margin-5 btn btn-default">继续加载</button>
-											<!-- <a class="btn btn-warning" role="button" id="beforepage">上一页</a>
+											<a class="btn btn-warning" role="button" id="beforepage">上一页</a>
 											<a class="btn btn-warning" role="button" id="pagenum">1</a>
-											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> -->
+											<a class="btn btn-warning" role="button" id="afterpage">下一页</a> 
 						</div>
-					</div>
-					</div>
-					</div>
+					</div>-->
+					
+					
 					</div>	
 				
 						<!-- End Page Header -->
@@ -452,6 +469,8 @@
 			<!-- <script th:src="@{static/assets/js/pages/map-basic.js}"></script> -->
 			<script th:src="@{static/layer/layer.js}"></script>
 			<script th:src="@{static/js/template.js}"></script>
+		    <script th:src="@{static/layer/layer.js}"></script>
+		    <script th:src="@{static/layer/extend/layer.ext.js}"></script>
 			<!-- end: JavaScript-->
 				<script type="text/javascript">
        var page = 1;
@@ -475,10 +494,10 @@
        				num=1;
        			for(var i=0;i<result.length/3+num;i++){
        				var j=0;
-       				$("#home1").append("<div class = \"row\" rownum=\"row\"></div>");
+       				
        				for(var time=i*3;time<result.length&&j<3;j++,time++){
        					var newContentNews = template("contentTemplate",result[time]);
-       					$("[rownum='row']:last").append(newContentNews);
+       					$("#home1").append(newContentNews);
 						// addnum(result[time]);
 						// //alert(result[time].libid);
 						// $.ajax({
@@ -543,7 +562,7 @@
 	    		data:{libid1:libid1,libid2:libid2,ID1:ID1,ID2:ID2},
 	    		dataType:'json',
 	    		success:function(e){
-	    			$("#toquestionlib").click();
+	    			window.location.href="toadmin11";
 	    		}
 	    		});
  			
@@ -559,8 +578,8 @@
              });
              if(empty!=2)
             	 {
-            	 alert("请选择两个题库");
-            	 
+            	
+            	 layer.msg("请选择两个题库");
             	 return;
             	 }
              
@@ -587,7 +606,7 @@
        						success: function(result){
        							/*单选*/
        							
-       							if(typeof(result.single)=="object"){
+       							if(typeof(result.single)=="object"&&result.single.length>0){
        							
        								$("[sele=singlecontent1]:last").show ();
        								for(var i=0;i<result.single.length;i++){
@@ -600,8 +619,9 @@
        									$("[sele=singlecontent1]:last").hide();
        								}
        							/*多选*/
+       					
+       							if(typeof(result.mul)=="object"&&result.mul.length>0){
        						
-       							if(typeof(result.mul)=="object"){
        								$("[sele=mulcontent1]:last").show ();
        								for(var i=0;i<result.mul.length;i++){
        									console.log(JSON.stringify(result.mul[i]));
@@ -610,10 +630,11 @@
        							}
        							}
        							else{
+       								    
        									$("[sele=mulcontent1]:last").hide();
        								}
        							/*判断*/
-       							if(typeof(result.mul)=="object"&&typeof(result.single)=="object")
+       							if(typeof(result.single)=="object"&&(result.mul.length>0||result.single.length>0))
        								{
        								$("[sele=single1]:last").show();
        								}
@@ -621,8 +642,9 @@
        								$("[sele=single1]:last").hide();
        							}
        							    							
-       							 
-       							if(typeof(result.jud)=="object"){
+       							
+       							if(typeof(result.jud)=="object"&&result.jud.length>0){
+       								
        								$("[sele=judge1]:last").show ();
        								for(var i=0;i<result.jud.length;i++){
        									var judcontent = template("judtemplate1",result.jud[i]);
@@ -632,18 +654,21 @@
        									$("[sele=judge1]:last").hide();
        								}
        							/*填空*/
-       							typeof(result.tian)=="object"
-       							if(typeof(result.tian)=="object"){
+       						
+       							if(typeof(result.tian&&result.tian.length>0)=="object"){
+       						
+       							
        								$("[sele=blank1]:last").show ();
        								for(var i=0;i<result.tian.length;i++){
        									var tiancontent = template("tiantemplate1",result.tian[i]);
        						     	    $('[sele=tiancontent1]:last').append(tiancontent);
        							}
        								}else{
+       								 
        									$("[sele=blank1]:last").hide();
        								}
        							/*简答*/
-       							if(typeof(result.jian)=="object"){
+       							if(typeof(result.jian)=="object"&&result.jian.length>0){
        								$("[sele=answer1]:last").show ();
        								for(var i=0;i<result.jian.length;i++){
        									var jiancontent = template("jiantemplate1",result.jian[i]);
@@ -668,50 +693,27 @@
        
     </script>
     <script type="text/html" id="contentTemplate">
-				<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-						<div class="tabs">
-										<ul class="nav nav-tabs nav-justified">
-											<li class="active">
-												<a href="#{{libid}}_home" data-toggle="tab"><i class="fa fa-home"></i> 简介</a>
-											</li>
-											<li>
-												<a href="#{{libid}}_char" data-toggle="tab">题型</a>
-											</li>
-											<li>
-												<a href="#{{libid}}_easy" data-toggle="tab">难易</a>
-											</li>
-										</ul>
-							<div class="tab-content">
-								<div id="{{libid}}_home" class="tab-pane active"  style="width: 100%;height:300px">
-											<div class="row">
-											<div  class="col-lg-12 col-md-12 col-sm-12" style="height:226px">
-												<h4 style="padding-top: 6px;">{{libname}}</h4>
-												<h5 style="padding-top: 6px;">题库类型：{{libtype}}</h5>	
-												<h5 style="padding-top: 6px;">发布时间：{{publishtime}}</h5>	
-												<h5 style="padding-top: 6px;">题目数量：{{quesamount}}</h5>	
-												<h5 style="padding-top: 6px;">题库简介：{{libprofile}}</h5>	
-											</div>
-											</div>
-											<div class="row" style="padding-top: 10px;">
-												<div  class="col-lg-4 col-md-4 col-sm-4" id="removelib">
-                                                <div class="checkbox-custom checkbox-primary">
-                                                <input type="checkbox" name="libid" id="{{libid}}" value="{{libid}}"/>
-                                                <label for="{{libid}}">选择该题库</label>
-                                                </div>
-												</div>
-												</div>
-											</div>
-								</div>
-								<div id="{{libid}}_char" class="tab-pane">
-									<!-- <div id="{{libid}}_chars" style="width:400px;height:300px"></div> -->
-								</div>
-								<div id="{{libid}}_easy" class="tab-pane">
-									<!-- <div id="{{libid}}_easy_chars" style="width:400px;height:300px"> -->
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
+					
+                                                    <li class="unread">
+												
+													<div class="header">
+														<span class="checkbox-custom">
+                                                        <input type="checkbox" name="libid" id="{{libid}}" value="{{libid}}"/>
+                                                        <label for="{{libid}}">选择该题库</label>
+															
+														</span>
+														<span class="from">题库名：{{libname}}</span>
+														<span class="date"><i class="fa fa-clock-o"></i>  发布时间：{{publishtime}}</span>
+													</div>
+													<div class="title">
+														<span class="action"><i class="fa fa-star"></i></span>
+														 题库类型：{{libtype}}  题目数量：{{quesamount}}道
+													</div>	
+													<div class="description">
+														题库简介： {{libprofile}}
+													</div>
+													
+											        </li>
 		</script>
 			<!--题库-->
 		<script type="text/html" id="libtemplate">
@@ -719,7 +721,7 @@
 								<div class="panel-heading bk-bg-white mailbox-btn-action">
 									<span class="panel-actions text-right">
 										<a href="#" class="minimize"><i class="fa fa-caret-up"></i></a>
-								
+										
 									</span>
 									
 										<h3 class=" bk-fg-primary">

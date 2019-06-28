@@ -122,6 +122,7 @@ public class admincontroller {
 			{
 			userservice.delquestion(ID2, libid2);
 			}
+			
 		 	
 		}
 		

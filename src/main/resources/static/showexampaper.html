@@ -610,6 +610,7 @@ alert(exampaperid);
 				else{
 						$("#singlecontent").hide();
 					}
+				
 				/*多选*/
 				if(result.mul.length>0){
 					$("#mulcontent").show ();
@@ -625,6 +626,10 @@ alert(exampaperid);
 				}
 				else{
 						$("#mulcontent").hide();
+					}
+				if(result.mul.length==0&&result.mul.length==0)
+					{
+					$("#single").hide();
 					}
 				/*判断*/
 				if(result.jud.length>0){

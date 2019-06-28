@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import neueduexam.DTFservice.QuestionlibService;
 import neueduexam.GZKservice.GZKUserService;
 import neueduexam.HLservice.QuestionService;
+import neueduexam.HXBservice.DeleteQuestionService;
 import neueduexam.api.SHAjiamiApi;
 import neueduexam.dao.examandquestionMapper;
 import neueduexam.dao.exampaperMapper;
@@ -57,6 +58,8 @@ public class GZKUserServiceImp implements GZKUserService {
 	QuestionService questionService;
 	@Autowired
 	QuestionlibService questionlibService;
+	@Autowired
+	DeleteQuestionService deleteQuestionService;
 	public List<user> login(String phone)
 	{
 		
@@ -263,11 +266,7 @@ public class GZKUserServiceImp implements GZKUserService {
 		 int a=0;
 		 for(int i=0;i<ID.length;i++)
 		 { 
-			 questionandlibExample  e=new questionandlibExample();
-			 neueduexam.entity.questionandlibExample.Criteria cc = e.createCriteria();
-			 cc.andLibidEqualTo(libid);
-			 cc.andQuesidEqualTo(Integer.parseInt(ID[i]));
-			 a=questionandlibmapper.deleteByExample(e);
+			 deleteQuestionService.deleteQuestionById(Integer.parseInt(ID[i]));
 		 }
 		 return a;
 	 }
