@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import neueduexam.HLservice.PersonExampaperService;
-import neueduexam.entity.exampaper;
 import neueduexam.entity.personexampaper;
 
 

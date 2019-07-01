@@ -84,15 +84,15 @@ public class AddquestionController {
 					Integer numofsingle=questionlib.getNumofsingle();
 					numofsingle=numofsingle+1;
 					questionlib.setNumofsingle(numofsingle);
-					System.out.println("题库中填空数目"+numofsingle);
+					
 					
 				}
 				//多选
 				else {
 					Integer numofmultiple=questionlib.getNumofmultiple();
 					numofmultiple=numofmultiple+1;
-					questionlib.setNumofsingle(numofmultiple);
-					System.out.println("题库中填空数目"+numofmultiple);
+					questionlib.setNumofmultiple(numofmultiple);
+					
 					
 				}
 			}	
@@ -101,7 +101,7 @@ public class AddquestionController {
 				Integer numofblank=questionlib.getNumofblank();
 				numofblank=numofblank+1;
 			    questionlib.setNumofblank(numofblank);
-			    System.out.println("题库中填空数目"+numofblank);
+			    
 			}
 			   question.setQuesanswer(quesanswer);  
 		}
@@ -109,9 +109,8 @@ public class AddquestionController {
 		else if("2".equals(questype)) {
 			String judgequesanswer=req.getParameter("judgequesAnswer");
 			Integer numofjudge=questionlib.getNumofjudge();
-			System.out.println("判断题数目"+numofjudge);
 			numofjudge=numofjudge+1;
-			System.out.println("答案"+judgequesanswer+"判断题数目"+numofjudge);
+			
 			
 			question.setQuesanswer(judgequesanswer);
 			questionlib.setNumofjudge(numofjudge);
@@ -122,8 +121,6 @@ public class AddquestionController {
 			String answerquesAnswer=req.getParameter("answerquesAnswer");
 			Integer numofanswer=questionlib.getNumofanswer();
 			numofanswer=numofanswer+1;
-			System.out.println("答案"+answerquesAnswer);
-			
 			question.setQuesanswer(answerquesAnswer);
 			questionlib.setNumofanswer(numofanswer);
 		}
@@ -134,7 +131,6 @@ public class AddquestionController {
 	   
 		//更新题库
 			quesamount=quesamount+1;
-			System.out.println(quesamount);
 			questionlib.setQuesamount(quesamount);
 			int i=questionlibservice.updateByPrimaryKeySelective(questionlib);
 		//添加关系表

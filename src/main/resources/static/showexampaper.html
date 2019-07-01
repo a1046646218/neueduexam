@@ -162,7 +162,7 @@
 							</div>
 						
 							<!--选择题-->
-							<div class="panel" id="single">
+							<div class="panel" id="select">
 								<div class="panel-heading bk-bg-white mailbox-btn-action">
 									<span class="panel-actions text-right">
 										<a href="#" class="btn-minimize"><i class="fa fa-caret-up"></i></a>
@@ -593,6 +593,12 @@ alert(exampaperid);
 			success: function(result){
 				alert("得到题目");
 				/*单选*/
+				if(result.mul.length==0&&result.single.length==0){
+					$("#select").hide();
+				}else{
+					$("#select").show();
+				}
+				
 				if(result.single.length>0){
 					$("#singlecontent").show ();
 					for(var i=0;i<result.single.length;i++){
@@ -627,10 +633,8 @@ alert(exampaperid);
 				else{
 						$("#mulcontent").hide();
 					}
-				if(result.mul.length==0&&result.mul.length==0)
-					{
-					$("#single").hide();
-					}
+				
+				
 				/*判断*/
 				if(result.jud.length>0){
 					$("#judge").show ();
