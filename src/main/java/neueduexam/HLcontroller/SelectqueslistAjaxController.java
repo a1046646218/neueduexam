@@ -34,7 +34,7 @@ public class SelectqueslistAjaxController {
 					System.out.println("加入选择题");
 					single.add(list.get(i));
 					System.out.println(single.size());
-					System.out.println(single.get(i).getQuescontext());
+					
 					
 				}else if("1".equals(list.get(i).getQuestype())) {
 					mul.add(list.get(i));
