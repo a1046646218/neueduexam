@@ -442,7 +442,7 @@
 <script type="text/html" id="examTemplate2">
  <ul class="bk-bg-white bk-margin-15">
 													<li>
-														<a href="#">判断题 <span class="label label-primary">{{numofsingle}}</span></a>
+														<a href="#">单选题 <span class="label label-primary">{{numofsingle}}</span></a>
 													</li>
 													<li>
 														<a href="#">多选题 <span class="label label-warning">{{numofmultiple}}</span></a>
@@ -1059,7 +1059,7 @@ $(document).ready(function(){
     		$(this).parent().parent().parent().html("");
     	})
     	$(".delet").live("click",function(){
-       		$(this).parent().parent().parent().parent().parent().parent().html("");
+       		$(this).parent().parent().parent().parent().parent().remove();
     		if($(this).attr("name")=="single")
     			{
     			single=single-1;
@@ -1122,6 +1122,14 @@ $(document).ready(function(){
                  $("input[name='quesid']:checked").each(function(i){
                 	 empty=1;
                 	 checkID[i] = $(this).val();
+                	 for(var j=0;j<i;j++)
+                		 {
+                		 if(checkID[i]==checkID[j])
+                		 {
+                	       chongfu=1;
+     			           return;    
+                		 }
+                		 }
                 	 
                 	 $(".fen").each(function(a){
                 		 
