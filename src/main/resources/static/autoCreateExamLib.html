@@ -125,7 +125,7 @@
 		
 		<!-- Start: Content -->
 		<div class="container-fluid content">			
-				<div class="main" style="padding-left:200px;padding-right:200px;padding-top:100px">
+				<div class="main" style="width:1920px;padding-top:100px;padding-right:500px;padding-left:100px">
 					<!-- Page Header -->
 					<!-- End Page Header -->					
 					<!-- 我的位置 头部 -->
@@ -143,7 +143,7 @@
 									</div>
 									<div class="panel-body">
 										<div class="row">
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:10px;padding-left:70px">
+											<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" style="padding-top:10px;padding-left:80px">
 												<form  class="form-horizontal " style="padding-bottom:20px">
 													
 													<div class="form-group" style="margin-top: 25px;">
@@ -157,7 +157,7 @@
 													</div>	
 													<div class="form-group" style="margin-top: 25px;">
 														<label class="col-md-1 control-label" for="text-input"></label>
-														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试名称</strong>
+														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试类型</strong>
 														<div class="col-md-8" style="padding-left:0px">
 															<input type="text" id="testType" name="quesContext" class="form-control" placeholder="考试类型" style="border-left: 7px solid #0FB492;">
 															<!--<div id="hlmessage" style="color: crimson;padding-top:7px;"></div>-->
@@ -166,7 +166,7 @@
 													</div>									
 													<div class="form-group" style="margin-top: 25px;">
 														<label class="col-md-1 control-label" for="text-input"></label>
-														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试名称</strong>
+														<strong class=" col-md-2 bk-fg-primary" style="font-size: 16px;margin-top: 5px;padding-right:0px"><div class="point point-success point-lg"></div>考试简介</strong>
 														<div class="col-md-8" style="padding-left:0px">
 															<textarea id="testProfile" cols="40" rows="3" name="quesContext" class="form-control" placeholder="考试简介" style="border-left: 7px solid #0FB492;"></textarea>
 															<!--<div id="hlmessage" style="color: crimson;padding-top:7px;"></div>-->
@@ -194,7 +194,7 @@
 													</tbody>
 												</table>
 											</div>
-											<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="padding-top:80px" >										
+											<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12" style="padding-top:80px" >										
 												<form class="form-horizontal" role="form" style="padding-top:10px">
 													 <div class="form-group" style="padding-left:130px;padding-bottom:10px" >
 												  		<h4>试卷当前分数:<span id="fenzhi">0</span></h4>
@@ -372,7 +372,7 @@
         
         <script>
 		     //清空输入框 
-			$("input[!name]").each(function(){
+			$("input").each(function(){
 				$(this).val("");
 			});
         </script>
@@ -472,7 +472,7 @@
            			]
     			});
 
-				$("div[class='col-sm-12 col-md-3 fanye']").attr("style","padding-left:50px")
+				$("div[class='col-sm-12 col-md-3 fanye']").attr("style","padding-left:20px")
     			
     			$("#abutton").append("<button type='button' class='btn btn-primary'>绑定题库</button>");
     			

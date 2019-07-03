@@ -357,7 +357,9 @@
     				"lengthMenu": [ [10, 25, 50, 100,-1], [10, 25, 50, 100,"all"] ],
     				"ajax":{
    						url:"invitationJson",
+   						//发送的数据的格式
 						data:{"testId":$("#gettestid").val()},
+						//接收到数据时所作的处理
    						"dataSrc":function(json){
 							var testName = json.testName
 							$("#biaoti").append(testName);
@@ -367,6 +369,7 @@
 							return json.data;
     					}
     				},
+    				//将接收到的数据放入对应的列中
     				columns:[
                 		{"data":"stuId"},
                 		{"data":"realName"},

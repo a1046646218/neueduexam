@@ -21,11 +21,10 @@ public class QuestionLibServiceImpl implements QuestionLibService{
 	
 	@Override
 	public String selectNumOfQuestionsByLibList(List<Integer> libList) {
-		
+		//根据题库id，找出匹配的题库数据，并转化成json格式返回
 		QuestionNumber q2  = new QuestionNumber();
 		for(int i :libList) {
 			questionlib q = questionlibMapper.selectByPrimaryKey(i);
-			System.out.println("answer--"+q.getNumofanswer());
 			q2.addNumOfSingle(q.getNumofsingle());
 			q2.addNumOfMultiple(q.getNumofmultiple());
 			q2.addNumOfJudge(q.getNumofjudge());

@@ -29,7 +29,7 @@ public class HxbExcelController {
     @RequestMapping("/writeHxbExcel")
     public void test3(HttpServletResponse response,HttpServletRequest request) throws IOException {
     	//测试
-        List<TestSituationEntity> list = testSituationService.MakeTestSituationExcelByTestId("1");//模拟从数据库中得到一个数据集合
+        List<TestSituationEntity> list = testSituationService.MakeTestSituationExcelByTestId("1");
         String fileName = "export01";
         String sheetName = "sheet01";
 

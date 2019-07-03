@@ -44,13 +44,12 @@ public class TestSituationServiceImpl implements TestSituationService {
 
 	@Override
 	public List<TestSituationEntity> MakeTestSituationExcelByTestId(String testId) {
+		//得到testId
 		int i_testId = Integer.parseInt(testId);
-		
+		//查出与testId匹配的考试记录
 		personexampaperExample pE = new personexampaperExample();
 		pE.createCriteria().andTestidEqualTo(i_testId);
 		List<TestSituationEntity>  list = personexampaperMapper.makeExcelByTestId(pE);
-		for(TestSituationEntity t:list)
-			System.out.println(t.toString());
 
 		return list;
 	}

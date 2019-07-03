@@ -68,9 +68,9 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 				break;
 			}
 		}
-
 		
 		for(int i=0;i<5;i++) {
+			//循环处理一种类型的题目，顺序依次是单选、多选、判断、填空、简答
 			int score = examData.getScores().get(i);
 			int ReqQuesNum = examData.getQuesNums().get(i);
 			List<Integer> list = null;
@@ -88,6 +88,7 @@ public class CreateExamPaperServiceImpl implements CreateExamPaperService {
 			}
 			if(score>0) {
 				int AllNums = list.size();
+				//采用循环队列的算法，来保证生成的试卷题目不会产生重复
 				int index = (int)(Math.random()* AllNums);
 				for(int j=0;j<ReqQuesNum;j++) {
 					examandquestion  eandq = new examandquestion();

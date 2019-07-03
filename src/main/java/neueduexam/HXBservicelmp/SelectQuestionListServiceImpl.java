@@ -45,9 +45,7 @@ public class SelectQuestionListServiceImpl implements SelectQuestionListService{
 				list2.add(ques);
 			}
 		}
-		
-		//Map<String,Object> map = new HashMap<String,Object>();
-		//map.put("content", list2);
+
 		Map<String,Object> map2 = new HashMap<String,Object>();
 		map2.put("data", list2);
 		String jsonString = JSON.toJSONString(map2);
