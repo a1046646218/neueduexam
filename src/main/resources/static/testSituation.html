@@ -385,7 +385,7 @@
 							var testName = json.testName
 							$("#biaoti").append(testName);
 							for(var i=0;i<json.data.length;i++){
-								json.data[i].state = "<a href='https://www.hao123.com' style='color:blue' >"+json.data[i].state+"</a>"
+								json.data[i].state = "<a href=\"toshowteacherpaper?pexamid="+json.data[i].pexamid+" \"style='color:blue' >"+json.data[i].state+"</a>"
 							}
 							return json.data;
     					}

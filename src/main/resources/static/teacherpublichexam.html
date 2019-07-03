@@ -239,17 +239,9 @@
 								
 								<div class="panel-body">
 									
-									<div id="addallpublishexam" class="bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom bk-noradius">
-									
-									
-									
-									
-									
-									
-									
-									
-									
-									
+									<div  class="bk-bg-white bk-bg-lighten bk-padding-off-top bk-padding-off-bottom bk-noradius">
+									<div id="addallpublishexam">
+									</div>
 									
 									<br>
 									<div class="row">
@@ -349,10 +341,9 @@
 					     <li id="addexcel" name="{{testid}}"><a >批量导入</a></li>
 					     <li id="addone" name="{{testid}}"><a >单个导入</a></li>
 						 <li id="addone" name="{{testid}}"><a href="toinvitation?testid={{testid}}">查看邀请</a></li>
-						 <li> <a href="totestsituation?testid={{testid}}">答题详情</a></li>
 				       </ul>
 					    </div> 	
-						<a class="col-lg-4 bk-fg-info">
+						<a class="col-lg-4 bk-fg-info" href="totestsituation?testid={{testid}}">
 						<h6 class="bk-margin-off">批改考试</h6>
 			            <i class="fa fa-send fa-2x bk-padding-top-10"></i>
 						</a>	
@@ -413,6 +404,7 @@
 						$('#pagenum').text(page);
 						return;
 					}
+					$("#addallpublishexam").empty();
 					for(var i=0;i<result.length;i++){
 						for(var i=0;i<result.length;i++){
 							var newContentNews = template("contentTemplate",result[i]);

@@ -32,7 +32,8 @@ public class hlconnectcontroller {
 	}
 	
 	@RequestMapping("/toshowteacherpaper")
-	public String toshowteacherpaper(){
+	public String toshowteacherpaper(int pexamid,HttpServletRequest req){
+		req.setAttribute("pexamid", pexamid);
 		return "showteacherpaper";
 	}
 	
