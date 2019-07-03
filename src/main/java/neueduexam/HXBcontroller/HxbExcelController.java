@@ -27,9 +27,9 @@ public class HxbExcelController {
      * 导出 Excel（一个 sheet）
      */
     @RequestMapping("/writeHxbExcel")
-    public void test3(HttpServletResponse response,HttpServletRequest request) throws IOException {
+    public void test3(HttpServletResponse response,String testid) throws IOException {
     	//测试
-        List<TestSituationEntity> list = testSituationService.MakeTestSituationExcelByTestId("1");
+        List<TestSituationEntity> list = testSituationService.MakeTestSituationExcelByTestId(testid);
         String fileName = "export01";
         String sheetName = "sheet01";
 

@@ -405,7 +405,7 @@
            			]
     			});
     			
-    			$("#abutton").append("<button class='btn btn-primary' href='/writeHxbExcel'>导出Excel</button>");
+    			$("#abutton").append("<button class='btn btn-primary' href='/writeHxbExcel?testid="+testid+"'>导出Excel</button>");
     			$("#abutton>button").click(function(){
     				$(location).attr('href', '/writeHxbExcel');
     			});
