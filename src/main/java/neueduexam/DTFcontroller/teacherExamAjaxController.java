@@ -1,5 +1,8 @@
 package neueduexam.DTFcontroller;
 
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -13,12 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 import neueduexam.DTFservice.ExamPaperService;
 import neueduexam.DTFservice.TestPaperService;
+import neueduexam.DTFservice.UserService;
+import neueduexam.DTFservice.groupDTFService;
 import neueduexam.entity.exampaper;
 import neueduexam.entity.personexampaper;
 import neueduexam.entity.question;
 import neueduexam.entity.testpaper;
 import neueduexam.entity.user;
-
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 @RestController
 public class teacherExamAjaxController {
 	
@@ -26,6 +32,10 @@ public class teacherExamAjaxController {
 	ExamPaperService exampaperservice;  
 	@Autowired
 	TestPaperService testpaperservice;
+	@Autowired
+	UserService userservice;
+	@Autowired
+	groupDTFService groupdtfservice;
 	
 	@RequestMapping("/getexampaperAjaxDTF")
 	public List<exampaper> getexampaperAjaxDTF(int page,HttpServletRequest resq,HttpServletResponse res){
@@ -125,7 +135,32 @@ public class teacherExamAjaxController {
 	
 	
 	@RequestMapping("/shead")
-	public void test2222(String img) {
-		System.out.println(img);
+	public String test2222(String img,HttpServletRequest res) {
+		user u = (user)res.getSession().getAttribute("user");
+		BASE64Decoder decoder = new BASE64Decoder();
+        try{
+            //解密
+            byte[] b = decoder.decodeBuffer(img.split(",")[1]);
+            //处理数据
+            for (int i = 0;i<b.length;++i){
+                if(b[i]<0){
+                    b[i]+=256;
+                }
+            }
+            OutputStream out = new FileOutputStream("D:/temp/"+u.getUserid()+".png");
+            u.setHeadphoto("/headimg/"+u.getUserid()+".png");
+            res.getSession().setAttribute("user", u);
+            userservice.changeimg(u);
+            groupdtfservice.changeuserimg(u);
+            out.write(b);
+            out.flush();
+            out.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		
+		
+		return "1";
 	}
 }

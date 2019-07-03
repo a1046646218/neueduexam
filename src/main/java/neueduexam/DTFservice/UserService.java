@@ -14,4 +14,5 @@ public interface UserService {
 	public int UserBuyScore(int userid,int score,String content);
 	public List<record> getDayRecord(int i);
 	public List<record> getNowRecord(int i);
+	public int changeimg(user u);
 }

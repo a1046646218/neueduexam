@@ -27,10 +27,10 @@ public class ExamLibServiceImpl implements ExamLibService {
 	questionlibMapper questionlibMapper;
 	
 	@Override
-	public String selectSimpleExamlibByUserId(String userId) {
+	public String selectSimpleExamlibByUserId(int userId) {
 		
 		//初始化 将userid变成int格式
-		int i_userId = Integer.parseInt(userId);
+		int i_userId = userId;
 		//创建一个List用于转化json格式
 		List<SimpleQuestionLib> lib_list = new ArrayList<SimpleQuestionLib>();
 		

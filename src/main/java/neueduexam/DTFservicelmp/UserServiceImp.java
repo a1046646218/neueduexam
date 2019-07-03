@@ -86,4 +86,10 @@ public class UserServiceImp implements UserService{
 		List<record> li = recordmapper.selectByExample(e);
 		return li;
 	}
+
+	@Override
+	public int changeimg(user u) {
+		int i = usermapper.updateByPrimaryKeySelective(u);
+		return i;
+	}
 }

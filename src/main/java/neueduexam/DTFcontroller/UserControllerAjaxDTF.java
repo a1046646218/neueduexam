@@ -44,9 +44,12 @@ public class UserControllerAjaxDTF {
 		int i = 0;
 		if("0.1".equals(price)) {
 			i = userservice.UserBuyScore(u.getUserid(),100,content);
+			u.setPoints(u.getPoints()+100);
 		}else {
 			i = userservice.UserBuyScore(u.getUserid(),500,content);
+			u.setPoints(u.getPoints()+500);
 		}
+		resq.setAttribute("user", u);
 		return Integer.toString(i);
 		
 	}

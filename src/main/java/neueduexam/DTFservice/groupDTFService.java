@@ -13,4 +13,5 @@ public interface groupDTFService {
 	public int ismygroup(int userid,int groupid);
 	public int creategroup(user u,String name,String profile);
 	public int inviteruser(user u,int groupid);
+	public int changeuserimg(user u);
 }

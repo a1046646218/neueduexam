@@ -54,9 +54,10 @@ public class JsonController {
 		return json;
 	}
 	@RequestMapping("/examLibNameJson")
-	public String getExamLibNameJson(String userId) {
+	public String getExamLibNameJson(HttpServletRequest req) {
 		//测试
-		String json = examLibService.selectSimpleExamlibByUserId("1");
+		user user =(user) req.getSession().getAttribute("user");
+		String json = examLibService.selectSimpleExamlibByUserId(user.getUserid());
 		return json;
 	}
 	

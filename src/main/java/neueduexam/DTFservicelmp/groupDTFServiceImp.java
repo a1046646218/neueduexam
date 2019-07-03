@@ -112,5 +112,16 @@ public class groupDTFServiceImp implements groupDTFService{
 		return i;
 	}
 
+	@Override
+	public int changeuserimg(user u) {
+		groupanduserExample e = new groupanduserExample();
+		neueduexam.entity.groupanduserExample.Criteria cc = e.createCriteria();
+		cc.andUseridEqualTo(u.getUserid());
+		groupanduser gu = new groupanduser();
+		gu.setUserimage(u.getHeadphoto());
+		groupandusermapper.updateByExampleSelective(gu, e);
+		return 1;
+	}
+
 	
 }
