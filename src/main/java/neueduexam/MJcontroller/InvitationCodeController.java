@@ -19,7 +19,7 @@ public class InvitationCodeController {
 	@RequestMapping("/toinvitecode")
 	public String selectStuidandInvCode(HttpServletRequest request,HttpServletResponse response,
 			         String invitecode) {
-		
+		invitecode = "code:"+invitecode;
 		user u = (user)request.getSession().getAttribute("user");	
 		int i = invitationcodeService.selectByExample(u.getUserid(),invitecode);
 		System.out.println(i+"========================");
