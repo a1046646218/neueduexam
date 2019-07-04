@@ -470,11 +470,13 @@
 												$("#seconds").html(seconds);
 												console.log("hhh");
 											}
-											setInterval(function() {
+											var interval = setInterval(function() {
 												if (seconds == 0) {
 													if (minutes == 0) {
 														if (hour == 0) {
 															$("#sumitquestion").click();
+															clearInterval(interval);
+															return ;
 														} else {
 															hour--;
 															minutes = 59;
@@ -549,6 +551,11 @@
 				},
 				success: function(result) {
 					console.log(result);
+					if(result.single.length>0){
+						$("#myindex").append("<br><strong class=\"bk-fg-primary\" style=\"font-size: 18px;\">"+
+											"<div class=\"point point-success point-lg\"></div>单选题"+
+										"</strong><br>\"");
+					}
 					for (var i = 0; i < result.single.length; i++) {
 						var singlecontent = template("singletemplate", result.single[i]);
 						nowquestionpage++;
@@ -566,6 +573,11 @@
 						}
 
 					}
+					if(result.mul.length>0){
+						$("#myindex").append("<br><strong class=\"bk-fg-primary\" style=\"font-size: 18px;\">"+
+											"<div class=\"point point-success point-lg\"></div>多选题"+
+										"</strong><br>\"");
+					}
 					for (var i = 0; i < result.mul.length; i++) {
 						var mulcontent = template("singletemplate", result.mul[i]);
 						nowquestionpage++;
@@ -582,6 +594,11 @@
 							$("[question=" + result.mul[i].lq.quesid + "]").hide();
 						}
 
+					}
+					if(result.jud.length>0){
+						$("#myindex").append("<br><strong class=\"bk-fg-primary\" style=\"font-size: 18px;\">"+
+											"<div class=\"point point-success point-lg\"></div>判断题"+
+										"</strong><br>\"");
 					}
 					for (var i = 0; i < result.jud.length; i++) {
 						var judcontent = template("singletemplate", result.jud[i]);
@@ -601,6 +618,11 @@
 							$("[question=" + result.jud[i].lq.quesid + "]").hide();
 						}
 
+					}
+					if(result.tian.length>0){
+						$("#yourindex").append("<br><strong class=\"bk-fg-primary\" style=\"font-size: 18px;\">"+
+											"<div class=\"point point-success point-lg\"></div>填空题"+
+										"</strong><br>\"");
 					}
 					for (var i = 0; i < result.tian.length; i++) {
 						var tiancontent = template("singletemplate", result.tian[i]);
@@ -622,6 +644,11 @@
 						}
 
 					}
+					if(result.jian.length>0){
+						$("#yourindex").append("<br><strong class=\"bk-fg-primary\" style=\"font-size: 18px;\">"+
+											"<div class=\"point point-success point-lg\"></div>简答题"+
+										"</strong><br>\"");
+					}
 					for (var i = 0; i < result.jian.length; i++) {
 						var jiancontent = template("singletemplate", result.jian[i]);
 						$('#allquestion').append(jiancontent);
@@ -642,6 +669,7 @@
 						}
 
 					}
+					$("[toquestionfast=" + questionpage + "]").addClass("btn-warning");
 					$.ajax({
 						type: 'post',
 						url: 'getsaveques',
@@ -663,7 +691,7 @@
 				}
 			});
 		});
-
+		
 		$("#beforequestion").click(function() {
 			if (questionpage == 1) {
 				return;
@@ -671,6 +699,8 @@
 				questionpage--;
 				$("[question]").hide();
 				$("[nowquestion=" + questionpage + "]").show();
+				$("[toquestionfast=" + (questionpage+1) + "]").removeClass("btn-warning");
+				$("[toquestionfast=" + questionpage + "]").addClass("btn-warning");
 			}
 		});
 		$("#nextquestion").click(function() {
@@ -680,13 +710,18 @@
 				questionpage++;
 				$("[question]").hide();
 				$("[nowquestion=" + questionpage + "]").show();
+				$("[toquestionfast=" + (questionpage-1) + "]").removeClass("btn-warning");
+				$("[toquestionfast=" + questionpage + "]").addClass("btn-warning");
 			}
 		});
 
 		$("[toquestionfast]").live('click', function() {
 			$("[question]").hide();
+			$("[toquestionfast=" + questionpage + "]").removeClass("btn-warning");
 			var i = $(this).find("span").html();
+			questionpage = i;
 			$("[nowquestion=" + i + "]").show();
+			$("[toquestionfast=" + questionpage + "]").addClass("btn-warning");
 		});
 
 
