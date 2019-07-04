@@ -31,7 +31,7 @@ public class HxbExcelController {
     	//测试
     	System.out.println(testid);
         List<TestSituationEntity> list = testSituationService.MakeTestSituationExcelByTestId(testid);
-        String fileName = "export01";
+        String fileName = "考试id为"+testid+"的考试情况";
         String sheetName = "sheet01";
 
         ExcelUtil.writeExcel(response, list, fileName, sheetName, new TestSituationEntity());
