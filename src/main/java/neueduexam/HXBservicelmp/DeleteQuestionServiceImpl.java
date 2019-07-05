@@ -33,7 +33,7 @@ public class DeleteQuestionServiceImpl implements neueduexam.HXBservice.DeleteQu
 			String quesType = q.getQuestype();
 			
 			//在题目表中删除该题库
-			questionMapper.deleteByPrimaryKey(quesId);
+			//questionMapper.deleteByPrimaryKey(quesId);
 			
 			//找到被操作的题库id
 			questionandlibExample qE = new questionandlibExample();

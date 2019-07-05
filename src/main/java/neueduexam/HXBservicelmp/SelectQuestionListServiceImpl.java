@@ -56,9 +56,12 @@ public class SelectQuestionListServiceImpl implements SelectQuestionListService{
 	//找出所有有敏感词的题目
 	@Override
 	public String selectIllegalQuestionList() {
-		questionExample qE = new questionExample();
-		qE.createCriteria().andQuesidIsNotNull();
-		List<question> list = questionMapper.selectByExample(qE);
+//		questionExample qE = new questionExample();
+//		qE.createCriteria().andQuesidIsNotNull();
+		List<questionandlib> list3 = questionandlibMapper.selectByExample(null);
+		List<question> list = new ArrayList<>();
+		for(questionandlib q:list3)
+			list.add(questionMapper.selectByPrimaryKey(q.getQuesid()));
 		List<IllegalQuestion> list2 = new ArrayList<IllegalQuestion>();
 		for(question q :list) {
 			FilteredResult res = WordFilterUtil.filterText(q.getQuescontext(), '*');
