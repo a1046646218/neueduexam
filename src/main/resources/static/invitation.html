@@ -363,10 +363,6 @@
    						"dataSrc":function(json){
 							var testName = json.testName
 							$("#biaoti").append(testName);
-							for(var i=0;i<json.data.length;i++){
-								json.data[i].state = "<a href='https://www.hao123.com' style='color:blue' >"+json.data[i].state+"</a>"
-							}
-							return json.data;
     					}
     				},
     				//将接收到的数据放入对应的列中
