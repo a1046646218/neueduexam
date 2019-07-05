@@ -1,6 +1,7 @@
 package neueduexam.GZKservicelmp;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import neueduexam.dao.exampaperMapper;
 import neueduexam.dao.questionMapper;
 import neueduexam.dao.questionandlibMapper;
 import neueduexam.dao.questionlibMapper;
+import neueduexam.dao.recordMapper;
 import neueduexam.dao.userMapper;
 import neueduexam.dao.userbuylibMapper;
 import neueduexam.dao.userhavelibMapper;
@@ -30,6 +32,7 @@ import neueduexam.entity.questionandlib;
 import neueduexam.entity.questionandlibExample;
 import neueduexam.entity.questionlib;
 import neueduexam.entity.questionlibExample;
+import neueduexam.entity.record;
 import neueduexam.entity.user;
 import neueduexam.entity.userExample;
 import neueduexam.entity.userbuylib;
@@ -60,6 +63,8 @@ public class GZKUserServiceImp implements GZKUserService {
 	QuestionlibService questionlibService;
 	@Autowired
 	DeleteQuestionService deleteQuestionService;
+	@Autowired
+	recordMapper recordmapper;
 	public List<user> login(String phone)
 	{
 		
@@ -189,6 +194,9 @@ public class GZKUserServiceImp implements GZKUserService {
 	 {
 		 List<question> list=getquestionlistbylibid(questionlib.getLibid());
 		 user.setPoints(user.getPoints()-questionlib.getLibprice());
+		 int id1=questionlib.getUserid();
+		 String name=questionlib.getNickname();
+		 int point=questionlib.getLibprice();
 		 usermapper.updateByPrimaryKeySelective(user);
 		 user u=usermapper.selectByPrimaryKey(questionlib.getUserid());
 		 u.setPoints(u.getPoints()+questionlib.getLibprice());
@@ -211,6 +219,16 @@ public class GZKUserServiceImp implements GZKUserService {
 		 questionandlib.setQuesid(q.getQuesid());
 		 questionandlibmapper.insertSelective(questionandlib);
 		 }
+		 record record=new record();
+		 record.setBuyerid(user.getUserid());
+		 record.setBuyername(user.getNickname());
+		 record.setSellerid(id1);
+		 record.setSellername(name);
+		 record.setCost(point);
+		 record.setGoodsname("购买题库");
+		 Date date=new Date();
+		 record.setDate(date);
+		 recordmapper.insertSelective(record);
 		 return 1;
 		 
 	 }
