@@ -3,11 +3,15 @@ package neueduexam.DTFcontroller;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -36,6 +40,10 @@ public class testhomeController {
 	@Autowired
 	Customer1 customer1;
 	
+	@Autowired
+	StringRedisTemplate template;
+	
+	
 	@RequestMapping("/gettestmsg")
 	public testpaper gettestmsg(int testid) {
 		return testhomeservice.gettestmsg(testid);
@@ -61,10 +69,19 @@ public class testhomeController {
 	
 	@RequestMapping("/subimtpaper")
 	public int subimtpaper(HttpServletRequest res,String local,int lessdu,String answerlist, int testid,int mycount, String ipaddress, String brower, String os) {
+		user u  = (user)res.getSession().getAttribute("user");
+		
+		if(template.hasKey("quessave_"+u.getUserid()+"_"+testid)){
+			template.delete("quessave_"+u.getUserid()+"_"+testid);
+    	}
+		if(template.hasKey("timesave_"+u.getUserid()+"_"+testid)){
+    		template.delete("timesave_"+u.getUserid()+"_"+testid);
+    	}
+		
 		List<question> qlist = testhomeservice.getquestionList(testid);
 		List<examandquestion> slist = testhomeservice.getscoreList(testid);
 		testpaper testmsg = testhomeservice.gettestmsg(testid);
-		user u  = (user)res.getSession().getAttribute("user");
+		
 		List<personquestion> t = JSONArray.parseArray(answerlist, personquestion.class);
 		System.out.println(t.size());
 		for(int i=0;i<t.size();i++) {

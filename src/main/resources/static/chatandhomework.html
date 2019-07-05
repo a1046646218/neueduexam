@@ -636,7 +636,7 @@
             $(".edui-body-container").css("width", "90%");
 		    var nickname = $("#username").val();
 			var userimg = $("#userimg").val();
-			var socket = new WebSocket("ws://localhost:8081/websocket?groupid="+groupid);
+			var socket = new WebSocket("ws://10.25.40.7:8081/websocket?groupid="+groupid);
 		    //接收服务器的消息
 		    socket.onmessage=function(ev){
 		    	var obj = eval(   '('+ev.data+')'   );

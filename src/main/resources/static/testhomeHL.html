@@ -863,11 +863,12 @@
 				local = result.province + result.city;
 			}
 		});
-
+				var outflag = 0;
 				document.addEventListener('visibilitychange', function() { //浏览器切换事件
 					if (document.visibilityState == 'hidden') { //状态判断
 						mycount++;
-						if (mycount > count) {
+						if (mycount > count&&outflag==0) {
+							outflag = 1;
 							$("#sumitquestion").click();
 						} else {
 							layer.alert("禁止切出网页,已切出" + mycount + "次,"+count+"次后自动提交");

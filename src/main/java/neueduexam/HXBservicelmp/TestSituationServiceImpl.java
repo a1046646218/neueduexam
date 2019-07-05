@@ -32,6 +32,9 @@ public class TestSituationServiceImpl implements TestSituationService {
 		pE.createCriteria().andTestidEqualTo(i_testId);
 		List<personexampaper> list = personexampaperMapper.selectByExample(pE);
 		
+		if(list.size()==0)
+			return JSON.toJSONString(t);
+		
 		t.setTestName(list.get(0).getOther1());
 		t.setData(list);
 		
